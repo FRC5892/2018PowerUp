@@ -1,3 +1,11 @@
 bin
 build
 dist
+
+.gradle
+.settings
+.classpath
+.project
+*.iml
+*.ipr
+*.iws
