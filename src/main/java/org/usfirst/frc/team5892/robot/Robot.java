@@ -7,13 +7,18 @@
 
 package org.usfirst.frc.team5892.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5892.robot.commands.ExampleCommand;
+import org.usfirst.frc.team5892.robot.commands.auton.AutonBuilder;
+import org.usfirst.frc.team5892.robot.commands.auton.ExampleAuton;
+import org.usfirst.frc.team5892.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team5892.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team5892.robot.oi.OI;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,7 +33,11 @@ public class Robot extends TimedRobot {
 	public static OI m_oi;
 
 	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	SendableChooser<AutonBuilder> m_chooser = new SendableChooser<>();
+
+	public static DriveSubsystem driveSubsystem;
+
+	public static RobotMap map;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -36,8 +45,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		m_oi = new OI();
-		m_chooser.addDefault("Default Auto", new ExampleCommand());
+		m_oi = new OI(null, null);
+		m_chooser.addDefault("Default Auto", new ExampleAuton());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
@@ -70,17 +79,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
+		AutonBuilder builder = m_chooser.getSelected();
 
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
-		if (m_autonomousCommand != null) {
+		if (builder != null) {
+			m_autonomousCommand = builder.buildAuto(DriverStation.getInstance().getGameSpecificMessage());
 			m_autonomousCommand.start();
 		}
 	}
