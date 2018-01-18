@@ -37,4 +37,9 @@ public class DriveSubsystem extends Subsystem {
     public void tankDrive(double left, double right) {
         drive.tankDrive(left, right);
     }
+
+    public void reset() {
+        leftDrive.set(0);
+        rightDrive.set(0);
+    }
 }
