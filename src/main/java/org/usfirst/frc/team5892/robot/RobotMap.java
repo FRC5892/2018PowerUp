@@ -16,8 +16,13 @@ import edu.wpi.first.wpilibj.Victor;
  * floating around.
  */
 public class RobotMap {
-	public MotorInfo leftDriveMotor;
-	public MotorInfo rightDriveMotor;
+	public MotorInfo leftDrive1;
+	public MotorInfo leftDrive2;
+	public MotorInfo leftDrive3;
+
+	public MotorInfo rightDrive1;
+	public MotorInfo rightDrive2;
+	public MotorInfo rightDrive3;
 
 	public class MotorInfo {
 	    public final int port;
