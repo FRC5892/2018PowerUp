@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team5892.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5892.robot.commands.auton.AutonBuilder;
 import org.usfirst.frc.team5892.robot.commands.auton.ExampleAuton;
 import org.usfirst.frc.team5892.robot.subsystems.DriveSubsystem;
@@ -37,7 +36,7 @@ public class Robot extends TimedRobot {
 
 	public static DriveSubsystem driveSubsystem;
 
-	public static RobotMap map;
+	public static RobotMap map = new BallbasaurDriveMap();
 
 	/**
 	 * This function is run when the robot is first started up and should be
