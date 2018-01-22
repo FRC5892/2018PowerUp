@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import sys, os
 
 BATCH_TEMPLATE = """@echo off
@@ -32,20 +34,25 @@ fi
 
 def main(infile, outfile, ext):
     with open(infile, 'r') as inff:
-        input = inff.readlines()
-    tbody = ""
-    for line in input:
-        tbody += "echo {0:s} >> %1.{1:s}\n".format(line.rstrip(), ext)
-    tbody = tbody.replace("&name", "%1")
+        input_lines = inff.readlines()
+
+    batch_body = ""
+    for line in input_lines:
+        batch_body += "echo {0:s} >> %1.{1:s}\n".format(line.rstrip(), ext)
+    batch_body = batch_body.replace("&name", "%1")
     with open(outfile + ".bat", 'w') as batchout:
-        batchout.write(BATCH_TEMPLATE.format(ext=ext, body=tbody).replace("echo  >>", "echo[ >>"))
+        batchout.write(BATCH_TEMPLATE.format(ext=ext, body=batch_body).replace("echo  >>", "echo[ >>"))
+    
+    bash_body = ""
+    for line in input_lines:
+        bash_body += "echo \"{0:s}\" >> $1.{1:s}\n".format(line.rstrip().replace('"', '\\"'), ext)
+    bash_body = bash_body.replace("&name", "$1")
     with open(outfile + ".sh", 'w') as bashout:
-        bbody = tbody.replace("'", "\\'").replace('"', '\\"').replace("%1", "$1")
-        bashout.write(BASH_TEMPLATE.format(ext=ext, body=bbody))
+        bashout.write(BASH_TEMPLATE.format(ext=ext, body=bash_body))
     os.chmod(outfile + ".sh", 0o777)
 
 if __name__ == "__main__":
     try:
         main(*sys.argv[1:])
     except TypeError:
-        print("usage: " + sys.argv[0] + " <inputfile> <outputfile> <extension>")
+        print("usage: " + sys.argv[0] + " <input_lines> <outputfile> <extension>")
