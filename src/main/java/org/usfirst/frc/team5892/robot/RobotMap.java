@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team5892.robot;
 
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Victor;
 
 /**
@@ -16,13 +17,16 @@ import edu.wpi.first.wpilibj.Victor;
  * floating around.
  */
 public class RobotMap {
-	public MotorInfo leftDrive1;
-	public MotorInfo leftDrive2;
-	public MotorInfo leftDrive3;
+	public MotorInfo[] leftDrive;
+    public MotorInfo[] rightDrive;
 
-	public MotorInfo rightDrive1;
-	public MotorInfo rightDrive2;
-	public MotorInfo rightDrive3;
+    public static SpeedControllerGroup makeVictorGroup(MotorInfo... motors) {
+    	Victor[] victors = new Victor[motors.length-1];
+		for (int i = 1; i < motors.length; i++) {
+			victors[i-1] = motors[i].makeVictor();
+		}
+		return new SpeedControllerGroup(motors[0].makeVictor(), victors);
+	}
 
 	public class MotorInfo {
 	    public final int port;
