@@ -10,7 +10,7 @@ public class JoystickPlayerOne implements PlayerOne {
 
     @Override
     public double moveAxis() {
-        return stick.getRawAxis(1);
+        return -stick.getRawAxis(1);
     }
 
     @Override

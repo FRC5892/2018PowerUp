@@ -35,7 +35,7 @@ public class Robot extends TimedRobot {
 
 	public static DriveSubsystem driveSubsystem;
 
-	public static RobotMap map = new BallbasaurDriveMap();
+	public static RobotMap map = new OfficialBotMap();
 
 	/**
 	 * This function is run when the robot is first started up and should be
