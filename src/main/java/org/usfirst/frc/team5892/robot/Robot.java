@@ -13,10 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team5892.robot.commands.auton.AutonBuilder;
-import org.usfirst.frc.team5892.robot.commands.auton.ExampleAuton;
-import org.usfirst.frc.team5892.robot.subsystems.DriveSubsystem;
-import org.usfirst.frc.team5892.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team5892.robot.commands.auton.*;
+import org.usfirst.frc.team5892.robot.oi.JoystickPlayerOne;
+import org.usfirst.frc.team5892.robot.subsystems.*;
 import org.usfirst.frc.team5892.robot.oi.OI;
 
 /**
@@ -44,7 +43,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		m_oi = new OI(null, null);
+		m_oi = new OI(new JoystickPlayerOne(0), null);
+
+		driveSubsystem = new DriveSubsystem();
+
 		m_chooser.addDefault("Default Auto", new ExampleAuton());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
