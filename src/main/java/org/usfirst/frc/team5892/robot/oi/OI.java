@@ -1,7 +1,5 @@
 package org.usfirst.frc.team5892.robot.oi;
 
-import org.usfirst.frc.team5892.robot.commands.*;
-
 public class OI {
     public PlayerOne player1;
     public PlayerTwo player2;
@@ -13,7 +11,6 @@ public class OI {
         // Player 1 commands
 
         // Player 2 commands
-        player_2.paranoiaFreeze().whileActive(new ParanoiaFreeze());
 
     }
 }
