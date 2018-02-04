@@ -38,10 +38,10 @@ def main(infile, outfile, ext):
 
     batch_body = ""
     for line in input_lines:
-        batch_body += "echo {0:s} >> %1.{1:s}\n".format(line.rstrip(), ext)
+        batch_body += "echo {0:s}>> %1.{1:s}\n".format(line.rstrip(), ext)
     batch_body = batch_body.replace("&name", "%1")
     with open(outfile + ".bat", 'w') as batchout:
-        batchout.write(BATCH_TEMPLATE.format(ext=ext, body=batch_body).replace("echo  >>", "echo[ >>"))
+        batchout.write(BATCH_TEMPLATE.format(ext=ext, body=batch_body).replace("echo >>", "echo[>>"))
     
     bash_body = ""
     for line in input_lines:
@@ -55,4 +55,4 @@ if __name__ == "__main__":
     try:
         main(*sys.argv[1:])
     except TypeError:
-        print("usage: " + sys.argv[0] + " <input_lines> <outputfile> <extension>")
+        print("usage: " + sys.argv[0] + " <inputfile> <outputfile> <extension>")
