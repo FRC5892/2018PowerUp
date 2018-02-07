@@ -8,14 +8,13 @@ import org.usfirst.frc.team5892.robot.RobotMap;
 import org.usfirst.frc.team5892.robot.commands.JoystickDriveCommand;
 
 public class DriveSubsystem extends Subsystem {
-    private final SpeedControllerGroup leftDrive;
-    private final SpeedControllerGroup rightDrive;
     private final DifferentialDrive drive;
 
     public DriveSubsystem() {
-        leftDrive = RobotMap.makeVictorGroup(Robot.map.leftDrive);
-        rightDrive = RobotMap.makeVictorGroup(Robot.map.rightDrive);
+        SpeedControllerGroup leftDrive = RobotMap.makeVictorGroup(Robot.map.leftDrive);
+        SpeedControllerGroup rightDrive = RobotMap.makeVictorGroup(Robot.map.rightDrive);
         drive = new DifferentialDrive(leftDrive, rightDrive);
+        addChild(drive);
     }
 
     @Override
@@ -32,7 +31,6 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void reset() {
-        leftDrive.set(0);
-        rightDrive.set(0);
+        drive.stopMotor();
     }
 }

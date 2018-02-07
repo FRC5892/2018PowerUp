@@ -33,7 +33,8 @@ public class Robot extends TimedRobot {
 	Command m_autonomousCommand;
 	SendableChooser<AutonBuilder> m_chooser = new SendableChooser<>();
 
-	public static DriveSubsystem driveSubsystem;
+	public static DriveSubsystem drive;
+	public static IntakeSubsystem intake;
 
 	public static RobotMap map = new OfficialBotMap();
 
@@ -43,10 +44,17 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		m_oi = new OI(new JoystickPlayerOne(0), null);
+		// Order is important here!!!
 
-		driveSubsystem = new DriveSubsystem();
+		// Initialize subsystems
+		drive = new DriveSubsystem();
+		intake = new IntakeSubsystem();
 
+		// Initialize OI
+		JoystickPlayerOne p1 = new JoystickPlayerOne(0);
+		m_oi = new OI(p1, p1);
+
+		// Initialize autonomous builders
 		m_chooser.addDefault("Default Auto", new ExampleAuton());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
