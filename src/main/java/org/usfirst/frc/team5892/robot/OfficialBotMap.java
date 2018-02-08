@@ -4,12 +4,5 @@ public class OfficialBotMap extends RobotMap {
     public OfficialBotMap() {
         leftDrive = new MotorInfo[]{new MotorInfo(0, false), new MotorInfo(1, false)};
         rightDrive = new MotorInfo[]{new MotorInfo(3, false), new MotorInfo(4, false)};
-
-        intakeMotor1 = new MotorInfo(9, false);
-        intakeMotor2 = new MotorInfo(2, true);
-
-        piston1 = 0;
-        piston2 = 2;
-        piston3 = 3;
     }
 }

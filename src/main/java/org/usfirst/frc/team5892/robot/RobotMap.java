@@ -20,13 +20,6 @@ public class RobotMap {
 	public MotorInfo[] leftDrive;
     public MotorInfo[] rightDrive;
 
-    public MotorInfo intakeMotor1;
-    public MotorInfo intakeMotor2;
-
-    public int piston1;
-    public int piston2;
-    public int piston3;
-
     public static SpeedControllerGroup makeVictorGroup(MotorInfo... motors) {
     	Victor[] victors = new Victor[motors.length-1];
 		for (int i = 1; i < motors.length; i++) {

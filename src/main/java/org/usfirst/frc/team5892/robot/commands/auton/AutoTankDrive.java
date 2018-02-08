@@ -12,7 +12,7 @@ public class AutoTankDrive extends Command {
     final double right;
 
     public AutoTankDrive(double _left, double _right, double duration) {
-        requires(Robot.drive);
+        requires(Robot.driveSubsystem);
         left = _left;
         right = _right;
         setTimeout(duration);
@@ -20,7 +20,7 @@ public class AutoTankDrive extends Command {
 
     @Override
     protected void initialize() {
-        Robot.drive.tankDrive(left, right);
+        Robot.driveSubsystem.tankDrive(left, right);
     }
 
     @Override
@@ -30,6 +30,6 @@ public class AutoTankDrive extends Command {
 
     @Override
     protected final void end() {
-        Robot.drive.reset();
+        Robot.driveSubsystem.reset();
     }
 }
