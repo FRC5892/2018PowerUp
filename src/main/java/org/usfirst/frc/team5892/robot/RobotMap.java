@@ -17,8 +17,12 @@ import edu.wpi.first.wpilibj.Victor;
  * floating around.
  */
 public class RobotMap {
-	public MotorInfo[] leftDrive;
-    public MotorInfo[] rightDrive;
+	public MotorInfo[] leftDrive, rightDrive;
+
+    public MotorInfo leftIntakeMotor, rightIntakeMotor;
+    public int leftIntakePiston, rightIntakePiston;
+    public int leftIntakeBumper, rightIntakeBumper;
+    public int intakeUltrasonic;
 
     public static SpeedControllerGroup makeVictorGroup(MotorInfo... motors) {
     	Victor[] victors = new Victor[motors.length-1];
