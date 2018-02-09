@@ -13,8 +13,8 @@ public class OI {
         // Player 1 commands
 
         // Player 2 commands
-        player2.togglePiston1().whenActive(new IntakePneumaticsToggle(0));
-        player2.togglePiston2().whenActive(new IntakePneumaticsToggle(1));
-        player2.togglePiston3().whenActive(new IntakePneumaticsToggle(2));
+        //player2.togglePiston1().whenActive(new IntakePneumaticsToggle(0));
+        //player2.togglePiston2().whenActive(new IntakePneumaticsToggle(1));
+        //player2.togglePiston3().whenActive(new IntakePneumaticsToggle(2));
     }
 }

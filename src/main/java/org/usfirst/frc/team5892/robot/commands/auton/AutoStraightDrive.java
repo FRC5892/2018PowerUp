@@ -7,6 +7,7 @@ import org.usfirst.frc.team5892.robot.Robot;
 public class AutoStraightDrive extends Command {
     private AutoStraightDriveController controller;
     private final double nominalPower;
+    //private static Preferences prefs = Preferences.getInstance();
 
     public AutoStraightDrive(double _nominalPower, double timeout) {
         requires(Robot.drive);
@@ -18,7 +19,8 @@ public class AutoStraightDrive extends Command {
 
     @Override
     protected void initialize() {
-        controller.setSetpoint(Robot.drive.gyroAngle());
+        Robot.drive.resetGyro();
+        //controller.setPID(prefs.getDouble("kP", 0), prefs.getDouble("kI", 0), prefs.getDouble("kD", 0));
         controller.enable();
     }
 
@@ -34,11 +36,12 @@ public class AutoStraightDrive extends Command {
 
     private class AutoStraightDriveController extends HEROicPIDController {
 
-        private static final double kP = 0;
-        private static final double kI = 0;
+        private static final double kP = 0.05;
+        private static final double kI = 0.1;
         private static final double kD = 0;
         AutoStraightDriveController() {
             super(kP, kI, kD);
+            setSetpoint(0);
         }
 
         @Override

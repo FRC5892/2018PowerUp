@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
 	public static DriveSubsystem drive;
 	public static IntakeSubsystem intake;
 
-	public static RobotMap map = new OfficialBotMap();
+	public static RobotMap map = new TempBotMap();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -48,15 +48,15 @@ public class Robot extends TimedRobot {
 
 		// Initialize subsystems
 		drive = new DriveSubsystem();
-		intake = new IntakeSubsystem();
+		//intake = new IntakeSubsystem();
 
 		// Initialize OI
 		JoystickPlayerOne p1 = new JoystickPlayerOne(0);
 		m_oi = new OI(p1, p1);
 
 		// Initialize autonomous builders
-		m_chooser.addDefault("Default Auto", new ExampleAuton());
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		m_chooser.addDefault("Do Nothing", null);
+		m_chooser.addObject("Straight Drive Test", (a) -> new AutoStraightDrive(0.7, 3));
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
 

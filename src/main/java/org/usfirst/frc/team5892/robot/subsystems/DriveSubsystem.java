@@ -39,6 +39,10 @@ public class DriveSubsystem extends Subsystem {
         drive.stopMotor();
     }
 
+    public void resetGyro() {
+        navx.reset();
+    }
+
     public double gyroAngle() {
         return navx.getYaw();
     }
