@@ -12,10 +12,16 @@ public class IntakeToggle extends InstantCommand {
 
     @Override
     protected void execute() {
-        Robot.intake.intaking = !Robot.intake.intaking;
-        if (Robot.intake.intaking) {
-            Robot.intake.setLeft(IntakeSubsystem.MOTOR_POWER);
-            Robot.intake.setRight(IntakeSubsystem.MOTOR_POWER);
+        switch (Robot.intake.getState()) {
+            case IDLE:
+                Robot.intake.setState(IntakeSubsystem.State.RUNNING);
+                break;
+            case RUNNING:
+                Robot.intake.setState(IntakeSubsystem.State.IDLE);
+                break;
+            case INTAKING:
+                Robot.intake.setState(IntakeSubsystem.State.EXTRUDING);
+                break;
         }
     }
 }

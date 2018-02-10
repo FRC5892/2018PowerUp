@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5892.robot.commands.auton.*;
 import org.usfirst.frc.team5892.robot.oi.JoystickPlayerOne;
+import org.usfirst.frc.team5892.robot.oi.JoystickPlayerTwo;
 import org.usfirst.frc.team5892.robot.subsystems.*;
 import org.usfirst.frc.team5892.robot.oi.OI;
 
@@ -48,10 +49,10 @@ public class Robot extends TimedRobot {
 
 		// Subsystems
 		drive = new DriveSubsystem();
-		//intake = new IntakeSubsystem();
+		intake = new IntakeSubsystem();
 
 		// OI
-		m_oi = new OI(new JoystickPlayerOne(0), null);
+		m_oi = new OI(new JoystickPlayerOne(0), new JoystickPlayerTwo(1));
 
 		// Autonomous modes
 		m_chooser.addDefault("Do Nothing", null);
