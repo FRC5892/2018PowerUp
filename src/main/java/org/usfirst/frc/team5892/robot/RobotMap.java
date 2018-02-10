@@ -26,6 +26,9 @@ public class RobotMap {
     public int leftIntakeBumper, rightIntakeBumper;
     public int intakeUltrasonic;
 
+	public MotorInfo elevatorMotor;
+	public int[] elevatorSwitches;
+
     public static SpeedControllerGroup makeVictorGroup(MotorInfo... motors) {
     	Victor[] victors = new Victor[motors.length-1];
 		for (int i = 1; i < motors.length; i++) {

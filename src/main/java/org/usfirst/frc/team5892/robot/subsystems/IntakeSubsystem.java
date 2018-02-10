@@ -4,10 +4,9 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team5892.HEROcode.inline.InlineTrigger;
-import org.usfirst.frc.team5892.HEROcode.sensormap.Sensor;
 import org.usfirst.frc.team5892.robot.Robot;
-import org.usfirst.frc.team5892.robot.commands.auton.intake.IntakeBumperStop;
-import org.usfirst.frc.team5892.robot.commands.auton.intake.IntakeStateSet;
+import org.usfirst.frc.team5892.robot.commands.intake.IntakeBumperStop;
+import org.usfirst.frc.team5892.robot.commands.intake.IntakeStateSet;
 
 public class IntakeSubsystem extends Subsystem {
     public static final double MOTOR_POWER = 0.5;

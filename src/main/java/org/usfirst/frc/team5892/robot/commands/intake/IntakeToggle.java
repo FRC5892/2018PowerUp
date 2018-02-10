@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5892.robot.commands.auton.intake;
+package org.usfirst.frc.team5892.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import org.usfirst.frc.team5892.robot.Robot;

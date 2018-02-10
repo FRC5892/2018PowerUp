@@ -4,6 +4,10 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 
 public interface PlayerTwo {
     Trigger intakeToggle();
+
+    Trigger elevatorUp();
+    Trigger elevatorDown();
+
     Trigger tempBtn1();
     Trigger tempBtn2();
 }

@@ -36,6 +36,7 @@ public class Robot extends TimedRobot {
 
 	public static DriveSubsystem drive;
 	public static IntakeSubsystem intake;
+	public static ElevatorSubsystem elevator;
 
 	public static RobotMap map = new TempBotMap();
 
@@ -50,6 +51,7 @@ public class Robot extends TimedRobot {
 		// Subsystems
 		drive = new DriveSubsystem();
 		intake = new IntakeSubsystem();
+		elevator = new ElevatorSubsystem();
 
 		// OI
 		m_oi = new OI(new JoystickPlayerOne(0), new JoystickPlayerTwo(1));

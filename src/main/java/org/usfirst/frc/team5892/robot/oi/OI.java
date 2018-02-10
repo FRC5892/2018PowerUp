@@ -1,5 +1,9 @@
 package org.usfirst.frc.team5892.robot.oi;
 
+import org.usfirst.frc.team5892.robot.commands.elevator.DecrementElevatorTarget;
+import org.usfirst.frc.team5892.robot.commands.elevator.IncrementElevatorTarget;
+import org.usfirst.frc.team5892.robot.commands.intake.IntakeToggle;
+
 public class OI {
     public PlayerOne player1;
     public PlayerTwo player2;
@@ -11,6 +15,8 @@ public class OI {
         // Player 1 commands
 
         // Player 2 commands
-
+        player2.intakeToggle().whenActive(new IntakeToggle());
+        player2.elevatorUp().whenActive(new IncrementElevatorTarget());
+        player2.elevatorDown().whenActive(new DecrementElevatorTarget());
     }
 }
