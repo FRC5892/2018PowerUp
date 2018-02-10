@@ -42,8 +42,8 @@ public class IntakeSubsystem extends Subsystem {
         new InlineTrigger(() -> Robot.m_oi.player2.tempBtn2().get() && state == State.INTAKING).whenActive(new IntakeBumperStop(rightMotor));
 
         Trigger ultrasonicTrigger = new InlineTrigger(() -> cubeInside);
-        ultrasonicTrigger.whenActive(new IntakeStateSet(State.INTAKING));
-        ultrasonicTrigger.whenInactive(new IntakeStateSet(State.IDLE));
+        ultrasonicTrigger.whenActive(new IntakeStateSet(State.INTAKING, State.RUNNING));
+        ultrasonicTrigger.whenInactive(new IntakeStateSet(State.IDLE, State.EXTRUDING));
     }
 
     public State getState() {
