@@ -57,6 +57,7 @@ public class Robot extends TimedRobot {
 		// Initialize autonomous builders
 		m_chooser.addDefault("Do Nothing", null);
 		m_chooser.addObject("Straight Drive Test", (a) -> new AutoStraightDrive(0.7, 3));
+		m_chooser.addObject("Gyro Turn Test", (a) -> new AutoGyroRotate(90));
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
 
