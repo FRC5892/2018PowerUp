@@ -18,6 +18,8 @@ import edu.wpi.first.wpilibj.Victor;
  */
 public class RobotMap {
 	public MotorInfo[] leftDrive, rightDrive;
+	public int leftEncoder1, leftEncoder2;
+	public int rightEncoder1, rightEncoder2;
 
     public MotorInfo leftIntakeMotor, rightIntakeMotor;
     public int leftIntakePiston, rightIntakePiston;

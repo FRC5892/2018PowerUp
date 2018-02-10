@@ -7,26 +7,26 @@ import org.usfirst.frc.team5892.robot.Robot;
 public class AutoStraightDrive extends Command {
     private AutoStraightDriveController controller;
     private final double nominalPower;
-    //private static Preferences prefs = Preferences.getInstance();
+    private final double encoderTarget;
 
-    public AutoStraightDrive(double _nominalPower, double timeout) {
+    public AutoStraightDrive(double _nominalPower, double _encoderTarget) {
         requires(Robot.drive);
         controller = new AutoStraightDriveController();
         nominalPower = _nominalPower;
-        // TODO encoders
-        setTimeout(timeout);
+        encoderTarget = _encoderTarget;
     }
 
     @Override
     protected void initialize() {
         Robot.drive.resetGyro();
-        //controller.setPID(prefs.getDouble("kP", 0), prefs.getDouble("kI", 0), prefs.getDouble("kD", 0));
+        Robot.drive.resetEncoders();
         controller.enable();
     }
 
     @Override
     protected boolean isFinished() {
-        return isTimedOut();
+        return Math.abs(Robot.drive.getLeft()) > encoderTarget ||
+                Math.abs(Robot.drive.getRight()) > encoderTarget;
     }
 
     @Override

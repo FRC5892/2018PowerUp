@@ -1,13 +1,11 @@
 package org.usfirst.frc.team5892.robot.commands.auton;
 
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5892.HEROcode.pid.HEROicPIDController;
 import org.usfirst.frc.team5892.robot.Robot;
 
 public class AutoGyroRotate extends Command {
     private static final double TOLERANCE = 0.5;
-    private static Preferences prefs = Preferences.getInstance();
 
     private final AutoGyroRotateController controller;
     private final double turnValue;
@@ -23,7 +21,6 @@ public class AutoGyroRotate extends Command {
     protected void initialize() {
         hasBeenUntrue = false;
         Robot.drive.resetGyro();
-        controller.setPID(prefs.getDouble("kP", 0), prefs.getDouble("kI", 0), prefs.getDouble("kD", 0));
         controller.enable();
     }
 
@@ -38,13 +35,13 @@ public class AutoGyroRotate extends Command {
     @Override
     protected void end() {
         controller.disable();
-        Robot.drive.reset();
+        Robot.drive.stop();
     }
 
     private class AutoGyroRotateController extends HEROicPIDController {
 
-        private static final double kP = 0;
-        private static final double kI = 0;
+        private static final double kP = 0.007;
+        private static final double kI = 0.01;
         private static final double kD = 0;
         AutoGyroRotateController() {
             super(kP, kI, kD);
