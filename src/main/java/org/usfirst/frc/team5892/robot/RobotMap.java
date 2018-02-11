@@ -22,12 +22,14 @@ public class RobotMap {
 	public int rightEncoder1, rightEncoder2;
 
     public MotorInfo leftIntakeMotor, rightIntakeMotor;
-    public int leftIntakePiston, rightIntakePiston;
-    public int leftIntakeBumper, rightIntakeBumper;
-    public int intakeUltrasonic;
+    public int leftIntakePiston1, leftIntakePiston2;
+    public int rightIntakePiston1, rightIntakePiston2;
+    public int intakeBumperSwitch;
 
 	public MotorInfo elevatorMotor;
 	public int[] elevatorSwitches;
+
+	// ---
 
     public static SpeedControllerGroup makeVictorGroup(MotorInfo... motors) {
     	Victor[] victors = new Victor[motors.length-1];

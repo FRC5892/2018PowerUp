@@ -5,22 +5,26 @@ import org.usfirst.frc.team5892.robot.Robot;
 import org.usfirst.frc.team5892.robot.subsystems.IntakeSubsystem;
 
 public class IntakeToggle extends InstantCommand {
+    private final IntakeExtrude extrudeCmd;
 
     public IntakeToggle() {
         requires(Robot.intake);
+        extrudeCmd = new IntakeExtrude();
     }
 
     @Override
     protected void execute() {
-        switch (Robot.intake.getState()) {
+        switch (Robot.intake.state) {
             case IDLE:
-                Robot.intake.setState(IntakeSubsystem.State.RUNNING);
+                Robot.intake.state = IntakeSubsystem.State.RUNNING;
+                Robot.intake.setMotorPower(IntakeSubsystem.RUNNING_POWER);
                 break;
             case RUNNING:
-                Robot.intake.setState(IntakeSubsystem.State.IDLE);
+                Robot.intake.state = IntakeSubsystem.State.IDLE;
+                Robot.intake.setMotorPower(0);
                 break;
-            case INTAKING:
-                Robot.intake.setState(IntakeSubsystem.State.EXTRUDING);
+            case HOLDING:
+                extrudeCmd.start();
                 break;
         }
     }
