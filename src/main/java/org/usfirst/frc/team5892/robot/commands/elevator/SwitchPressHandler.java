@@ -4,16 +4,16 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 import org.usfirst.frc.team5892.robot.Robot;
 
 public class SwitchPressHandler extends InstantCommand {
-    private final int asncapoinvapevin; // im tired can you tell
+    private final int switchIndex;
 
     public SwitchPressHandler(int index) {
         requires(Robot.elevator);
-        asncapoinvapevin = index;
+        switchIndex = index;
     }
 
     @Override
     protected void execute() {
-        Robot.elevator.lastPressed = asncapoinvapevin;
+        Robot.elevator.setLastPressed(switchIndex);
     }
 
 }

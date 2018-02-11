@@ -10,7 +10,8 @@ public class DecrementElevatorTarget extends InstantCommand {
     //
     @Override
     protected void execute(){
-        if (Robot.elevator.target > 0) Robot.elevator.target--;
+        if (Robot.elevator.getTarget() > 0)
+            Robot.elevator.setTarget(Robot.elevator.getTarget() - 1);
     }
 }
 

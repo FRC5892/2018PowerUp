@@ -8,5 +8,5 @@ package org.usfirst.frc.team5892.HEROcode.sensormap;
 @FunctionalInterface
 public interface SensorGetter {
 	/** @return a double, usually corresponding to the value of a sensor (hence, SensorGetter) */
-    public double getValue();
+    double getValue();
 }
