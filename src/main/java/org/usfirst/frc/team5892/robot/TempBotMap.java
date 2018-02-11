@@ -7,10 +7,5 @@ public class TempBotMap extends RobotMap{
 
         leftIntakeMotor = new MotorInfo(1, false);
         rightIntakeMotor = new MotorInfo(2, true);
-        leftIntakePiston = 0;
-        rightIntakePiston = 1;
-        leftIntakeBumper = 0;
-        rightIntakeBumper = 1;
-        intakeUltrasonic = 0;
     }
 }
