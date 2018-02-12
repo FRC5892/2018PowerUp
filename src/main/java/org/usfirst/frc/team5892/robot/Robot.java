@@ -27,8 +27,6 @@ import org.usfirst.frc.team5892.robot.oi.OI;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static final ExampleSubsystem kExampleSubsystem
-			= new ExampleSubsystem();
 	public static OI m_oi;
 
 	Command m_autonomousCommand;
@@ -37,6 +35,7 @@ public class Robot extends TimedRobot {
 	public static DriveSubsystem drive;
 	public static IntakeSubsystem intake;
 	public static ElevatorSubsystem elevator;
+	public static BatwingSubsystem batwings;
 
 	public static RobotMap map = new TempBotMap();
 

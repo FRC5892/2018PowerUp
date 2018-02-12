@@ -17,17 +17,26 @@ import edu.wpi.first.wpilibj.Victor;
  * floating around.
  */
 public class RobotMap {
+    // Drive subsystem
 	public MotorInfo[] leftDrive, rightDrive;
 	public int leftEncoder1, leftEncoder2;
 	public int rightEncoder1, rightEncoder2;
 
+	// Intake subsystem
     public MotorInfo leftIntakeMotor, rightIntakeMotor;
     public int leftIntakePiston1, leftIntakePiston2;
     public int rightIntakePiston1, rightIntakePiston2;
     public int intakeBumperSwitch;
 
+    // Elevator subsystem
 	public MotorInfo elevatorMotor;
 	public int[] elevatorSwitches;
+
+	// Batwing subsystem
+    public MotorInfo leftBatwingRetainer, leftBatwingWinch;
+    public MotorInfo rightBatwingRetainer, rightBatwingWinch;
+    public int leftBatwingRetainerSensor, leftBatwingWinchSensor;
+    public int rightBatwingRetainerSensor, rightBatwingWinchSensor;
 
 	// ---
 
