@@ -1,13 +1,12 @@
-package org.usfirst.frc.team5892.robot.commands.intake;
+package org.usfirst.frc.team5892.robot.subsystems.intake;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5892.robot.Robot;
-import org.usfirst.frc.team5892.robot.subsystems.IntakeSubsystem;
 
-public class IntakeWindDown extends Command {
+class IntakeWindDown extends Command {
     private static final double TIME = 2;
 
-    public IntakeWindDown() {
+    IntakeWindDown() {
         requires(Robot.intake);
         setTimeout(TIME);
     }

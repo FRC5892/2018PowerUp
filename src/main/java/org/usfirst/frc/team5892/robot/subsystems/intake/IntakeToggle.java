@@ -1,8 +1,7 @@
-package org.usfirst.frc.team5892.robot.commands.intake;
+package org.usfirst.frc.team5892.robot.subsystems.intake;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import org.usfirst.frc.team5892.robot.Robot;
-import org.usfirst.frc.team5892.robot.subsystems.IntakeSubsystem;
 
 public class IntakeToggle extends InstantCommand {
     private final IntakeExtrude extrudeCmd;

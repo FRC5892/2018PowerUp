@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5892.robot.commands.elevator;
+package org.usfirst.frc.team5892.robot.subsystems.elevator;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import org.usfirst.frc.team5892.robot.Robot;

@@ -1,8 +1,8 @@
 package org.usfirst.frc.team5892.robot.oi;
 
-import org.usfirst.frc.team5892.robot.commands.elevator.DecrementElevatorTarget;
-import org.usfirst.frc.team5892.robot.commands.elevator.IncrementElevatorTarget;
-import org.usfirst.frc.team5892.robot.commands.intake.IntakeToggle;
+import org.usfirst.frc.team5892.robot.subsystems.elevator.DecrementElevatorTarget;
+import org.usfirst.frc.team5892.robot.subsystems.elevator.IncrementElevatorTarget;
+import org.usfirst.frc.team5892.robot.subsystems.intake.IntakeToggle;
 
 public class OI {
     public PlayerOne player1;

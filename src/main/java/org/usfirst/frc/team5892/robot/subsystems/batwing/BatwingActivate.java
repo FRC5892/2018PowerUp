@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5892.robot.commands.batwing;
+package org.usfirst.frc.team5892.robot.subsystems.batwing;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.InstantCommand;

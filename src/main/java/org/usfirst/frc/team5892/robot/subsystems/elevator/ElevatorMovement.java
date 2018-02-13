@@ -1,16 +1,15 @@
-package org.usfirst.frc.team5892.robot.commands.elevator;
+package org.usfirst.frc.team5892.robot.subsystems.elevator;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5892.robot.Robot;
-import org.usfirst.frc.team5892.robot.subsystems.ElevatorSubsystem;
 
-public class ElevatorMovement extends Command {
+class ElevatorMovement extends Command {
     private static final ElevatorSubsystem.Movement DEFAULT = ElevatorSubsystem.Movement.DOWN;
 
     private final ElevatorSubsystem e;
     
-    public ElevatorMovement() {
+    ElevatorMovement() {
         requires(Robot.elevator);
         e = Robot.elevator;
     }

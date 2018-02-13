@@ -1,11 +1,10 @@
-package org.usfirst.frc.team5892.robot.subsystems;
+package org.usfirst.frc.team5892.robot.subsystems.intake;
 
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team5892.HEROcode.inline.InlineTrigger;
 import org.usfirst.frc.team5892.robot.Robot;
-import org.usfirst.frc.team5892.robot.commands.intake.IntakeWindDown;
+import org.usfirst.frc.team5892.robot.subsystems.intake.IntakeWindDown;
 
 public class IntakeSubsystem extends Subsystem {
     public static final double RUNNING_POWER = 0.5;
@@ -14,7 +13,7 @@ public class IntakeSubsystem extends Subsystem {
     private final SpeedControllerGroup armMotors;
     private final DoubleSolenoid leftPiston, rightPiston;
     private final DigitalInput bumperSwitch;
-    public State state = State.IDLE;
+    State state = State.IDLE;
 
     public IntakeSubsystem() {
         armMotors = new SpeedControllerGroup(Robot.map.leftIntakeMotor.makeVictor(),
@@ -43,7 +42,7 @@ public class IntakeSubsystem extends Subsystem {
         rightPiston.set(grab ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse);
     }
 
-    public enum State {
+    enum State {
         IDLE,
         RUNNING,
         HOLDING,

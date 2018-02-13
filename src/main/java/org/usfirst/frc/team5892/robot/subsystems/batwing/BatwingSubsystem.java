@@ -1,11 +1,11 @@
-package org.usfirst.frc.team5892.robot.subsystems;
+package org.usfirst.frc.team5892.robot.subsystems.batwing;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team5892.HEROcode.inputs.DigitalInputTrigger;
 import org.usfirst.frc.team5892.robot.Robot;
-import org.usfirst.frc.team5892.robot.commands.batwing.BatwingMotorStop;
+import org.usfirst.frc.team5892.robot.subsystems.batwing.BatwingMotorStop;
 
 public class BatwingSubsystem extends Subsystem {
     private static final double RETAINER_POWER = 0.4;

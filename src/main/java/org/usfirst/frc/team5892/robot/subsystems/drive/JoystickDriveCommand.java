@@ -1,11 +1,11 @@
-package org.usfirst.frc.team5892.robot.commands;
+package org.usfirst.frc.team5892.robot.subsystems.drive;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5892.robot.Robot;
 
-public class JoystickDriveCommand extends Command {
+class JoystickDriveCommand extends Command {
 
-    public JoystickDriveCommand() {
+    JoystickDriveCommand() {
         requires(Robot.drive);
     }
 

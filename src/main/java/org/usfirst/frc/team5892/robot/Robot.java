@@ -13,11 +13,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team5892.robot.commands.auton.*;
+import org.usfirst.frc.team5892.robot.auton.*;
 import org.usfirst.frc.team5892.robot.oi.JoystickPlayerOne;
 import org.usfirst.frc.team5892.robot.oi.JoystickPlayerTwo;
-import org.usfirst.frc.team5892.robot.subsystems.*;
 import org.usfirst.frc.team5892.robot.oi.OI;
+import org.usfirst.frc.team5892.robot.subsystems.batwing.BatwingSubsystem;
+import org.usfirst.frc.team5892.robot.subsystems.drive.DriveSubsystem;
+import org.usfirst.frc.team5892.robot.subsystems.elevator.ElevatorSubsystem;
+import org.usfirst.frc.team5892.robot.subsystems.intake.IntakeSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,8 +32,8 @@ import org.usfirst.frc.team5892.robot.oi.OI;
 public class Robot extends TimedRobot {
 	public static OI m_oi;
 
-	Command m_autonomousCommand;
-	SendableChooser<AutonBuilder> m_chooser = new SendableChooser<>();
+	private Command m_autonomousCommand;
+	private SendableChooser<AutonBuilder> m_chooser = new SendableChooser<>();
 
 	public static DriveSubsystem drive;
 	public static IntakeSubsystem intake;

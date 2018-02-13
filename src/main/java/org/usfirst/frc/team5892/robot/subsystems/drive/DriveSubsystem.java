@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5892.robot.subsystems;
+package org.usfirst.frc.team5892.robot.subsystems.drive;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Encoder;
@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5892.robot.Robot;
 import org.usfirst.frc.team5892.robot.RobotMap;
-import org.usfirst.frc.team5892.robot.commands.JoystickDriveCommand;
 
 public class DriveSubsystem extends Subsystem {
     private final SpeedControllerGroup leftDrive;
