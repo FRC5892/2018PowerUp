@@ -17,31 +17,31 @@ import edu.wpi.first.wpilibj.Victor;
  * floating around.
  */
 public class RobotMap {
-    // Drive subsystem
+	// Drive subsystem
 	public MotorInfo[] leftDrive, rightDrive;
 	public int leftEncoder1, leftEncoder2;
 	public int rightEncoder1, rightEncoder2;
 
 	// Intake subsystem
-    public MotorInfo leftIntakeMotor, rightIntakeMotor;
-    public int leftIntakePiston1, leftIntakePiston2;
-    public int rightIntakePiston1, rightIntakePiston2;
-    public int intakeBumperSwitch;
+	public MotorInfo leftIntakeMotor, rightIntakeMotor;
+	public int leftIntakePiston1, leftIntakePiston2;
+	public int rightIntakePiston1, rightIntakePiston2;
+	public int intakeBumperSwitch;
 
-    // Elevator subsystem
+	// Elevator subsystem
 	public MotorInfo elevatorMotor;
 	public int[] elevatorSwitches;
 
 	// Batwing subsystem
-    public MotorInfo leftBatwingRetainer, leftBatwingWinch;
-    public MotorInfo rightBatwingRetainer, rightBatwingWinch;
-    public int leftBatwingRetainerSensor, leftBatwingWinchSensor;
-    public int rightBatwingRetainerSensor, rightBatwingWinchSensor;
+	public MotorInfo leftBatwingRetainer, leftBatwingWinch;
+	public MotorInfo rightBatwingRetainer, rightBatwingWinch;
+	public int leftBatwingRetainerSensor, leftBatwingWinchSensor;
+	public int rightBatwingRetainerSensor, rightBatwingWinchSensor;
 
 	// ---
 
-    public static SpeedControllerGroup makeVictorGroup(MotorInfo... motors) {
-    	Victor[] victors = new Victor[motors.length-1];
+	public static SpeedControllerGroup makeVictorGroup(MotorInfo... motors) {
+		Victor[] victors = new Victor[motors.length-1];
 		for (int i = 1; i < motors.length; i++) {
 			victors[i-1] = motors[i].makeVictor();
 		}
@@ -49,18 +49,18 @@ public class RobotMap {
 	}
 
 	public class MotorInfo {
-	    public final int port;
-	    public final boolean inverted;
+		public final int port;
+		public final boolean inverted;
 
-	    protected MotorInfo(int _port, boolean _inverted) {
-	        port = _port;
-	        inverted = _inverted;
-        }
+		protected MotorInfo(int _port, boolean _inverted) {
+			port = _port;
+			inverted = _inverted;
+		}
 
-	    public Victor makeVictor() {
-	        Victor ret = new Victor(port);
-	        ret.setInverted(inverted);
-	        return ret;
-        }
-    }
+		public Victor makeVictor() {
+			Victor ret = new Victor(port);
+			ret.setInverted(inverted);
+			return ret;
+		}
+	}
 }
