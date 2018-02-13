@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 
 /**
  * A {@link Trigger} that activates based on a {@link Joystick}'s POV hat.
+ *
+ * @author Kai Page
  */
 public class POVTrigger extends Trigger {
     private final Joystick _stick;

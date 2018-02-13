@@ -6,17 +6,15 @@ import org.usfirst.frc.team5892.robot.Robot;
 
 public class BatwingActivate extends InstantCommand {
     private final BatwingSubsystem.Batwing _batwing;
-    private final boolean _timeSafety;
 
-    public BatwingActivate(BatwingSubsystem.Batwing batwing, boolean timeSafety) {
+    public BatwingActivate(BatwingSubsystem.Batwing batwing) {
         requires(Robot.batwings);
         _batwing = batwing;
-        _timeSafety = timeSafety;
     }
 
     @Override
     protected void execute() {
-        if (_timeSafety && DriverStation.getInstance().getMatchTime() > 30) return;
+        if (DriverStation.getInstance().getMatchTime() > 30) return;
         _batwing.advance();
     }
 }

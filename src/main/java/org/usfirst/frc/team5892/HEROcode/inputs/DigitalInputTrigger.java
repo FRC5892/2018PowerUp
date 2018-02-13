@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 
 /**
  * A {@link Trigger} that activates based on a {@link DigitalInput}.
+ *
+ * @author Kai Page
  */
 public class DigitalInputTrigger extends Trigger {
     private final DigitalInput _input;

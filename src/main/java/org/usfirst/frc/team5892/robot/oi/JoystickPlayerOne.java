@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5892.robot.oi;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Trigger;
+import org.usfirst.frc.team5892.HEROcode.inputs.AnalogAxisTrigger;
 
 public class JoystickPlayerOne implements PlayerOne {
     private final Joystick stick;
@@ -16,5 +18,10 @@ public class JoystickPlayerOne implements PlayerOne {
     @Override
     public double turnAxis() {
         return stick.getRawAxis(4);
+    }
+
+    @Override
+    public Trigger intakeToggle() {
+        return new AnalogAxisTrigger(stick, 3);
     }
 }
