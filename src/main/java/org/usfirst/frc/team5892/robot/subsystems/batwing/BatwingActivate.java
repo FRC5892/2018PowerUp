@@ -5,29 +5,18 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 import org.usfirst.frc.team5892.robot.Robot;
 
 public class BatwingActivate extends InstantCommand {
+    private final BatwingSubsystem.Batwing _batwing;
     private final boolean _timeSafety;
 
-    public BatwingActivate(boolean timeSafety) {
+    public BatwingActivate(BatwingSubsystem.Batwing batwing, boolean timeSafety) {
         requires(Robot.batwings);
+        _batwing = batwing;
         _timeSafety = timeSafety;
     }
 
     @Override
     protected void execute() {
         if (_timeSafety && DriverStation.getInstance().getMatchTime() > 30) return;
-        if (Robot.batwings.isRunning()) return;
-        switch (Robot.batwings.state) {
-            case 0: // retracted -> ramp
-                Robot.batwings.lowerRetainers();
-                Robot.batwings.state++;
-                break;
-            case 1: // ramp -> platform
-                Robot.batwings.raiseWinches();
-                Robot.batwings.state++;
-                break;
-            default:
-                DriverStation.reportWarning("BatwingActivate called when BatwingSubsystem at state " +
-                        Robot.batwings.state + "!",  false);
-        }
+        _batwing.advance();
     }
 }
