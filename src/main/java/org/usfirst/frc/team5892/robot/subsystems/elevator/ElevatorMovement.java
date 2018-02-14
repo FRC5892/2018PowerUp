@@ -16,6 +16,7 @@ class ElevatorMovement extends Command {
 
     @Override
     protected void execute() {
+        if (e.override) return;
         e.setMovement(getNewMovement(e.getLastPressed(), e.getTarget(), e.isPressedSinceTargetChange(), e.getMovement()));
     }
 

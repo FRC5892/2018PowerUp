@@ -13,6 +13,7 @@ public class IntakeToggle extends InstantCommand {
 
     @Override
     protected void execute() {
+        if (Robot.intake.override) return;
         switch (Robot.intake.state) {
             case IDLE:
                 Robot.intake.state = IntakeSubsystem.State.RUNNING;

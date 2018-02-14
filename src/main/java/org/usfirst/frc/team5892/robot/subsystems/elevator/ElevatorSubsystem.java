@@ -10,7 +10,7 @@ import org.usfirst.frc.team5892.robot.subsystems.elevator.ElevatorMovement;
 import org.usfirst.frc.team5892.robot.subsystems.elevator.SwitchPressHandler;
 
 public class ElevatorSubsystem extends Subsystem {
-    public static final double MOTOR_POWER = 0.8;
+    public static final double MOTOR_POWER = 0.6;
 
     private final Victor motor;
     private final DigitalInput[] switches;
@@ -18,6 +18,8 @@ public class ElevatorSubsystem extends Subsystem {
     private int target = 0;
     private boolean pressedSinceTargetChange = false;
     private Movement movement;
+
+    public boolean override = false;
 
     public ElevatorSubsystem() {
         motor = Robot.map.elevatorMotor.makeVictor();
@@ -70,6 +72,10 @@ public class ElevatorSubsystem extends Subsystem {
 
     @Override
     public void periodic() {
+        SmartDashboard.putBoolean("Elevator Override", override);
+        if (override) {
+            motor.set(Robot.m_oi.player2.manualElevator());
+        }
         SmartDashboard.putNumber("Elevator Target", target);
     }
 

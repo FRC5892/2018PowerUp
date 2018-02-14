@@ -1,7 +1,9 @@
 package org.usfirst.frc.team5892.robot.subsystems.intake;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5892.HEROcode.inline.InlineTrigger;
 import org.usfirst.frc.team5892.robot.Robot;
 import org.usfirst.frc.team5892.robot.subsystems.intake.IntakeWindDown;
@@ -14,6 +16,10 @@ public class IntakeSubsystem extends Subsystem {
     private final DoubleSolenoid leftPiston, rightPiston;
     private final DigitalInput bumperSwitch;
     State state = State.IDLE;
+
+    public boolean override = false;
+    private static Trigger manualLeft;
+    private static Trigger manualRight;
 
     public IntakeSubsystem() {
         armMotors = new SpeedControllerGroup(Robot.map.leftIntakeMotor.makeVictor(),
@@ -29,7 +35,7 @@ public class IntakeSubsystem extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        new InlineTrigger(() -> state == State.RUNNING && bumperSwitch.get())
+        new InlineTrigger(() -> !override && state == State.RUNNING && bumperSwitch.get())
                 .whenActive(new IntakeWindDown());
     }
 
@@ -38,8 +44,27 @@ public class IntakeSubsystem extends Subsystem {
     }
 
     public void setPistons(boolean grab) {
-        leftPiston.set(grab ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse);
-        rightPiston.set(grab ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse);
+        DoubleSolenoid.Value val = convertValue(grab);
+        leftPiston.set(val);
+        rightPiston.set(val);
+    }
+
+    private DoubleSolenoid.Value convertValue(boolean on) {
+        return on ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse;
+    }
+
+    @Override
+    public void periodic() {
+        SmartDashboard.putBoolean("Intake Override", override);
+        if (override) {
+            if (manualLeft == null && Robot.m_oi != null) {
+                manualLeft = Robot.m_oi.player2.manualIntakeLeftP();
+                manualRight = Robot.m_oi.player2.manualIntakeRightP();
+            }
+            armMotors.set(Robot.m_oi.player2.manualIntakeWheels());
+            leftPiston.set(convertValue(manualLeft.get()));
+            rightPiston.set(convertValue(manualRight.get()));
+        }
     }
 
     enum State {
