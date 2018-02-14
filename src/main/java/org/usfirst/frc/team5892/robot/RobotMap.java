@@ -35,8 +35,7 @@ public class RobotMap {
 	// Batwing subsystem
 	public MotorInfo leftBatwingRetainer, leftBatwingWinch;
 	public MotorInfo rightBatwingRetainer, rightBatwingWinch;
-	public int leftBatwingRetainerSensor, leftBatwingWinchSensor;
-	public int rightBatwingRetainerSensor, rightBatwingWinchSensor;
+	public int leftBatwingSensor, rightBatwingSensor;
 
 	// ---
 

@@ -9,15 +9,16 @@ public class OI {
     public final PlayerOne player1;
     public final PlayerTwo player2;
 
+    // next year, or later this year if you get rly mad, move all trigger inits to their own susbsystems.
     public OI(PlayerOne player_1, PlayerTwo player_2) {
         player1 = player_1;
         player2 = player_2;
 
         // Player 1 commands
-        player1.intakeToggle().whenActive(new IntakeToggle());
+        //player1.intakeToggle().whenActive(new IntakeToggle());
 
         // Player 2 commands
-        player2.intakeOverride().whenActive(new ToggleIntakeOverride());
+        //player2.intakeOverride().whenActive(new ToggleIntakeOverride());
 
         player2.elevatorUp().whenActive(new IncrementElevatorTarget());
         player2.elevatorDown().whenActive(new DecrementElevatorTarget());
