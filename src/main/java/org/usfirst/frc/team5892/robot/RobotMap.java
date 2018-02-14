@@ -30,7 +30,6 @@ public class RobotMap {
 
 	// Elevator subsystem
 	public MotorInfo elevatorMotor;
-	public int[] elevatorSwitches;
 
 	// Batwing subsystem
 	public MotorInfo leftBatwingRetainer, leftBatwingWinch;

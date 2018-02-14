@@ -11,7 +11,7 @@ public class IncrementElevatorTarget extends InstantCommand {
 
     @Override
     protected void execute() {
-        if (Robot.elevator.getTarget() < Robot.map.elevatorSwitches.length)
+        if (Robot.elevator.getTarget() < ElevatorSubsystem.positions.length)
             Robot.elevator.setTarget(Robot.elevator.getTarget() + 1);
     }
 }
