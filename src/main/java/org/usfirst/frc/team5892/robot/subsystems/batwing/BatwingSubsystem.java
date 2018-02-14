@@ -14,7 +14,7 @@ public class BatwingSubsystem extends Subsystem {
     public class Batwing {
         private final Victor retainer, winch;
         private final DigitalInput platformSwitch;
-        private int state = 0; // 0=up, 1=ramp, 2=platform
+        private boolean nextIsWinch = false;
 
         private Batwing(Victor _retainer, Victor _winch, DigitalInput _platformSwitch) {
             retainer = _retainer;
@@ -30,16 +30,12 @@ public class BatwingSubsystem extends Subsystem {
         }
 
         void advance() {
-            switch (state++) {
-                case 0:
-                    retainer.set(RETAINER_POWER);
-                    break;
-                case 1:
-                    retainer.stopMotor();
-                    winch.set(WINCH_POWER);
-                    break;
-                default:
-                    DriverStation.reportWarning("Batwing.advance() called with state " + state, false);
+            if (nextIsWinch = !nextIsWinch) { // because of inversion, THIS IS THE RETAINER CASE.
+                winch.stopMotor();
+                retainer.set(RETAINER_POWER);
+            } else { // because of inversion, THIS IS THE WINCH CASE.
+                retainer.stopMotor();
+                winch.set(WINCH_POWER);
             }
         }
     }
