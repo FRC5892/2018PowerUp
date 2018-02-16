@@ -1,17 +1,22 @@
 package org.usfirst.frc.team5892.robot.subsystems.drive;
 
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5892.robot.Robot;
 
 class JoystickDriveCommand extends Command {
+    private static final double SLOW_MULTIPLIER = 0.5;
+    private final Trigger slowMode;
 
     JoystickDriveCommand() {
         requires(Robot.drive);
+        slowMode = Robot.m_oi.player1.slowMode();
     }
 
     @Override
     protected void execute() {
-        Robot.drive.arcadeDrive(Robot.m_oi.player1.moveAxis(), Robot.m_oi.player1.turnAxis());
+        double mult = slowMode.get() ? SLOW_MULTIPLIER : 1;
+        Robot.drive.arcadeDrive(Robot.m_oi.player1.moveAxis() * mult, Robot.m_oi.player1.turnAxis() * mult);
     }
 
     @Override
