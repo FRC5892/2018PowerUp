@@ -22,6 +22,7 @@ public class SpartanBoardTestSubsystem extends Subsystem {
         extendedInput = new DigitalInput(22);
         regularOutput = new DigitalOutput(3);
         extendedOutput = new DigitalOutput(23);
+        SmartDashboard.putNumber("I Exist", 5892);
         gyro = new ADXRS450_Gyro();
 
         addChild(regularInput); addChild(extendedInput);

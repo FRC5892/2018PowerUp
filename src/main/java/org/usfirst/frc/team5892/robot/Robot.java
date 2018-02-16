@@ -40,6 +40,7 @@ public class Robot extends TimedRobot {
     public static IntakeSubsystem intake;
     public static ElevatorSubsystem elevator;
     public static BatwingSubsystem batwings;
+    public static SpartanBoardTestSubsystem spartan;
 
     public static RobotMap map = new TempBotMap();
 
@@ -58,7 +59,7 @@ public class Robot extends TimedRobot {
         batwings = new BatwingSubsystem();
         */
 
-        new SpartanBoardTestSubsystem();
+        spartan = new SpartanBoardTestSubsystem();
 
         // OI
         //m_oi = new OI(new JoystickPlayerOne(0), new JoystickPlayerTwo(1));
@@ -75,8 +76,8 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-        intake.override = false;
-        elevator.override = false;
+        //intake.override = false;
+        //elevator.override = false;
     }
 
     @Override
