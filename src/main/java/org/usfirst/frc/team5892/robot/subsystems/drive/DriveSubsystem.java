@@ -1,8 +1,8 @@
 package org.usfirst.frc.team5892.robot.subsystems.drive;
 
-import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.GyroBase;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -16,7 +16,7 @@ public class DriveSubsystem extends Subsystem {
     private final DifferentialDrive drive;
     private final Encoder leftEncoder;
     private final Encoder rightEncoder;
-    private final AHRS navx;
+    private final GyroBase gyro;
 
     public DriveSubsystem() {
         leftDrive = RobotMap.makeVictorGroup(Robot.map.leftDrive);
@@ -24,8 +24,10 @@ public class DriveSubsystem extends Subsystem {
         drive = new DifferentialDrive(leftDrive, rightDrive);
         leftEncoder = new Encoder(Robot.map.leftEncoder1, Robot.map.leftEncoder2);
         rightEncoder = new Encoder(Robot.map.rightEncoder1, Robot.map.rightEncoder2);
-        navx = new AHRS(SPI.Port.kMXP);
-        addChild(drive);
+        gyro = new ADXRS450_Gyro();
+
+        addChild(drive); addChild(gyro);
+        addChild(leftEncoder); addChild(rightEncoder);
     }
 
     @Override
@@ -60,15 +62,10 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void resetGyro() {
-        navx.reset();
+        gyro.reset();
     }
 
     public double gyroAngle() {
-        return navx.getYaw();
-    }
-
-    @Override
-    public void periodic() {
-        SmartDashboard.putNumber("Gyro Angle", gyroAngle());
+        return gyro.getAngle();
     }
 }
