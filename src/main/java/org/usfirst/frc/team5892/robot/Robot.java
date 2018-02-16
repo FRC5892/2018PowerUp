@@ -21,6 +21,7 @@ import org.usfirst.frc.team5892.robot.subsystems.batwing.BatwingSubsystem;
 import org.usfirst.frc.team5892.robot.subsystems.drive.DriveSubsystem;
 import org.usfirst.frc.team5892.robot.subsystems.elevator.ElevatorSubsystem;
 import org.usfirst.frc.team5892.robot.subsystems.intake.IntakeSubsystem;
+import org.usfirst.frc.team5892.robot.subsystems.spartantest.SpartanBoardTestSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -50,14 +51,17 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         // Order is important!!!
 
-        // Subsystems
+        /* Subsystems
         drive = new DriveSubsystem();
         //intake = new IntakeSubsystem();
         elevator = new ElevatorSubsystem();
         batwings = new BatwingSubsystem();
+        */
+
+        new SpartanBoardTestSubsystem();
 
         // OI
-        m_oi = new OI(new JoystickPlayerOne(0), new JoystickPlayerTwo(1));
+        //m_oi = new OI(new JoystickPlayerOne(0), new JoystickPlayerTwo(1));
 
         // Autonomous modes
         m_chooser.addDefault("Do Nothing", null);
