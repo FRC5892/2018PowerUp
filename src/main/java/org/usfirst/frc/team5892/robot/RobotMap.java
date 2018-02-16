@@ -39,6 +39,16 @@ public class RobotMap {
 
 	// ---
 
+    /**
+     * Maps the Spartan Board's encoder ports to digital ports. Add 1 for the other port.
+     *
+     * @param encoderPort The encoder port number on the Spartan Board.
+     * @return The digital port number of the encoder
+     */
+	protected static int spartEnc(int encoderPort) {
+	    return 10 + encoderPort * 2;
+    }
+
 	public static SpeedControllerGroup makeVictorGroup(MotorInfo... motors) {
 		Victor[] victors = new Victor[motors.length-1];
 		for (int i = 1; i < motors.length; i++) {

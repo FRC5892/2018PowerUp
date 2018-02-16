@@ -53,14 +53,15 @@ public class Robot extends TimedRobot {
         // Subsystems
         drive = new DriveSubsystem();
         //intake = new IntakeSubsystem();
-        elevator = new ElevatorSubsystem();
-        batwings = new BatwingSubsystem();
+        //elevator = new ElevatorSubsystem();
+        //batwings = new BatwingSubsystem();
 
         // OI
         m_oi = new OI(new JoystickPlayerOne(0), new JoystickPlayerTwo(1));
 
         // Autonomous modes
         m_chooser.addDefault("Do Nothing", null);
+        m_chooser.addObject("Test Movement", new TestEverythingAuto());
         SmartDashboard.putData("Auto mode", m_chooser);
     }
 
@@ -94,9 +95,11 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         AutonBuilder builder = m_chooser.getSelected();
+        System.out.println(builder);
 
         if (builder != null) {
             m_autonomousCommand = builder.buildAuto(DriverStation.getInstance().getGameSpecificMessage());
+            System.out.println(m_autonomousCommand);
             m_autonomousCommand.start();
         }
     }

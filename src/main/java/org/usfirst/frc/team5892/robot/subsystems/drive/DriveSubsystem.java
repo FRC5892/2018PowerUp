@@ -14,7 +14,7 @@ public class DriveSubsystem extends Subsystem {
     private final SpeedControllerGroup leftDrive;
     private final SpeedControllerGroup rightDrive;
     private final DifferentialDrive drive;
-    private final Encoder leftEncoder;
+    //private final Encoder leftEncoder;
     private final Encoder rightEncoder;
     private final GyroBase gyro;
 
@@ -22,12 +22,12 @@ public class DriveSubsystem extends Subsystem {
         leftDrive = RobotMap.makeVictorGroup(Robot.map.leftDrive);
         rightDrive = RobotMap.makeVictorGroup(Robot.map.rightDrive);
         drive = new DifferentialDrive(leftDrive, rightDrive);
-        leftEncoder = new Encoder(Robot.map.leftEncoder1, Robot.map.leftEncoder2);
+        //leftEncoder = new Encoder(Robot.map.leftEncoder1, Robot.map.leftEncoder2);
         rightEncoder = new Encoder(Robot.map.rightEncoder1, Robot.map.rightEncoder2);
         gyro = new ADXRS450_Gyro();
 
         addChild(drive); addChild(gyro);
-        addChild(leftEncoder); addChild(rightEncoder);
+        /*addChild(leftEncoder);*/ addChild(rightEncoder);
     }
 
     @Override
@@ -44,20 +44,21 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void stop() {
-        leftDrive.set(0);
+        //leftDrive.set(0);
         rightDrive.set(0);
     }
 
-    public double getLeft() {
-        return leftEncoder.get();
+    public int getLeft() {
+        return 0;
+        //return leftEncoder.get();
     }
 
-    public double getRight() {
+    public int getRight() {
         return rightEncoder.get();
     }
 
     public void resetEncoders() {
-        leftEncoder.reset();
+        //leftEncoder.reset();
         rightEncoder.reset();
     }
 

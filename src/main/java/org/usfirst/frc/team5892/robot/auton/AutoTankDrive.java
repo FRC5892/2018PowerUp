@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoTankDrive extends Command {
 
-    final double left;
-    final double right;
-    final double encoderTarget;
+    private final double left;
+    private final double right;
+    private final int encoderTarget;
 
-    public AutoTankDrive(double _left, double _right, double _encoderTarget) {
+    public AutoTankDrive(double _left, double _right, int _encoderTarget) {
         requires(Robot.drive);
         left = _left;
         right = _right;

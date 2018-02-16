@@ -7,9 +7,9 @@ import org.usfirst.frc.team5892.robot.Robot;
 public class AutoStraightDrive extends Command {
     private AutoStraightDriveController controller;
     private final double nominalPower;
-    private final double encoderTarget;
+    private final int encoderTarget;
 
-    public AutoStraightDrive(double _nominalPower, double _encoderTarget) {
+    public AutoStraightDrive(double _nominalPower, int _encoderTarget) {
         requires(Robot.drive);
         controller = new AutoStraightDriveController();
         nominalPower = _nominalPower;

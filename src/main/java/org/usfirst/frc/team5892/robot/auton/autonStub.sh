@@ -12,7 +12,7 @@ then
   exit 1
 fi
 
-echo "package org.usfirst.frc.team5892.robot.commands.auton;" >> $1.java
+echo "package org.usfirst.frc.team5892.robot.auton;" >> $1.java
 echo "" >> $1.java
 echo "import edu.wpi.first.wpilibj.command.Command;" >> $1.java
 echo "import edu.wpi.first.wpilibj.command.CommandGroup;" >> $1.java
