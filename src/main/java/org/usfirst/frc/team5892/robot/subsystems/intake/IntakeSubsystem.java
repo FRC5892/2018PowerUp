@@ -9,7 +9,7 @@ import org.usfirst.frc.team5892.robot.Robot;
 import org.usfirst.frc.team5892.robot.subsystems.intake.IntakeWindDown;
 
 public class IntakeSubsystem extends Subsystem {
-    public static final double RUNNING_POWER = 0.5;
+    public static final double RUNNING_POWER = 0.7;
     public static final double SLOW_POWER = 0.2;
 
     private final SpeedControllerGroup armMotors;
@@ -29,7 +29,7 @@ public class IntakeSubsystem extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        new InlineTrigger(() -> !override && state == State.RUNNING && bumperSwitch.get())
+        new InlineTrigger(() -> !override && state == State.RUNNING && Robot.m_oi.player1.slowMode().get()/*bumperSwitch.get()*/)
                 .whenActive(new IntakeWindDown());
     }
 

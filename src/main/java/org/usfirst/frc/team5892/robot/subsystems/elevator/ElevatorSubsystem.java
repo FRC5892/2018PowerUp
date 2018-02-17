@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5892.robot.subsystems.elevator;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -26,9 +27,11 @@ public class ElevatorSubsystem extends Subsystem {
     public ElevatorSubsystem() {
         motor = new WPI_TalonSRX(Robot.map.elevatorMotor.port);
         motor.setInverted(Robot.map.elevatorMotor.inverted);
+        addChild(motor);
         switches = new DigitalInput[Robot.map.elevatorSwitches.length];
         for (int i=0; i<Robot.map.elevatorSwitches.length; i++) {
             switches[i] = new DigitalInput(Robot.map.elevatorSwitches[i]);
+            addChild(switches[i]);
         }
     }
 
@@ -37,7 +40,7 @@ public class ElevatorSubsystem extends Subsystem {
         setDefaultCommand(new ElevatorMovement());
         for (int i=0; i<switches.length; i++) {
             int idx = i;
-            new InlineTrigger(() -> switches[idx].get()).whenActive(new SwitchPressHandler(idx));
+            new InlineTrigger(() -> !switches[idx].get()).whenActive(new SwitchPressHandler(idx));
         }
     }
 

@@ -9,8 +9,8 @@ import org.usfirst.frc.team5892.robot.Robot;
 import org.usfirst.frc.team5892.robot.subsystems.batwing.BatwingMotorStop;
 
 public class BatwingSubsystem extends Subsystem {
-    private static final double RETAINER_POWER = 0.4;
-    private static final double WINCH_POWER = 1;
+    private static final double RETAINER_POWER = 0.3;
+    private static final double WINCH_POWER = 0.3;
 
     public class Batwing {
         private final Victor retainer, winch;
@@ -59,7 +59,7 @@ public class BatwingSubsystem extends Subsystem {
                 Robot.map.leftBatwingRetainer.makeVictor(),
                 Robot.map.leftBatwingWinch.makeVictor(),
                 new DigitalInput(Robot.map.leftBatwingRetainerSensor),
-                new DigitalInput(Robot.map.leftBatwingRetainerSensor)
+                new DigitalInput(Robot.map.leftBatwingWinchSensor)
         );
         right = new Batwing(
                 Robot.map.rightBatwingRetainer.makeVictor(),
