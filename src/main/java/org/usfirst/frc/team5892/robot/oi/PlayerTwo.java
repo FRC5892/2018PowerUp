@@ -4,8 +4,6 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 
 public interface PlayerTwo {
     Trigger intakeOverride();
-    Trigger manualIntakeLeftP();
-    Trigger manualIntakeRightP();
     double manualIntakeWheels();
 
     Trigger elevatorUp();

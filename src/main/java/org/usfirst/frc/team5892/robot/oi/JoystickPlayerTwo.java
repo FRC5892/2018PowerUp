@@ -19,16 +19,6 @@ public class JoystickPlayerTwo implements PlayerTwo {
     }
 
     @Override
-    public Trigger manualIntakeLeftP() {
-        return new JoystickButton(stick, 7);
-    }
-
-    @Override
-    public Trigger manualIntakeRightP() {
-        return new JoystickButton(stick, 8);
-    }
-
-    @Override
     public double manualIntakeWheels() {
         return stick.getRawAxis(1);
     }

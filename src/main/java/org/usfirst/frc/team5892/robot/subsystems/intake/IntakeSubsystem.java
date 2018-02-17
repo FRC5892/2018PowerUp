@@ -13,23 +13,17 @@ public class IntakeSubsystem extends Subsystem {
     public static final double SLOW_POWER = 0.2;
 
     private final SpeedControllerGroup armMotors;
-    private final DoubleSolenoid leftPiston, rightPiston;
     private final DigitalInput bumperSwitch;
     State state = State.IDLE;
 
     public boolean override = false;
-    private static Trigger manualLeft;
-    private static Trigger manualRight;
 
     public IntakeSubsystem() {
         armMotors = new SpeedControllerGroup(Robot.map.leftIntakeMotor.makeVictor(),
                 Robot.map.rightIntakeMotor.makeVictor());
-        leftPiston = new DoubleSolenoid(Robot.map.leftIntakePiston1, Robot.map.leftIntakePiston2);
-        rightPiston = new DoubleSolenoid(Robot.map.rightIntakePiston1, Robot.map.rightIntakePiston2);
         bumperSwitch = new DigitalInput(Robot.map.intakeBumperSwitch);
 
         addChild(armMotors);
-        addChild(leftPiston); addChild(rightPiston);
         addChild(bumperSwitch);
     }
 
@@ -43,27 +37,11 @@ public class IntakeSubsystem extends Subsystem {
         armMotors.set(power);
     }
 
-    public void setPistons(boolean grab) {
-        DoubleSolenoid.Value val = convertValue(grab);
-        leftPiston.set(val);
-        rightPiston.set(val);
-    }
-
-    private DoubleSolenoid.Value convertValue(boolean on) {
-        return on ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse;
-    }
-
     @Override
     public void periodic() {
         SmartDashboard.putBoolean("Intake Override", override);
         if (override) {
-            if (manualLeft == null && Robot.m_oi != null) {
-                manualLeft = Robot.m_oi.player2.manualIntakeLeftP();
-                manualRight = Robot.m_oi.player2.manualIntakeRightP();
-            }
             armMotors.set(Robot.m_oi.player2.manualIntakeWheels());
-            leftPiston.set(convertValue(manualLeft.get()));
-            rightPiston.set(convertValue(manualRight.get()));
         }
     }
 

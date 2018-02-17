@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5892.robot.subsystems.elevator;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -12,7 +14,7 @@ import org.usfirst.frc.team5892.robot.subsystems.elevator.SwitchPressHandler;
 public class ElevatorSubsystem extends Subsystem {
     public static final double MOTOR_POWER = 0.3;
 
-    private final Victor motor;
+    private final SpeedController motor;
     private final DigitalInput[] switches;
     private int lastPressed = -1;
     private int target = 0;
@@ -22,7 +24,8 @@ public class ElevatorSubsystem extends Subsystem {
     public boolean override = false;
 
     public ElevatorSubsystem() {
-        motor = Robot.map.elevatorMotor.makeVictor();
+        motor = new WPI_TalonSRX(Robot.map.elevatorMotor.port);
+        motor.setInverted(Robot.map.elevatorMotor.inverted);
         switches = new DigitalInput[Robot.map.elevatorSwitches.length];
         for (int i=0; i<Robot.map.elevatorSwitches.length; i++) {
             switches[i] = new DigitalInput(Robot.map.elevatorSwitches[i]);

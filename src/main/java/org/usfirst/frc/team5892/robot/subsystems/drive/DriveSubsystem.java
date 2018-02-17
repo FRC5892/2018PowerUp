@@ -1,9 +1,7 @@
 package org.usfirst.frc.team5892.robot.subsystems.drive;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.GyroBase;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import org.usfirst.frc.team5892.robot.Robot;
@@ -13,20 +11,20 @@ public class DriveSubsystem extends Subsystem {
     private final SpeedControllerGroup leftDrive;
     private final SpeedControllerGroup rightDrive;
     private final DifferentialDrive drive;
-    //private final Encoder leftEncoder;
+    private final Encoder leftEncoder;
     private final Encoder rightEncoder;
-    private final GyroBase gyro;
+    private final AHRS gyro;
 
     public DriveSubsystem() {
         leftDrive = RobotMap.makeVictorGroup(Robot.map.leftDrive);
         rightDrive = RobotMap.makeVictorGroup(Robot.map.rightDrive);
         drive = new DifferentialDrive(leftDrive, rightDrive);
-        //leftEncoder = new Encoder(Robot.map.leftEncoder1, Robot.map.leftEncoder2);
+        leftEncoder = new Encoder(Robot.map.leftEncoder1, Robot.map.leftEncoder2);
         rightEncoder = new Encoder(Robot.map.rightEncoder1, Robot.map.rightEncoder2);
-        gyro = new ADXRS450_Gyro();
+        gyro = new AHRS(SPI.Port.kMXP);
 
         addChild(drive); addChild(gyro);
-        /*addChild(leftEncoder);*/ addChild(rightEncoder);
+        addChild(leftEncoder); addChild(rightEncoder);
     }
 
     @Override
@@ -43,13 +41,12 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void stop() {
-        //leftDrive.set(0);
+        leftDrive.set(0);
         rightDrive.set(0);
     }
 
     public int getLeft() {
-        return 0;
-        //return leftEncoder.get();
+        return leftEncoder.get();
     }
 
     public int getRight() {
@@ -57,7 +54,7 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void resetEncoders() {
-        //leftEncoder.reset();
+        leftEncoder.reset();
         rightEncoder.reset();
     }
 
@@ -66,6 +63,6 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public double gyroAngle() {
-        return gyro.getAngle();
+        return gyro.getYaw();
     }
 }
