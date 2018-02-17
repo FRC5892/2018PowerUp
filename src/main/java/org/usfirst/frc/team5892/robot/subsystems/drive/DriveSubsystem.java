@@ -1,9 +1,9 @@
 package org.usfirst.frc.team5892.robot.subsystems.drive;
 
-import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import org.usfirst.frc.team5892.robot.Robot;
 import org.usfirst.frc.team5892.robot.RobotMap;
 
@@ -13,7 +13,7 @@ public class DriveSubsystem extends Subsystem {
     private final DifferentialDrive drive;
     private final Encoder leftEncoder;
     private final Encoder rightEncoder;
-    private final AHRS gyro;
+    private final Gyro gyro;
 
     public DriveSubsystem() {
         leftDrive = RobotMap.makeVictorGroup(Robot.map.leftDrive);
@@ -21,7 +21,7 @@ public class DriveSubsystem extends Subsystem {
         drive = new DifferentialDrive(leftDrive, rightDrive);
         leftEncoder = new Encoder(Robot.map.leftEncoder1, Robot.map.leftEncoder2);
         rightEncoder = new Encoder(Robot.map.rightEncoder1, Robot.map.rightEncoder2);
-        gyro = new AHRS(SPI.Port.kMXP);
+        gyro = new ADXRS450_Gyro();
 
         addChild(drive); addChild(gyro);
         addChild(leftEncoder); addChild(rightEncoder);
@@ -63,6 +63,6 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public double gyroAngle() {
-        return gyro.getYaw();
+        return gyro.getAngle();
     }
 }

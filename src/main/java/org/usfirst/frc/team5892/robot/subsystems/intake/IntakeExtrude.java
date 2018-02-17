@@ -14,7 +14,6 @@ class IntakeExtrude extends Command {
     @Override
     protected void initialize() {
         Robot.intake.setMotorPower(-IntakeSubsystem.RUNNING_POWER);
-        Robot.intake.setPistons(false);
         Robot.intake.state = IntakeSubsystem.State.EXTRUDING;
     }
 

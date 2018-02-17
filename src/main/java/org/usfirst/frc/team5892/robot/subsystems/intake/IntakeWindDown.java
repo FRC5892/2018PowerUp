@@ -13,7 +13,6 @@ class IntakeWindDown extends Command {
 
     @Override
     protected void initialize() {
-        Robot.intake.setPistons(true);
         Robot.intake.state = IntakeSubsystem.State.HOLDING;
     }
 
