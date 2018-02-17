@@ -22,7 +22,6 @@ public class OI {
     protected void driveTriggers() {
 
     }
-
     protected void intakeTriggers() {
         player1.intakeToggle().whenActive(new IntakeToggle());
 

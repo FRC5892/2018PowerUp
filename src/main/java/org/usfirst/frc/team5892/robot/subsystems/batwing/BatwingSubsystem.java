@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team5892.HEROcode.inputs.DigitalInputTrigger;
 import org.usfirst.frc.team5892.robot.Robot;
+import org.usfirst.frc.team5892.robot.subsystems.batwing.BatwingMotorStop;
 
 public class BatwingSubsystem extends Subsystem {
     private static final double RETAINER_POWER = 0.4;
@@ -13,30 +14,40 @@ public class BatwingSubsystem extends Subsystem {
 
     public class Batwing {
         private final Victor retainer, winch;
-        private final DigitalInput platformSwitch;
-        private boolean nextIsWinch = false;
+        private final DigitalInput retainerSwitch, winchSwitch;
+        private int state = 0; // 0=up, 1=ramp, 2=platform
 
-        private Batwing(Victor _retainer, Victor _winch, DigitalInput _platformSwitch) {
+        private Batwing(Victor _retainer, Victor _winch, DigitalInput _retainerSwitch, DigitalInput _winchSwitch) {
             retainer = _retainer;
             winch = _winch;
-            platformSwitch = _platformSwitch;
+            retainerSwitch = _retainerSwitch;
+            winchSwitch = _winchSwitch;
 
             addChild(retainer); addChild(winch);
-            addChild(platformSwitch);
+            addChild(retainerSwitch); addChild(winchSwitch);
         }
 
         private void initCommands() {
-            new DigitalInputTrigger(platformSwitch).whenActive(new BatwingMotorStop(winch));
+            new DigitalInputTrigger(retainerSwitch).whenActive(new BatwingMotorStop(retainer));
+            new DigitalInputTrigger(winchSwitch).whenActive(new BatwingMotorStop(winch));
         }
 
         void advance() {
-            if (nextIsWinch = !nextIsWinch) { // because of inversion, THIS IS THE RETAINER CASE.
-                winch.stopMotor();
-                retainer.set(RETAINER_POWER);
-            } else { // because of inversion, THIS IS THE WINCH CASE.
-                retainer.stopMotor();
-                winch.set(WINCH_POWER);
+            if (running()) return;
+            switch (state++) {
+                case 0:
+                    retainer.set(RETAINER_POWER);
+                    break;
+                case 1:
+                    winch.set(WINCH_POWER);
+                    break;
+                default:
+                    DriverStation.reportWarning("Batwing.advance() called with state " + state, false);
             }
+        }
+
+        boolean running() {
+            return retainer.get() != 0 || winch.get() != 0;
         }
     }
 
@@ -47,12 +58,14 @@ public class BatwingSubsystem extends Subsystem {
         left = new Batwing(
                 Robot.map.leftBatwingRetainer.makeVictor(),
                 Robot.map.leftBatwingWinch.makeVictor(),
-                new DigitalInput(Robot.map.leftBatwingSensor)
+                new DigitalInput(Robot.map.leftBatwingRetainerSensor),
+                new DigitalInput(Robot.map.leftBatwingRetainerSensor)
         );
         right = new Batwing(
                 Robot.map.rightBatwingRetainer.makeVictor(),
                 Robot.map.rightBatwingWinch.makeVictor(),
-                new DigitalInput(Robot.map.rightBatwingSensor)
+                new DigitalInput(Robot.map.rightBatwingRetainerSensor),
+                new DigitalInput(Robot.map.rightBatwingWinchSensor)
         );
     }
 
