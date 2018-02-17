@@ -40,9 +40,9 @@ public class AutoGyroRotate extends Command {
 
     private class AutoGyroRotateController extends HEROicPIDController {
 
-        private static final double kP = 0.007;
-        private static final double kI = 0.01;
-        private static final double kD = 0;
+        private static final double kP = 0.004;
+        private static final double kI = 0.006;
+        private static final double kD = 0.02;
         AutoGyroRotateController() {
             super(kP, kI, kD);
         }

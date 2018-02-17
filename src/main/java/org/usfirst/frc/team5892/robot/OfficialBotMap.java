@@ -6,6 +6,6 @@ public class OfficialBotMap extends RobotMap {
         rightDrive = new MotorInfo[]{new MotorInfo(2, false), new MotorInfo(3, false)};
 
         elevatorMotor = new MotorInfo(4, false);
-        elevatorSwitches = new int[]{};
+        elevatorSwitches = new int[]{0, };
     }
 }

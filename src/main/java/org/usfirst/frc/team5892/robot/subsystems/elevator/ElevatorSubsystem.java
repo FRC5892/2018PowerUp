@@ -10,7 +10,7 @@ import org.usfirst.frc.team5892.robot.subsystems.elevator.ElevatorMovement;
 import org.usfirst.frc.team5892.robot.subsystems.elevator.SwitchPressHandler;
 
 public class ElevatorSubsystem extends Subsystem {
-    public static final double MOTOR_POWER = 0.6;
+    public static final double MOTOR_POWER = 0.3;
 
     private final Victor motor;
     private final DigitalInput[] switches;

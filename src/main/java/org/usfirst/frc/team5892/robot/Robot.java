@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
     public static ElevatorSubsystem elevator;
     public static BatwingSubsystem batwings;
 
-    public static RobotMap map = new TempBotMap();
+    public static RobotMap map = new OfficialBotMap();
 
     /**
      * This function is run when the robot is first started up and should be
@@ -53,7 +53,7 @@ public class Robot extends TimedRobot {
         // Subsystems
         drive = new DriveSubsystem();
         //intake = new IntakeSubsystem();
-        //elevator = new ElevatorSubsystem();
+        elevator = new ElevatorSubsystem();
         //batwings = new BatwingSubsystem();
 
         // OI
@@ -62,6 +62,8 @@ public class Robot extends TimedRobot {
         // Autonomous modes
         m_chooser.addDefault("Do Nothing", null);
         m_chooser.addObject("Test Movement", new TestEverythingAuto());
+        m_chooser.addObject("Score to Switch from Left", new ScoreToSwitchAuto('L'));
+        m_chooser.addObject("Score to Switch from Right", new ScoreToSwitchAuto('R'));
         SmartDashboard.putData("Auto mode", m_chooser);
     }
 

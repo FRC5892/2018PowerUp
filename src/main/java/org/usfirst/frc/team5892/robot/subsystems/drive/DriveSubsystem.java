@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.GyroBase;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5892.robot.Robot;
 import org.usfirst.frc.team5892.robot.RobotMap;
 
