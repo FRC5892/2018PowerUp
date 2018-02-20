@@ -17,6 +17,6 @@ public class OfficialBotMap extends RobotMap {
         leftBatwingRetainer = new MotorInfo(4, false); leftBatwingRetainerSensor = 2;
         leftBatwingWinch = new MotorInfo(5, false); leftBatwingWinchSensor = 3;
         rightBatwingRetainer = new MotorInfo(6, false); rightBatwingRetainerSensor = 4;
-        rightBatwingWinch = new MotorInfo(7, false); rightBatwingWinchSensor = 5;
+        rightBatwingWinch = new MotorInfo(7, true); rightBatwingWinchSensor = 5;
     }
 }

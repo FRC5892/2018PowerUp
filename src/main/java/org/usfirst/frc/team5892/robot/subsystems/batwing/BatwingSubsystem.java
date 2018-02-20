@@ -33,15 +33,20 @@ public class BatwingSubsystem extends Subsystem {
         }
 
         void advance() {
-            if (running()) return;
+            //if (running()) return;
+            System.out.print("Batwing.advance: ");
             switch (state++) {
                 case 0:
-                    retainer.set(RETAINER_POWER);
+                    System.out.println("state is 0");
+                    //retainer.set(RETAINER_POWER);
                     break;
                 case 1:
+                    System.out.println("state is 1");
+                    retainer.set(-RETAINER_POWER);
                     winch.set(WINCH_POWER);
                     break;
                 default:
+                    System.out.println("state is weird");
                     DriverStation.reportWarning("Batwing.advance() called with state " + state, false);
             }
         }
@@ -73,5 +78,10 @@ public class BatwingSubsystem extends Subsystem {
     protected void initDefaultCommand() {
         left.initCommands();
         right.initCommands();
+    }
+
+    public void resetBatwings() {
+        left.state = 0;
+        right.state = 0;
     }
 }

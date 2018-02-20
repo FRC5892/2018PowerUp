@@ -74,8 +74,9 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-        if (intake != null) intake.override = false;
-        if (elevator != null) elevator.override = false;
+        intake.override = false;
+        elevator.override = false;
+        batwings.resetBatwings();
     }
 
     @Override
