@@ -12,39 +12,16 @@ public class JoystickPlayerTwo implements PlayerTwo {
         stick = new Joystick(port);
     }
 
-    // Intake
     @Override
-    public Trigger intakeOverride() {
-        return new JoystickButton(stick, 1);
-    }
-
-    @Override
-    public double manualIntakeWheels() {
+    public double intake() {
         return stick.getRawAxis(1);
     }
 
-    // Elevator
     @Override
-    public Trigger elevatorUp() {
-        return new POVTrigger(stick, 0);
-    }
-
-    @Override
-    public Trigger elevatorDown() {
-        return new POVTrigger(stick, 180);
-    }
-
-    @Override
-    public Trigger elevatorOverride() {
-        return new JoystickButton(stick, 2);
-    }
-
-    @Override
-    public double manualElevator() {
+    public double elevator() {
         return stick.getRawAxis(5);
     }
 
-    // Batwings
     @Override
     public Trigger batwingLeft() {
         return new AnalogAxisTrigger(stick, 2);

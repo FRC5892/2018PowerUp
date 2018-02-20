@@ -25,9 +25,4 @@ public class JoystickPlayerOne implements PlayerOne {
     public Trigger slowMode() {
         return new AnalogAxisTrigger(stick, 3);
     }
-
-    @Override
-    public Trigger intakeToggle() {
-        return new JoystickButton(stick, 9);
-    }
 }

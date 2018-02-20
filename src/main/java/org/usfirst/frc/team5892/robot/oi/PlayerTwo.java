@@ -3,13 +3,9 @@ package org.usfirst.frc.team5892.robot.oi;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 
 public interface PlayerTwo {
-    Trigger intakeOverride();
-    double manualIntakeWheels();
+    double intake();
 
-    Trigger elevatorUp();
-    Trigger elevatorDown();
-    Trigger elevatorOverride();
-    double manualElevator();
+    double elevator();
 
     Trigger batwingLeft();
     Trigger batwingRight();

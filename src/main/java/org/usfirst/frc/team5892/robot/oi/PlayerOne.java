@@ -7,5 +7,4 @@ public interface PlayerOne {
     double turnAxis();
 
     Trigger slowMode();
-    Trigger intakeToggle();
 }
