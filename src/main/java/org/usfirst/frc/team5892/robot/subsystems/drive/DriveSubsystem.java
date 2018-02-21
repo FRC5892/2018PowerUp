@@ -18,6 +18,8 @@ public class DriveSubsystem extends Subsystem {
     private final Gyro gyro;
     private final Accelerometer accele;
 
+    private static final double FLAT_REDUCE = 0.75;
+
     public DriveSubsystem() {
         leftDrive = RobotMap.makeVictorGroup(Robot.map.leftDrive);
         rightDrive = RobotMap.makeVictorGroup(Robot.map.rightDrive);
@@ -38,11 +40,11 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void arcadeDrive(double move, double turn) {
-        drive.arcadeDrive(move, turn);
+        drive.arcadeDrive(move * FLAT_REDUCE, turn * FLAT_REDUCE);
     }
 
     public void tankDrive(double left, double right) {
-        drive.tankDrive(left, right);
+        drive.tankDrive(left * FLAT_REDUCE, right * FLAT_REDUCE);
     }
 
     public void stop() {

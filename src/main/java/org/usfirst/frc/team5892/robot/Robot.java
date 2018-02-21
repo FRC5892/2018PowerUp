@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team5892.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -65,6 +67,16 @@ public class Robot extends TimedRobot {
         m_chooser.addObject("Score to Switch from Left", new ScoreToSwitchAuto('L'));
         m_chooser.addObject("Score to Switch from Right", new ScoreToSwitchAuto('R'));
         SmartDashboard.putData("Auto mode", m_chooser);
+
+        // CameraServer
+        UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(0);
+        cam1.setResolution(160, 120);
+
+        UsbCamera cam2 = CameraServer.getInstance().startAutomaticCapture(1);
+        cam2.setResolution(160, 120);
+
+        CameraServer.getInstance().getVideo();
+        CameraServer.getInstance().putVideo("RoboFeed", 160, 120);
     }
 
     /**

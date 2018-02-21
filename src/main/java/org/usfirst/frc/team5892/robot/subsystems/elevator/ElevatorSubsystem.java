@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5892.robot.Robot;
 
 public class ElevatorSubsystem extends Subsystem {
-    public static final double MOTOR_POWER = 0.7;
+    public static final double MOTOR_POWER = 0.4;
 
     private final SpeedController motor;
 
