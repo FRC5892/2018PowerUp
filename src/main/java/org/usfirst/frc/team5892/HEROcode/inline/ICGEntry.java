@@ -14,7 +14,7 @@ public class ICGEntry {
 	/**
 	 * @param command The command to be run.
 	 * @param parallel If true, will be scheduled with addParallel; otherwise, will be scheduled with addSequential.
-	 * @see {@link edu.wpi.first.wpilibj.commmand.CommandGroup CommandGroup}
+	 * @see {@link edu.wpi.first.wpilibj.command.CommandGroup CommandGroup}
 	 */
 	public ICGEntry(Command command, boolean parallel) {
 		this.command = command;
