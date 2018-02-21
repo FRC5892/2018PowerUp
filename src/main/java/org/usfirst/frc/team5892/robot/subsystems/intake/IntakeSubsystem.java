@@ -8,13 +8,12 @@ public class IntakeSubsystem extends Subsystem {
     public static final double RUNNING_POWER = 0.7;
     public static final double SLOW_POWER = 0.2;
 
-    private final SpeedControllerGroup armMotors;
+    private final SpeedController wheels;
 
     public IntakeSubsystem() {
-        armMotors = new SpeedControllerGroup(Robot.map.leftIntakeMotor.makeVictor(),
-                Robot.map.rightIntakeMotor.makeVictor());
+        wheels = Robot.map.intakeMotor.makeVictor();
 
-        addChild(armMotors);
+        addChild(wheels);
     }
 
     @Override
@@ -23,6 +22,6 @@ public class IntakeSubsystem extends Subsystem {
     }
 
     public void setMotorPower(double power) {
-        armMotors.set(power);
+        wheels.set(power);
     }
 }

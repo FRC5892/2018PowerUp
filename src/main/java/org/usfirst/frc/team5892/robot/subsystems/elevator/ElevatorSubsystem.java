@@ -2,17 +2,19 @@ package org.usfirst.frc.team5892.robot.subsystems.elevator;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team5892.robot.Robot;
 
 public class ElevatorSubsystem extends Subsystem {
-    public static final double MOTOR_POWER = 0.3;
+    public static final double MOTOR_POWER = 0.7;
 
     private final SpeedController motor;
 
     public ElevatorSubsystem() {
-        motor = new WPI_TalonSRX(Robot.map.elevatorMotor.port);
-        motor.setInverted(Robot.map.elevatorMotor.inverted);
+        WPI_TalonSRX talon = new WPI_TalonSRX(Robot.map.elevatorTalon.port);
+        talon.setInverted(Robot.map.elevatorTalon.inverted);
+        motor = new SpeedControllerGroup(talon, Robot.map.elevatorOtherMotor.makeVictor());
         addChild(motor);
     }
 

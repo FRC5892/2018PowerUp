@@ -10,16 +10,16 @@ import org.usfirst.frc.team5892.robot.subsystems.batwing.BatwingMotorStop;
 
 public class BatwingSubsystem extends Subsystem {
     private static final double RETAINER_POWER = 0.3;
-    private static final double WINCH_POWER = 0.3;
+    private static final double WINCH_POWER = 1;
 
     public class Batwing {
         private final Victor retainer, winch;
         private final DigitalInput retainerSwitch, winchSwitch;
         private int state = 0; // 0=up, 1=ramp, 2=platform
 
-        private Batwing(Victor _retainer, Victor _winch, DigitalInput _retainerSwitch, DigitalInput _winchSwitch) {
-            retainer = _retainer;
-            winch = _winch;
+        private Batwing(String name, Victor _retainer, Victor _winch, DigitalInput _retainerSwitch, DigitalInput _winchSwitch) {
+            retainer = _retainer; retainer.setName(name + " Retainer");
+            winch = _winch; winch.setName(name + " Winch");
             retainerSwitch = _retainerSwitch;
             winchSwitch = _winchSwitch;
 
@@ -61,12 +61,14 @@ public class BatwingSubsystem extends Subsystem {
 
     public BatwingSubsystem() {
         left = new Batwing(
+                "Left",
                 Robot.map.leftBatwingRetainer.makeVictor(),
                 Robot.map.leftBatwingWinch.makeVictor(),
                 new DigitalInput(Robot.map.leftBatwingRetainerSensor),
                 new DigitalInput(Robot.map.leftBatwingWinchSensor)
         );
         right = new Batwing(
+                "Right",
                 Robot.map.rightBatwingRetainer.makeVictor(),
                 Robot.map.rightBatwingWinch.makeVictor(),
                 new DigitalInput(Robot.map.rightBatwingRetainerSensor),

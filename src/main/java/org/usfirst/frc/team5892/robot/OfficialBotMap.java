@@ -7,16 +7,14 @@ public class OfficialBotMap extends RobotMap {
         leftEncoder1 = 10; leftEncoder2 = 11;
         rightEncoder1 = 12; rightEncoder2 = 13;
 
-        leftIntakeMotor = new MotorInfo(9, true);
-        rightIntakeMotor = new MotorInfo(8, false);
-        intakeBumperSwitch = 14;
+        intakeMotor = new MotorInfo(7, false);
 
-        elevatorMotor = new MotorInfo(0, false);
-        elevatorSwitches = new int[]{0, 1};
+        elevatorTalon = new MotorInfo(0, false);
+        elevatorOtherMotor = new MotorInfo(4, false);
 
-        leftBatwingRetainer = new MotorInfo(4, false); leftBatwingRetainerSensor = 2;
-        leftBatwingWinch = new MotorInfo(5, false); leftBatwingWinchSensor = 3;
+        leftBatwingRetainer = new MotorInfo(5, true); leftBatwingRetainerSensor = 2;
+        leftBatwingWinch = new MotorInfo(8, false); leftBatwingWinchSensor = 3;
         rightBatwingRetainer = new MotorInfo(6, false); rightBatwingRetainerSensor = 4;
-        rightBatwingWinch = new MotorInfo(7, true); rightBatwingWinchSensor = 5;
+        rightBatwingWinch = new MotorInfo(9, true); rightBatwingWinchSensor = 5;
     }
 }
