@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5892.robot.Robot;
 import org.usfirst.frc.team5892.robot.RobotMap;
 
@@ -72,5 +73,10 @@ public class DriveSubsystem extends Subsystem {
 
     public double accelerometer() {
         return accele.getY();
+    }
+
+    @Override
+    public void periodic() {
+        SmartDashboard.putNumber("Drive Accelerometer", accelerometer());
     }
 }

@@ -10,7 +10,7 @@ public class OfficialBotMap extends RobotMap {
         intakeMotor = new MotorInfo(7, false);
 
         elevatorTalon = new MotorInfo(0, false);
-        elevatorOtherMotor = new MotorInfo(4, false);
+        elevatorOtherMotor = new MotorInfo(4, true);
 
         leftBatwingRetainer = new MotorInfo(5, true); leftBatwingRetainerSensor = 2;
         leftBatwingWinch = new MotorInfo(8, false); leftBatwingWinchSensor = 3;
