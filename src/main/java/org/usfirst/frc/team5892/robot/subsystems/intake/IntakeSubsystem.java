@@ -2,11 +2,12 @@ package org.usfirst.frc.team5892.robot.subsystems.intake;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.usfirst.frc.team5892.robot.MathUtils;
 import org.usfirst.frc.team5892.robot.Robot;
 
 public class IntakeSubsystem extends Subsystem {
-    public static final double RUNNING_POWER = 0.7;
-    public static final double SLOW_POWER = 0.2;
+    public static final double INTAKE_POWER = 1;
+    public static final double OUTTAKE_POWER = 0.7;
 
     private final SpeedController wheels;
 
@@ -22,6 +23,6 @@ public class IntakeSubsystem extends Subsystem {
     }
 
     public void setMotorPower(double power) {
-        wheels.set(power);
+        wheels.set(MathUtils.scalePlusMinus(power, INTAKE_POWER, OUTTAKE_POWER));
     }
 }

@@ -2,6 +2,7 @@ package org.usfirst.frc.team5892.robot.auton;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.usfirst.frc.team5892.robot.MathUtils;
 
 public class TestEverythingAuto implements AutonBuilder {
 
@@ -13,9 +14,9 @@ public class TestEverythingAuto implements AutonBuilder {
     private class TestEverythingAutoCG extends CommandGroup {
         TestEverythingAutoCG(String fieldData) {
             int turnDir = fieldData.charAt(0) == 'L' ? -1 : 1;
-            addSequential(new AutoStraightDrive(0.7, AutonMath.inchesToEncoderTicks(36)));
+            addSequential(new AutoStraightDrive(0.7, MathUtils.inchesToEncoderTicks(36)));
             addSequential(new AutoGyroRotate(90 * turnDir));
-            addSequential(new AutoStraightDrive(0.7, AutonMath.inchesToEncoderTicks(18)));
+            addSequential(new AutoStraightDrive(0.7, MathUtils.inchesToEncoderTicks(18)));
         }
     }
 }
