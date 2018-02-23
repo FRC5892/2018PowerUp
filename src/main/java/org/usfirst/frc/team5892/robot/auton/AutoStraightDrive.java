@@ -6,14 +6,14 @@ import org.usfirst.frc.team5892.robot.Robot;
 
 public class AutoStraightDrive extends Command {
     private AutoStraightDriveController controller;
-    private final double nominalPower;
-    private final int encoderTarget;
+    private final double _nominalPower;
+    private final int _encoderTarget;
 
-    public AutoStraightDrive(double _nominalPower, int _encoderTarget) {
+    public AutoStraightDrive(double nominalPower, int encoderTarget) {
         requires(Robot.drive);
         controller = new AutoStraightDriveController();
-        nominalPower = _nominalPower;
-        encoderTarget = _encoderTarget;
+        _nominalPower = nominalPower;
+        _encoderTarget = encoderTarget;
     }
 
     @Override
@@ -25,8 +25,8 @@ public class AutoStraightDrive extends Command {
 
     @Override
     protected boolean isFinished() {
-        return Math.abs(Robot.drive.getLeft()) > encoderTarget ||
-                Math.abs(Robot.drive.getRight()) > encoderTarget;
+        return Math.abs(Robot.drive.getLeft()) > _encoderTarget ||
+                Math.abs(Robot.drive.getRight()) > _encoderTarget;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class AutoStraightDrive extends Command {
 
         @Override
         public void usePIDOutput(double output) {
-            Robot.drive.arcadeDrive(nominalPower, output);
+            Robot.drive.arcadeDrive(_nominalPower, output);
         }
     }
 }

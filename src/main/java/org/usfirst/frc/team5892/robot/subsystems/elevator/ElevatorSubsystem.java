@@ -9,8 +9,7 @@ import org.usfirst.frc.team5892.robot.MathUtils;
 import org.usfirst.frc.team5892.robot.Robot;
 
 public class ElevatorSubsystem extends Subsystem {
-    public static final double UP_POWER = 0.75
-            ;
+    public static final double UP_POWER = 0.75;
     public static final double DOWN_POWER = 0.01;
 
     private final SpeedController motor;

@@ -8,13 +8,13 @@ public class AutoGyroRotate extends Command {
     private static final double TOLERANCE = 0.5;
 
     private final AutoGyroRotateController controller;
-    private final double turnValue;
+    private final double _turnValue;
     private boolean hasBeenUntrue = false;
-    public AutoGyroRotate(double _turnValue) {
+    public AutoGyroRotate(double turnValue) {
         requires(Robot.drive);
         controller = new AutoGyroRotateController();
-        controller.setSetpoint(_turnValue);
-        turnValue = _turnValue;
+        controller.setSetpoint(turnValue);
+        _turnValue = turnValue;
     }
 
     @Override
@@ -26,8 +26,8 @@ public class AutoGyroRotate extends Command {
 
     @Override
     protected boolean isFinished() {
-        boolean ret = Robot.drive.gyroAngle() > turnValue - TOLERANCE &&
-                Robot.drive.gyroAngle() < turnValue + TOLERANCE;
+        boolean ret = Robot.drive.gyroAngle() > _turnValue - TOLERANCE &&
+                Robot.drive.gyroAngle() < _turnValue + TOLERANCE;
         if (!ret) hasBeenUntrue = true;
         return hasBeenUntrue && ret; // sometimes the gyro reset hasn't gone through by now.
     }
@@ -54,7 +54,6 @@ public class AutoGyroRotate extends Command {
 
         @Override
         public void usePIDOutput(double output) {
-            System.out.println("PID output is " + output);
             Robot.drive.arcadeDrive(0, output);
         }
     }
