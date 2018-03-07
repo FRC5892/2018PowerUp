@@ -42,7 +42,7 @@ public class Robot extends TimedRobot {
     public static ElevatorSubsystem elevator;
     public static BatwingSubsystem batwings;
 
-    public static RobotMap map = new OfficialBotMap();
+    public static RobotMap map = new TempBotMap();
 
     /**
      * This function is run when the robot is first started up and should be
@@ -54,9 +54,9 @@ public class Robot extends TimedRobot {
 
         // Subsystems
         drive = new DriveSubsystem();
-        intake = new IntakeSubsystem();
+        //intake = new IntakeSubsystem();
         elevator = new ElevatorSubsystem();
-        batwings = new BatwingSubsystem();
+        //batwings = new BatwingSubsystem();
 
         // OI
         m_oi = new OI(new JoystickPlayerOne(0), new JoystickPlayerTwo(1));
@@ -86,7 +86,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-        batwings.resetBatwings();
+        if (batwings != null) batwings.resetBatwings();
     }
 
     @Override

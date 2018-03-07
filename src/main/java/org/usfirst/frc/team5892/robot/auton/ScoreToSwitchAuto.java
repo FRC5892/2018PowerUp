@@ -39,7 +39,7 @@ public class ScoreToSwitchAuto implements AutonBuilder {
                 addSequential(new AutoGyroRotate(90 * turnDir));
                 addSequential(new AutonElevatorRun(0.6, 0.75));
                 addSequential(new AutonIntakeRun(0.8, 0.75));
-                
+
             }
         }
     }

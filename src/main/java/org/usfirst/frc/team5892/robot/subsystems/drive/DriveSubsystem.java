@@ -40,7 +40,7 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void arcadeDrive(double move, double turn) {
-        drive.arcadeDrive(move * FLAT_REDUCE, turn * FLAT_REDUCE);
+        drive.arcadeDrive(-move * FLAT_REDUCE, turn * FLAT_REDUCE);
     }
 
     public void tankDrive(double left, double right) {

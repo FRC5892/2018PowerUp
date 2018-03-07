@@ -59,6 +59,10 @@ public class RobotMap {
 		public final int port;
 		public final boolean inverted;
 
+		protected MotorInfo(int port) {
+			this(port, false);
+		}
+
 		protected MotorInfo(int port, boolean inverted) {
 			this.port = port;
 			this.inverted = inverted;
