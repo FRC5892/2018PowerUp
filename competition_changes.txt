@@ -1,0 +1,3 @@
+[ ] Switch back to OfficialBotMap in Robot.java
+[ ] Figure out where Talon is going, adjust accordingly
+[ ] Wait for motors to be reconfigured and adjust RobotMap/OfficialBotMap accordingly

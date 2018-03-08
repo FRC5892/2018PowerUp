@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5892.robot.subsystems.intake;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team5892.robot.MathUtils;
@@ -12,7 +13,9 @@ public class IntakeSubsystem extends Subsystem {
     private final SpeedController wheels;
 
     public IntakeSubsystem() {
-        wheels = Robot.map.intakeMotor.makeVictor();
+        WPI_TalonSRX wheelTalon = new WPI_TalonSRX(Robot.map.intakeMotorL.port);
+        wheelTalon.setInverted(Robot.map.intakeMotorL.inverted);
+        wheels = new SpeedControllerGroup(wheelTalon, Robot.map.intakeMotorR.makeVictor());
 
         addChild(wheels);
     }

@@ -7,7 +7,10 @@ public class TempBotMap extends RobotMap{
         leftEncoder1 = 0; leftEncoder2 = 1;
         rightEncoder1 = 2; rightEncoder2 = 3;
 
+        intakeMotorL = new MotorInfo(0); // this is the Talon.
+        intakeMotorR = new MotorInfo(999, true);
+
         elevatorTalon = new MotorInfo(3);
-        elevatorOtherMotor = new MotorInfo(4, true);
+        elevatorOtherMotor = new MotorInfo(4);
     }
 }
