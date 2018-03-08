@@ -18,7 +18,7 @@ public class DriveSubsystem extends Subsystem {
     private final Gyro gyro;
     private final Accelerometer accele;
 
-    private static final double FLAT_REDUCE = 0.8;
+    public static final double FLAT_REDUCE = 0.8;
 
     public DriveSubsystem() {
         leftDrive = RobotMap.makeVictorGroup(Robot.map.leftDrive);
@@ -29,7 +29,7 @@ public class DriveSubsystem extends Subsystem {
         gyro = new ADXRS450_Gyro();
         accele = new BuiltInAccelerometer();
 
-        addChild(drive); addChild(gyro);
+        addChild(drive); addChild((Sendable) gyro);
         addChild(leftEncoder); addChild(rightEncoder);
         addChild(accele);
     }
@@ -40,11 +40,11 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void arcadeDrive(double move, double turn) {
-        drive.arcadeDrive(-move * FLAT_REDUCE, turn * FLAT_REDUCE);
+        drive.arcadeDrive(move, turn);
     }
 
     public void tankDrive(double left, double right) {
-        drive.tankDrive(left * FLAT_REDUCE, right * FLAT_REDUCE);
+        drive.tankDrive(left, right);
     }
 
     public void stop() {

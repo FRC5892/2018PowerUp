@@ -5,7 +5,7 @@ import org.usfirst.frc.team5892.HEROcode.pid.HEROicPIDController;
 import org.usfirst.frc.team5892.robot.Robot;
 
 public class AutoGyroRotate extends Command {
-    private static final double TOLERANCE = 0.5;
+    private static final double TOLERANCE = 1;
 
     private final AutoGyroRotateController controller;
     private final double _turnValue;

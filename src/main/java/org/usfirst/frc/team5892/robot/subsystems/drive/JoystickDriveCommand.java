@@ -16,7 +16,7 @@ class JoystickDriveCommand extends Command {
 
     @Override
     protected void execute() {
-        double mult = slowMode.get() ? SLOW_MULTIPLIER : 1;
+        double mult = slowMode.get() ? SLOW_MULTIPLIER : DriveSubsystem.FLAT_REDUCE;
         if (Math.abs(Robot.drive.accelerometer()) > MAX_ACCELERATION) mult *= 0.3;
         Robot.drive.arcadeDrive(Robot.m_oi.player1.moveAxis() * mult, Robot.m_oi.player1.turnAxis() * mult);
     }
