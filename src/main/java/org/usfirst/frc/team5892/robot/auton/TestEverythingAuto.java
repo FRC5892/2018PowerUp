@@ -18,5 +18,6 @@ public class TestEverythingAuto implements AutonBuilder {
             addSequential(new AutoGyroRotate(90 * turnDir));
             addSequential(new AutoStraightDrive(0.7, MathUtils.encoderInches(18)));
         }
+
     }
 }
