@@ -13,9 +13,7 @@ public class IntakeSubsystem extends Subsystem {
     private final SpeedController wheels;
 
     public IntakeSubsystem() {
-        WPI_TalonSRX wheelTalon = new WPI_TalonSRX(Robot.map.intakeMotorL.port);
-        wheelTalon.setInverted(Robot.map.intakeMotorL.inverted);
-        wheels = new SpeedControllerGroup(wheelTalon, Robot.map.intakeMotorR.makeVictor());
+        wheels = Robot.map.intakeMotor.makeVictor();
 
         addChild(wheels);
     }

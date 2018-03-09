@@ -54,7 +54,7 @@ public class Robot extends TimedRobot {
 
         // Subsystems
         drive = new DriveSubsystem();
-        //intake = new IntakeSubsystem();
+        intake = new IntakeSubsystem();
         elevator = new ElevatorSubsystem();
         //batwings = new BatwingSubsystem();
 
@@ -66,6 +66,8 @@ public class Robot extends TimedRobot {
         m_chooser.addObject("Test Movement", new TestEverythingAuto());
         m_chooser.addObject("Score to Switch from Left", new ScoreToSwitchAuto('L'));
         m_chooser.addObject("Score to Switch from Right", new ScoreToSwitchAuto('R'));
+        m_chooser.addObject("Score Two Cubes from Left", new TwoCubeAuto('L'));
+        m_chooser.addObject("Score Two Cubes from Right", new TwoCubeAuto('R'));
         SmartDashboard.putData("Auto mode", m_chooser);
 
         // CameraServer

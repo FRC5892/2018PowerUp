@@ -28,8 +28,8 @@ public class ScoreToSwitchAuto implements AutonBuilder {
                 addSequential(new AutoStraightDrive(0.6, encoderInches(148)));
                 addSequential(new AutoGyroRotate(90 * turnDir));
                 addSequential(new AutoStraightDrive(0.3, encoderInches(14)));
-                //addSequential(new AutonElevatorRun(0.5, 0.5));
-                //addSequential(new AutonIntakeRun(0.6, 0.5));
+                addSequential(new AutonElevatorRun(0.5, 0.5));
+                addSequential(new AutonIntakeRun(0.6, 0.5));
 
             } else {
 
@@ -37,8 +37,8 @@ public class ScoreToSwitchAuto implements AutonBuilder {
                 addSequential(new AutoGyroRotate(90 * turnDir));
                 addSequential(new AutoStraightDrive(0.6, encoderInches(172)));
                 addSequential(new AutoGyroRotate(90 * turnDir));
-                //addSequential(new AutonElevatorRun(0.6, 0.75));
-                //addSequential(new AutonIntakeRun(0.8, 0.75));
+                addSequential(new AutonElevatorRun(0.6, 0.75));
+                addSequential(new AutonIntakeRun(0.8, 0.75));
 
             }
         }

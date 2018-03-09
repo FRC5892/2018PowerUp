@@ -3,9 +3,9 @@ package org.usfirst.frc.team5892.robot.subsystems.elevator;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5892.robot.Robot;
 
-public class ElevatorControl extends Command {
+class ElevatorControl extends Command {
 
-    public ElevatorControl() {
+    ElevatorControl() {
         requires(Robot.elevator);
     }
 
