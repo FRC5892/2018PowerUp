@@ -3,14 +3,13 @@ package org.usfirst.frc.team5892.robot.subsystems.elevator;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5892.robot.Robot;
 
-public class AutonElevatorRun extends Command {
+public class RunElevator extends Command {
 
     private final double _power;
 
-    public AutonElevatorRun(double power, double timeout) {
+    public RunElevator(double power) {
         requires(Robot.elevator);
         _power = power;
-        setTimeout(timeout);
     }
 
     @Override
@@ -20,7 +19,7 @@ public class AutonElevatorRun extends Command {
 
     @Override
     protected boolean isFinished() {
-        return isTimedOut();
+        return false;
     }
 
     @Override

@@ -3,14 +3,13 @@ package org.usfirst.frc.team5892.robot.subsystems.intake;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5892.robot.Robot;
 
-public class AutonIntakeRun extends Command {
+public class RunIntake extends Command {
 
     private final double _power;
 
-    public AutonIntakeRun(double power, double timeout) {
+    public RunIntake(double power) {
         requires(Robot.intake);
         _power = power;
-        setTimeout(timeout);
     }
 
     @Override
@@ -20,7 +19,7 @@ public class AutonIntakeRun extends Command {
 
     @Override
     protected boolean isFinished() {
-        return isTimedOut();
+        return false;
     }
 
     @Override
