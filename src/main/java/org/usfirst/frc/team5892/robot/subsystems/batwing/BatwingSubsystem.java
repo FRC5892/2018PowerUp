@@ -13,7 +13,7 @@ public class BatwingSubsystem extends Subsystem {
     private static final double WINCH_POWER = 1;
 
     public class Batwing {
-        private final Victor retainer, winch;
+        final Victor retainer, winch;
         private final DigitalInput retainerSwitch, winchSwitch;
         private int state = 0; // 0=up, 1=ramp, 2=platform
 
@@ -28,8 +28,8 @@ public class BatwingSubsystem extends Subsystem {
         }
 
         private void initCommands() {
-            new DigitalInputTrigger(retainerSwitch).whenActive(new BatwingMotorStop(retainer));
-            new DigitalInputTrigger(winchSwitch).whenActive(new BatwingMotorStop(winch));
+            new DigitalInputTrigger(retainerSwitch).whenActive(new BatwingMotorStop(this));
+            new DigitalInputTrigger(winchSwitch).whenActive(new BatwingMotorStop(this));
         }
 
         void advance() {

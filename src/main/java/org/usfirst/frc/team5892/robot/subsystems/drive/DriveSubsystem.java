@@ -31,7 +31,7 @@ public class DriveSubsystem extends Subsystem {
 
         addChild(drive); addChild((Sendable) gyro);
         addChild(leftEncoder); addChild(rightEncoder);
-        addChild(accele);
+        addChild((Sendable) accele);
     }
 
     @Override
@@ -75,10 +75,5 @@ public class DriveSubsystem extends Subsystem {
 
     public double accelerometer() {
         return accele.getY();
-    }
-
-    @Override
-    public void periodic() {
-        SmartDashboard.putNumber("Drive Accelerometer", accelerometer());
     }
 }

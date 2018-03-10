@@ -14,7 +14,7 @@ public class TestEverythingAuto implements AutonBuilder {
     private class TestEverythingAutoCG extends CommandGroup {
         TestEverythingAutoCG(String fieldData) {
             int turnDir = fieldData.charAt(0) == 'L' ? -1 : 1;
-            addSequential(new AutoStraightDrive(0.6, MathUtils.encoderInches(120)));
+            addSequential(new AutoGyroRotate(90));
         }
     }
 }

@@ -56,9 +56,9 @@ public class Robot extends TimedRobot {
 
         // Subsystems
         drive = new DriveSubsystem();
-        //intake = new IntakeSubsystem();
+        intake = new IntakeSubsystem();
         //elevator = new ElevatorSubsystem();
-        //batwings = new BatwingSubsystem();
+        batwings = new BatwingSubsystem();
 
         // OI
         m_oi = new OI(new JoystickPlayerOne(0), new JoystickPlayerTwo(1));
