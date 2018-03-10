@@ -2,19 +2,20 @@ package org.usfirst.frc.team5892.robot;
 
 public class TempBotMap extends RobotMap{
     public TempBotMap() {
-        leftDrive = new MotorInfo[]{new MotorInfo(0, false), new MotorInfo(1, false)};
-        rightDrive = new MotorInfo[]{new MotorInfo(2, false), new MotorInfo(3, false)};
-        leftEncoder1 = 10; leftEncoder2 = 11;
-        rightEncoder1 = 12; rightEncoder2 = 13;
+        leftDrive = new MotorInfo[]{new MotorInfo(0, false)};
+        rightDrive = new MotorInfo[]{new MotorInfo(1, false)};
+        leftEncoder1 = 0; leftEncoder2 = 1;
+        rightEncoder1 = 2; rightEncoder2 = 3;
 
-        intakeMotor = new MotorInfo(7, false);
+        intakeLeft = new MotorInfo(2);
+        intakeRight = new MotorInfo(3, true);
 
-        elevatorTalon = new MotorInfo(0, false);
+        elevatorTalon = new MotorInfo(0);
         elevatorOtherMotor = new MotorInfo(4, true);
 
-        leftBatwingRetainer = new MotorInfo(5, true); leftBatwingRetainerSensor = 2;
-        leftBatwingWinch = new MotorInfo(8, false); leftBatwingWinchSensor = 3;
-        rightBatwingRetainer = new MotorInfo(6, false); rightBatwingRetainerSensor = 4;
-        rightBatwingWinch = new MotorInfo(9, true); rightBatwingWinchSensor = 5;
+        leftBatwingRetainer = new MotorInfo(5); leftBatwingRetainerSensor = 2;
+        leftBatwingWinch = new MotorInfo(6); leftBatwingWinchSensor = 3;
+        rightBatwingRetainer = new MotorInfo(7); rightBatwingRetainerSensor = 4;
+        rightBatwingWinch = new MotorInfo(8); rightBatwingWinchSensor = 5;
     }
 }

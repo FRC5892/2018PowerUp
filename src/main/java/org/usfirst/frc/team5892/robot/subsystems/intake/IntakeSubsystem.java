@@ -13,9 +13,9 @@ public class IntakeSubsystem extends Subsystem {
     private final SpeedController wheels;
 
     public IntakeSubsystem() {
-        wheels = Robot.map.intakeMotor.makeVictor();
+        wheels = new SpeedControllerGroup(Robot.map.intakeLeft.makeVictor(), Robot.map.intakeRight.makeVictor());
 
-        addChild(wheels);
+        addChild((Sendable) wheels);
     }
 
     @Override

@@ -24,6 +24,7 @@ public class TwoCubeAuto implements AutonBuilder {
     private class TwoCubeAutoCG extends CommandGroup {
         TwoCubeAutoCG(String fieldData) {
             int mode = (fieldData.charAt(0) == position ? 1 : 0) + (fieldData.charAt(1) == position ? 2 : 0);
+            //addParallel(new RunIntake(0.2), 1);
             switch (mode) {
 
                 case 0: // both far
@@ -38,15 +39,15 @@ public class TwoCubeAuto implements AutonBuilder {
                 case 3: // both near
                     addSequential(new AutoStraightDrive(0.7, encoderInches(304)));
                     addSequential(new AutoGyroRotate(90 * turnDir));
-                    addSequential(new RunElevator(0.5), 4);
-                    addSequential(new RunIntake(-0.8), 0.5);
-                    addSequential(new RunElevator(-0.1), 1);
+                    //addSequential(new RunElevator(0.5), 4);
+                    //addSequential(new RunIntake(-0.8), 0.5);
+                    //addSequential(new RunElevator(-0.1), 1);
                     addSequential(new AutoGyroRotate(69 * turnDir));
-                    addParallel(new RunIntake(0.5));
+                    //addParallel(new RunIntake(0.5));
                     addSequential(new AutoStraightDrive(0.7, encoderInches(101)));
-                    addParallel(new RunIntake(0));
-                    addSequential(new RunElevator(0.5), 2);
-                    addSequential(new RunIntake(-0.6), 0.5);
+                    //addParallel(new RunIntake(0));
+                    //addSequential(new RunElevator(0.5), 2);
+                    //addSequential(new RunIntake(-0.6), 0.5);
                     break;
 
             }

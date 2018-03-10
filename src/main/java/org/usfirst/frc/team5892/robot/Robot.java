@@ -11,7 +11,9 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PrintCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -54,8 +56,8 @@ public class Robot extends TimedRobot {
 
         // Subsystems
         drive = new DriveSubsystem();
-        intake = new IntakeSubsystem();
-        elevator = new ElevatorSubsystem();
+        //intake = new IntakeSubsystem();
+        //elevator = new ElevatorSubsystem();
         //batwings = new BatwingSubsystem();
 
         // OI
@@ -71,14 +73,14 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("Auto mode", m_chooser);
 
         // CameraServer
-        UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(0);
+        /*UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(0);
         cam1.setResolution(160, 120);
 
         UsbCamera cam2 = CameraServer.getInstance().startAutomaticCapture(1);
         cam2.setResolution(160, 120);
 
         CameraServer.getInstance().getVideo();
-        CameraServer.getInstance().putVideo("RoboFeed", 160, 120);
+        CameraServer.getInstance().putVideo("RoboFeed", 160, 120);*/
     }
 
     /**

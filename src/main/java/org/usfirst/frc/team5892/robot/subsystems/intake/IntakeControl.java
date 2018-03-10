@@ -11,7 +11,9 @@ public class IntakeControl extends Command {
 
     @Override
     protected void execute() {
-        Robot.intake.setMotorPower(Robot.m_oi.player2.intake());
+        double power = Robot.m_oi.player2.intake();
+        if (Math.abs(power) < 0.1) Robot.intake.setMotorPower(0.1);
+        else Robot.intake.setMotorPower(Robot.m_oi.player2.intake());
     }
 
     @Override
