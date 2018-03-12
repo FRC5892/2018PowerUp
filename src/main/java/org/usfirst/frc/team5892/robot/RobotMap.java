@@ -23,8 +23,8 @@ public class RobotMap {
 	public int rightEncoder1, rightEncoder2;
 
 	// Intake subsystem
-	public MotorInfo intakeLeft;
-	public MotorInfo intakeRight;
+	public MotorInfo[] intakeMotors;
+	public int intakeButton;
 
 	// Elevator subsystem
 	public MotorInfo elevatorTalon;

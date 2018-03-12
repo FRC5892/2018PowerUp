@@ -3,27 +3,21 @@ package org.usfirst.frc.team5892.robot.subsystems.intake;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5892.robot.Robot;
 
-public class RunIntake extends Command {
+class IntakeRegulate extends Command {
 
-    private final double _power;
-
-    public RunIntake(double power) {
+    IntakeRegulate() {
         requires(Robot.intake);
-        _power = power;
     }
 
     @Override
     protected void execute() {
-        Robot.intake.setMotorPower(_power);
+        if (Robot.intake.intaking && !Robot.intake.isButtonPressed()) Robot.intake.setMotorPower(1);
+        else if (Robot.intake.intaking) Robot.intake.setMotorPower(0.3);
+        else Robot.intake.setMotorPower(0);
     }
 
     @Override
     protected boolean isFinished() {
         return false;
-    }
-
-    @Override
-    protected void end() {
-        Robot.intake.setMotorPower(0);
     }
 }

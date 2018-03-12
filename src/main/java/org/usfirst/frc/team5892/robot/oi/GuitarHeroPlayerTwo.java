@@ -12,11 +12,13 @@ public class GuitarHeroPlayerTwo implements PlayerTwo {
     }
 
     @Override
-    public double intake() {
-        if (guitar.getRawButton(1)) return 1;
-        if (guitar.getRawButton(2)) return -0.5;
-        if (guitar.getRawButton(3)) return -1;
-        return 0;
+    public Trigger intake() {
+        return new JoystickButton(guitar, 1);
+    }
+
+    @Override
+    public Trigger outtake() {
+        return new JoystickButton(guitar, 2);
     }
 
     @Override

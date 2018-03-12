@@ -3,17 +3,20 @@ package org.usfirst.frc.team5892.robot.subsystems.intake;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5892.robot.Robot;
 
-public class IntakeControl extends Command {
+public class OuttakeCommand extends Command {
 
-    public IntakeControl() {
+    public OuttakeCommand() {
         requires(Robot.intake);
     }
 
     @Override
+    protected void initialize() {
+        Robot.intake.intaking = false;
+    }
+
+    @Override
     protected void execute() {
-        double power = Robot.m_oi.player2.intake();
-        if (Math.abs(power) < 0.1) Robot.intake.setMotorPower(0.1);
-        else Robot.intake.setMotorPower(Robot.m_oi.player2.intake());
+        Robot.intake.setMotorPower(-1);
     }
 
     @Override
