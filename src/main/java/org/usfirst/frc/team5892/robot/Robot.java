@@ -90,6 +90,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
+        if (intake != null) intake.intaking = false;
         if (batwings != null) batwings.resetBatwings();
     }
 
@@ -112,11 +113,9 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         AutonBuilder builder = m_chooser.getSelected();
-        System.out.println(builder);
 
         if (builder != null) {
             m_autonomousCommand = builder.buildAuto(DriverStation.getInstance().getGameSpecificMessage());
-            System.out.println(m_autonomousCommand);
             m_autonomousCommand.start();
         }
     }

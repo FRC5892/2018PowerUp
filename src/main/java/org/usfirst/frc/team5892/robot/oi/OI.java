@@ -14,6 +14,9 @@ public class OI {
         player1 = player_1;
         player2 = player_2;
 
+        player2.intake().whenActive(new StartIntaking());
+        player2.outtake().whileActive(new OuttakeCommand());
+
         //player2.batwingLeft().whenActive(new BatwingActivate(Robot.batwings.left));
         //player2.batwingRight().whenActive(new BatwingActivate(Robot.batwings.right));
     }

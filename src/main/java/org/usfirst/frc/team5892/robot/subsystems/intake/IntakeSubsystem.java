@@ -14,7 +14,7 @@ public class IntakeSubsystem extends Subsystem {
     private final SpeedController wheels;
     private final DigitalInput button;
 
-    boolean intaking;
+    public boolean intaking;
 
     public IntakeSubsystem() {
         wheels = RobotMap.makeVictorGroup(Robot.map.intakeMotors);
