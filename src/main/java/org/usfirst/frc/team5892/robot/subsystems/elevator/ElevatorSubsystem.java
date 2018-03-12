@@ -18,7 +18,7 @@ public class ElevatorSubsystem extends Subsystem {
         WPI_TalonSRX talon = new WPI_TalonSRX(Robot.map.elevatorTalon.port);
         talon.setInverted(Robot.map.elevatorTalon.inverted);
         motor = new SpeedControllerGroup(talon, Robot.map.elevatorOtherMotor.makeVictor());
-        addChild((Sendable) motor); // why do i have to use a cast. just why.
+        addChild("Motor", (Sendable) motor); // why do i have to use a cast. just why.
     }
 
     @Override

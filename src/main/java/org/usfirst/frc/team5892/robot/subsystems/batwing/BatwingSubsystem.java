@@ -20,8 +20,8 @@ public class BatwingSubsystem extends Subsystem {
         private Batwing(String name, Victor _retainer, Victor _winch, DigitalInput _retainerSwitch, DigitalInput _winchSwitch) {
             retainer = _retainer; retainer.setName(name + " Retainer");
             winch = _winch; winch.setName(name + " Winch");
-            retainerSwitch = _retainerSwitch;
-            winchSwitch = _winchSwitch;
+            retainerSwitch = _retainerSwitch; retainerSwitch.setName(name + " Retainer Switch");
+            winchSwitch = _winchSwitch; winchSwitch.setName(name + " Winch Switch");
 
             addChild(retainer); addChild(winch);
             addChild(retainerSwitch); addChild(winchSwitch);

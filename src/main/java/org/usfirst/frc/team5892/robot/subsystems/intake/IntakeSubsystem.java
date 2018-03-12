@@ -20,8 +20,8 @@ public class IntakeSubsystem extends Subsystem {
         wheels = RobotMap.makeVictorGroup(Robot.map.intakeMotors);
         button = new DigitalInput(Robot.map.intakeButton);
 
-        addChild((Sendable) wheels);
-        addChild(button);
+        addChild("Wheels", (Sendable) wheels);
+        addChild("Button", button);
     }
 
 

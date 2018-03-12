@@ -1,5 +1,4 @@
 [ ] Switch back to OfficialBotMap in Robot.java
 [ ] Un-negate move in DriveSubsystem.arcadeDrive()
-[ ] Remove the right-side bias in DriveSubsystem
 [ ] Figure out where Talon is going, adjust accordingly
 [ ] Wait for motors to be reconfigured and adjust RobotMap/OfficialBotMap accordingly

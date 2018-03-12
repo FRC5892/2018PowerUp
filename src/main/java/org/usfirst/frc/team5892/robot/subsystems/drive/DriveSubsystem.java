@@ -29,9 +29,9 @@ public class DriveSubsystem extends Subsystem {
         gyro = new ADXRS450_Gyro();
         accele = new BuiltInAccelerometer();
 
-        addChild(drive); addChild((Sendable) gyro);
-        addChild(leftEncoder); addChild(rightEncoder);
-        addChild((Sendable) accele);
+        addChild("Drive Train", drive); addChild("Gyro", (Sendable) gyro);
+        addChild("Left Encoder", leftEncoder); addChild("Right Encoder", rightEncoder);
+        addChild("Accelerometer", (Sendable) accele);
     }
 
     @Override
@@ -40,11 +40,11 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void arcadeDrive(double move, double turn) {
-        drive.arcadeDrive(move, turn-0.05);
+        drive.arcadeDrive(move, turn);
     }
 
     public void tankDrive(double left, double right) {
-        drive.tankDrive(left, right+0.05);
+        drive.tankDrive(left, right);
     }
 
     public void stop() {
