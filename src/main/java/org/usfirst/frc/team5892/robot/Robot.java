@@ -11,9 +11,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.PrintCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -37,7 +35,7 @@ public class Robot extends TimedRobot {
     public static OI m_oi;
 
     private Command m_autonomousCommand;
-    private SendableChooser<AutonBuilder> m_chooser = new SendableChooser<>();
+    private SendableChooser<DynamicAuton> m_chooser = new SendableChooser<>();
 
     public static DriveSubsystem drive;
     public static IntakeSubsystem intake;
@@ -68,10 +66,9 @@ public class Robot extends TimedRobot {
         // Autonomous modes
         m_chooser.addDefault("Do Nothing", null);
         m_chooser.addObject("Test Movement", new TestEverythingAuto());
-        m_chooser.addObject("Score to Switch from Left", new ScoreToSwitchAuto('L'));
-        m_chooser.addObject("Score to Switch from Right", new ScoreToSwitchAuto('R'));
-        m_chooser.addObject("Score Two Cubes from Left", new TwoCubeAuto('L'));
-        m_chooser.addObject("Score Two Cubes from Right", new TwoCubeAuto('R'));
+        m_chooser.addObject("Score to Switch", new ScoreToSwitchAuto());
+        m_chooser.addObject("Score to Scale", new ScoreToScaleAuto());
+        m_chooser.addObject("Score Two Cubes", new TwoCubeAuto());
         SmartDashboard.putData("Auto mode", m_chooser);
 
         // CameraServer
@@ -93,6 +90,7 @@ public class Robot extends TimedRobot {
     @Override
     public void disabledInit() {
         if (intake != null) intake.intaking = false;
+        if (elevator != null) elevator.setMotorPower(0);
     }
 
     @Override
@@ -114,10 +112,10 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         drive.resetGyro();
-        AutonBuilder builder = m_chooser.getSelected();
+        DynamicAuton builder = m_chooser.getSelected();
 
         if (builder != null) {
-            m_autonomousCommand = builder.buildAuto(DriverStation.getInstance().getGameSpecificMessage());
+            m_autonomousCommand = builder.build();
             m_autonomousCommand.start();
         }
     }

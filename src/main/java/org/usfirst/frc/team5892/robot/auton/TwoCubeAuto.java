@@ -8,23 +8,17 @@ import org.usfirst.frc.team5892.robot.subsystems.intake.StartIntaking;
 
 import static org.usfirst.frc.team5892.robot.MathUtils.encoderInches;
 
-public class TwoCubeAuto implements AutonBuilder {
-    private final char position;
-    private final int turnDir;
-
-    public TwoCubeAuto(char position) {
-        this.position = position;
-        turnDir = position == 'L' ? 1 : -1;
-    }
+public class TwoCubeAuto extends DynamicAuton {
 
     @Override
-    public Command buildAuto(String fieldData) {
-        return new TwoCubeAutoCG(fieldData);
+    protected Command buildCommand(char pos, String gameData) {
+        return new TwoCubeAutoCG(pos, gameData);
     }
 
     private class TwoCubeAutoCG extends CommandGroup {
-        TwoCubeAutoCG(String fieldData) {
-            int mode = (fieldData.charAt(0) == position ? 1 : 0) + (fieldData.charAt(1) == position ? 2 : 0);
+        TwoCubeAutoCG(char pos, String gameData) {
+            int turnDir = pos == 'L' ? 1 : -1;
+            int mode = (gameData.charAt(0) == pos ? 1 : 0) + (gameData.charAt(1) == pos ? 2 : 0);
             addSequential(new StartIntaking());
             switch (mode) {
 

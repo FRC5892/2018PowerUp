@@ -4,16 +4,16 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team5892.robot.MathUtils;
 
-public class TestEverythingAuto implements AutonBuilder {
+public class TestEverythingAuto extends DynamicAuton {
 
     @Override
-    public Command buildAuto(String fieldData) {
-        return new TestEverythingAutoCG(fieldData);
+    protected Command buildCommand(char pos, String gameData) {
+        return new TestEverythingAutoCG(gameData);
     }
 
     private class TestEverythingAutoCG extends CommandGroup {
-        TestEverythingAutoCG(String fieldData) {
-            int turnDir = fieldData.charAt(0) == 'L' ? -1 : 1;
+        TestEverythingAutoCG(String gameData) {
+            int turnDir = gameData.charAt(0) == 'L' ? -1 : 1;
             addSequential(new AutoGyroRotate(90));
         }
     }
