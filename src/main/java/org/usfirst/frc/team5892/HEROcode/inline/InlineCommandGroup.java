@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5892.HEROcode.inline;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -18,4 +19,11 @@ public class InlineCommandGroup extends CommandGroup {
     		else addSequential(e.command);
     	}
     }
+
+    public InlineCommandGroup(boolean sequential, Command... commands) {
+    	if (sequential)
+    		for (Command c : commands) addSequential(c);
+		else
+			for (Command c : commands) addParallel(c);
+	}
 }

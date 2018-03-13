@@ -1,6 +1,5 @@
 package org.usfirst.frc.team5892.robot.subsystems.intake;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team5892.robot.MathUtils;
@@ -27,7 +26,7 @@ public class IntakeSubsystem extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new IntakeRegulate());
+
     }
 
     public void setMotorPower(double power) {
@@ -36,5 +35,13 @@ public class IntakeSubsystem extends Subsystem {
 
     public boolean isButtonPressed() {
         return !button.get();
+    }
+
+    @Override
+    public void periodic() {
+        if (intaking)
+            setMotorPower(isButtonPressed() ? -0.3 : -1);
+        else
+            setMotorPower(0);
     }
 }

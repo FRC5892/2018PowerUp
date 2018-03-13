@@ -16,11 +16,16 @@ public class OuttakeCommand extends Command {
 
     @Override
     protected void execute() {
-        Robot.intake.setMotorPower(-1);
+        Robot.intake.setMotorPower(1);
     }
 
     @Override
     protected boolean isFinished() {
         return false;
+    }
+
+    @Override
+    protected void end() {
+        Robot.intake.setMotorPower(0);
     }
 }

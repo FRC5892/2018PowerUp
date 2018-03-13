@@ -24,7 +24,7 @@ public class JoystickPlayerTwo implements PlayerTwo {
 
     @Override
     public double elevator() {
-        return stick.getRawAxis(1);
+        return -stick.getRawAxis(1);
     }
 
     @Override

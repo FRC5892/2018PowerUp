@@ -12,10 +12,11 @@ public class TempBotMap extends RobotMap{
 
         elevatorTalon = new MotorInfo(0);
         elevatorOtherMotor = new MotorInfo(4);
+        elevatorLimitSwitch = 5;
 
-        leftBatwingRetainer = new MotorInfo(5); leftBatwingRetainerSensor = 5;
-        leftBatwingWinch = new MotorInfo(6); leftBatwingWinchSensor = 6;
-        rightBatwingRetainer = new MotorInfo(7); rightBatwingRetainerSensor = 7;
-        rightBatwingWinch = new MotorInfo(8); rightBatwingWinchSensor = 8;
+        leftBatwingRetainer = new MotorInfo(5); //leftBatwingRetainerSensor = 5;
+        leftBatwingWinch = new MotorInfo(6); //leftBatwingWinchSensor = 6;
+        rightBatwingRetainer = new MotorInfo(7); //rightBatwingRetainerSensor = 7;
+        rightBatwingWinch = new MotorInfo(8); //rightBatwingWinchSensor = 8;
     }
 }
