@@ -112,6 +112,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
+        drive.resetGyro();
         AutonBuilder builder = m_chooser.getSelected();
 
         if (builder != null) {

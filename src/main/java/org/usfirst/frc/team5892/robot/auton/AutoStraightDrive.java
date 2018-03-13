@@ -7,18 +7,19 @@ import org.usfirst.frc.team5892.robot.Robot;
 public class AutoStraightDrive extends Command {
     private AutoStraightDriveController controller;
     private final double _nominalPower;
+    private final double _targetAngle;
     private final int _encoderTarget;
 
-    public AutoStraightDrive(double nominalPower, int encoderTarget) {
+    public AutoStraightDrive(double nominalPower, double targetAngle, int encoderTarget) {
         requires(Robot.drive);
-        controller = new AutoStraightDriveController();
         _nominalPower = nominalPower;
+        _targetAngle = targetAngle;
         _encoderTarget = encoderTarget;
+        controller = new AutoStraightDriveController();
     }
 
     @Override
     protected void initialize() {
-        Robot.drive.resetGyro();
         Robot.drive.resetEncoders();
         controller.enable();
     }
@@ -41,7 +42,7 @@ public class AutoStraightDrive extends Command {
         private static final double kD = 0;
         AutoStraightDriveController() {
             super(kP, kI, kD);
-            setSetpoint(0);
+            setSetpoint(_targetAngle);
         }
 
         @Override

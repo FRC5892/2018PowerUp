@@ -38,14 +38,14 @@ public class TwoCubeAuto implements AutonBuilder {
                     break;
 
                 case 3: // both near
-                    addSequential(new AutoStraightDrive(0.7, encoderInches(304)));
+                    addSequential(new AutoStraightDrive(0.7, 0, encoderInches(304)));
                     addSequential(new AutoGyroRotate(90 * turnDir));
                     addSequential(new RunElevator(0.5), 4);
                     addSequential(new OuttakeCommand(), 0.5);
                     addSequential(new RunElevator(-0.1), 1);
-                    addSequential(new AutoGyroRotate(69 * turnDir));
+                    addSequential(new AutoGyroRotate(159 * turnDir));
                     addSequential(new StartIntaking());
-                    addSequential(new AutoStraightDrive(0.7, encoderInches(101)));
+                    addSequential(new AutoStraightDrive(0.7, 159 * turnDir, encoderInches(101)));
                     addSequential(new RunElevator(0.5), 2);
                     addSequential(new OuttakeCommand(), 0.5);
                     break;

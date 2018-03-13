@@ -26,20 +26,20 @@ public class ScoreToSwitchAuto implements AutonBuilder {
             addSequential(new IntakeShakedown());
             if (position == fieldData.charAt(0)) {
 
-                addSequential(new AutoStraightDrive(0.8, encoderInches(148)));
+                addSequential(new AutoStraightDrive(0.8, 0, encoderInches(148)));
                 addSequential(new AutoGyroRotate(90 * turnDir));
-                addSequential(new AutoStraightDrive(0.6, encoderInches(20)));
+                addSequential(new AutoStraightDrive(0.6, 90 * turnDir, encoderInches(20)));
                 addSequential(new RunElevator(0.5), 1);
                 addSequential(new OuttakeCommand(), 1);
 
             } else {
 
-                addSequential(new AutoStraightDrive(0.8, encoderInches(190)));
+                addSequential(new AutoStraightDrive(0.8, 0, encoderInches(190)));
                 addSequential(new AutoGyroRotate(90 * turnDir));
-                addSequential(new AutoStraightDrive(0.8, encoderInches(180)));
+                addSequential(new AutoStraightDrive(0.8, 90 * turnDir, encoderInches(150)));
                 addSequential(new RunElevator(0.6), 1);
                 addParallel(new RunElevator(0.25));
-                addSequential(new AutoGyroRotate(90 * turnDir));
+                addSequential(new AutoGyroRotate(180 * turnDir));
                 addSequential(new OuttakeCommand(), 1);
                 addSequential(new RunElevator(0));
 
