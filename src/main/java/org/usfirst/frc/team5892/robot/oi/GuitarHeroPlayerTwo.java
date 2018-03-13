@@ -3,43 +3,54 @@ package org.usfirst.frc.team5892.robot.oi;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
+import org.usfirst.frc.team5892.HEROcode.inline.InlineTrigger;
 import org.usfirst.frc.team5892.robot.subsystems.elevator.ElevatorSubsystem;
 
-public class GuitarHeroPlayerTwo {
+public class GuitarHeroPlayerTwo implements PlayerTwo {
     private final Joystick guitar;
     public GuitarHeroPlayerTwo(int port) {
         guitar = new Joystick(port);
     }
 
-    //@Override
+    @Override
     public Trigger intake() {
-        return new JoystickButton(guitar, 1);
+        return new InlineTrigger(() -> guitar.getRawButton(1) && !guitar.getRawButton(6));
     }
 
-    //@Override
+    @Override
     public Trigger outtake() {
-        return new JoystickButton(guitar, 2);
+        return new InlineTrigger(() -> guitar.getRawButton(2) && !guitar.getRawButton(6));
     }
 
-    //@Override
+    @Override
     public double elevator() {
         switch (guitar.getPOV()) {
             case 0:
                 return ElevatorSubsystem.UP_POWER;
             case 180:
-                return -ElevatorSubsystem.DOWN_POWER;
+                return ElevatorSubsystem.DOWN_POWER;
             default:
                 return 0;
         }
     }
 
-    //@Override
-    public Trigger batwingLeft() {
-        return new JoystickButton(guitar, 7);
+    @Override
+    public Trigger leftBatwingDown() {
+        return new InlineTrigger(true, new JoystickButton(guitar, 1), new JoystickButton(guitar, 6));
     }
 
-    //@Override
-    public Trigger batwingRight() {
-        return new JoystickButton(guitar, 8);
+    @Override
+    public Trigger leftBatwingLift() {
+        return new InlineTrigger(true, new JoystickButton(guitar, 3), new JoystickButton(guitar, 6));
+    }
+
+    @Override
+    public Trigger rightBatwingDown() {
+        return new InlineTrigger(true, new JoystickButton(guitar, 2), new JoystickButton(guitar, 6));
+    }
+
+    @Override
+    public Trigger rightBatwingLift() {
+        return new InlineTrigger(true, new JoystickButton(guitar, 4), new JoystickButton(guitar, 6));
     }
 }

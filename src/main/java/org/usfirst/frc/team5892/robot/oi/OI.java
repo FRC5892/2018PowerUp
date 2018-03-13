@@ -9,7 +9,6 @@ public class OI {
     public final PlayerOne player1;
     public final PlayerTwo player2;
 
-    // if you get *rly* mad, move trigger inits into subsystems' initDefaultCommand()s.
     public OI(PlayerOne player_1, PlayerTwo player_2) {
         player1 = player_1;
         player2 = player_2;
@@ -20,6 +19,6 @@ public class OI {
         player2.leftBatwingDown().whileActive(new LowerBatwingArm(Robot.leftBatwing));
         player2.leftBatwingLift().whileActive(new RaiseBatwingWinch(Robot.leftBatwing));
         player2.rightBatwingDown().whileActive(new LowerBatwingArm(Robot.rightBatwing));
-        player2.rightBatwingDown().whileActive(new RaiseBatwingWinch(Robot.rightBatwing));
+        player2.rightBatwingLift().whileActive(new RaiseBatwingWinch(Robot.rightBatwing));
     }
 }
