@@ -6,15 +6,15 @@ echo[>> %1.java
 echo import edu.wpi.first.wpilibj.command.Command;>> %1.java
 echo import edu.wpi.first.wpilibj.command.CommandGroup;>> %1.java
 echo[>> %1.java
-echo public class %1 implements AutonBuilder {>> %1.java
+echo public class %1 extends DynamicAuton {>> %1.java
 echo[>> %1.java
 echo     @Override>> %1.java
-echo     public Command buildAuto(String fieldData) {>> %1.java
-echo         return new %1CG(fieldData);>> %1.java
+echo     protected Command buildCommand(char pos, String gameData) {>> %1.java
+echo         return new %1CG(pos, gameData);>> %1.java
 echo     }>> %1.java
 echo[>> %1.java
 echo     private class %1CG extends CommandGroup {>> %1.java
-echo         %1CG(String fieldData) {>> %1.java
+echo         %1CG(char pos, String gameData) {>> %1.java
 echo[>> %1.java
 echo         }>> %1.java
 echo     }>> %1.java

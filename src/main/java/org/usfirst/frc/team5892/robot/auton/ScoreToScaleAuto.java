@@ -5,25 +5,24 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team5892.robot.subsystems.elevator.RunElevator;
 import org.usfirst.frc.team5892.robot.subsystems.intake.OuttakeCommand;
 
-import static org.usfirst.frc.team5892.robot.MathUtils.*;
+import static org.usfirst.frc.team5892.robot.MathUtils.encoderInches;
 
-public class ScoreToSwitchAuto extends DynamicAuton {
+public class ScoreToScaleAuto extends DynamicAuton {
 
     @Override
     protected Command buildCommand(char pos, String gameData) {
-        return new ScoreToSwitchAutoCG(pos, gameData);
+        return new ScoreToScaleAutoCG(pos, gameData);
     }
 
-    private class ScoreToSwitchAutoCG extends CommandGroup {
-        ScoreToSwitchAutoCG(char pos, String gameData) {
+    private class ScoreToScaleAutoCG extends CommandGroup {
+        ScoreToScaleAutoCG(char pos, String gameData) {
             int turnDir = pos == 'L' ? 1 : -1;
             addSequential(new IntakeShakedown());
             if (pos == gameData.charAt(0)) {
 
-                addSequential(new AutoStraightDrive(0.8, 0, encoderInches(148)));
+                addSequential(new AutoStraightDrive(0.8, 0, encoderInches(304)));
                 addSequential(new AutoGyroRotate(90 * turnDir));
-                addSequential(new AutoStraightDrive(0.6, 90 * turnDir, encoderInches(20)));
-                addSequential(new RunElevator(0.5), 1);
+                addSequential(new RunElevator(0.5), 4);
                 addSequential(new OuttakeCommand(), 1);
 
             } else {
@@ -31,11 +30,10 @@ public class ScoreToSwitchAuto extends DynamicAuton {
                 addSequential(new AutoStraightDrive(0.8, 0, encoderInches(190)));
                 addSequential(new AutoGyroRotate(90 * turnDir));
                 addSequential(new AutoStraightDrive(0.8, 90 * turnDir, encoderInches(150)));
-                addSequential(new RunElevator(0.6), 1);
-                addParallel(new RunElevator(0.2));
-                addSequential(new AutoGyroRotate(180 * turnDir));
+                addSequential(new AutoGyroRotate(0));
+                addSequential(new AutoStraightDrive(0.6, 0, encoderInches(10)));
+                addSequential(new RunElevator(0.5), 4);
                 addSequential(new OuttakeCommand(), 1);
-                addSequential(new RunElevator(0));
 
             }
         }
