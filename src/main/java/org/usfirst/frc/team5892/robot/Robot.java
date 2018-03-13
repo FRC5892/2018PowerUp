@@ -42,7 +42,8 @@ public class Robot extends TimedRobot {
     public static DriveSubsystem drive;
     public static IntakeSubsystem intake;
     public static ElevatorSubsystem elevator;
-    public static BatwingSubsystem batwings;
+    public static BatwingSubsystem leftBatwing;
+    public static BatwingSubsystem rightBatwing;
 
     public static RobotMap map = new TempBotMap();
 
@@ -58,7 +59,8 @@ public class Robot extends TimedRobot {
         drive = new DriveSubsystem();
         intake = new IntakeSubsystem();
         elevator = new ElevatorSubsystem();
-        //batwings = new BatwingSubsystem();
+        leftBatwing = new BatwingSubsystem("Left", map.leftBatwingRetainer.makeVictor(), map.leftBatwingWinch.makeVictor());
+        rightBatwing = new BatwingSubsystem("Right", map.rightBatwingRetainer.makeVictor(), map.rightBatwingWinch.makeVictor());
 
         // OI
         m_oi = new OI(new JoystickPlayerOne(0), new JoystickPlayerTwo(1));
@@ -91,7 +93,6 @@ public class Robot extends TimedRobot {
     @Override
     public void disabledInit() {
         if (intake != null) intake.intaking = false;
-        if (batwings != null) batwings.resetBatwings();
     }
 
     @Override

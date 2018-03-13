@@ -11,7 +11,7 @@ import org.usfirst.frc.team5892.robot.Robot;
 
 public class ElevatorSubsystem extends Subsystem {
     public static final double UP_POWER = 0.75;
-    public static final double DOWN_POWER = 0.01;
+    public static final double DOWN_POWER = -0.2;
 
     private final SpeedController motor;
     private final DigitalInput limitSwitch;
@@ -32,6 +32,6 @@ public class ElevatorSubsystem extends Subsystem {
     }
 
     public void setMotorPower(double power) {
-        motor.set(power * UP_POWER);
+        motor.set(power);
     }
 }

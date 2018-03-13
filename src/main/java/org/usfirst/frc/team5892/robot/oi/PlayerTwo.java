@@ -8,6 +8,8 @@ public interface PlayerTwo {
 
     double elevator();
 
-    Trigger batwingLeft();
-    Trigger batwingRight();
+    Trigger leftBatwingDown();
+    Trigger leftBatwingLift();
+    Trigger rightBatwingDown();
+    Trigger rightBatwingLift();
 }

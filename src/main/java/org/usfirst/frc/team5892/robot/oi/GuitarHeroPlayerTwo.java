@@ -5,23 +5,23 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import org.usfirst.frc.team5892.robot.subsystems.elevator.ElevatorSubsystem;
 
-public class GuitarHeroPlayerTwo implements PlayerTwo {
+public class GuitarHeroPlayerTwo {
     private final Joystick guitar;
     public GuitarHeroPlayerTwo(int port) {
         guitar = new Joystick(port);
     }
 
-    @Override
+    //@Override
     public Trigger intake() {
         return new JoystickButton(guitar, 1);
     }
 
-    @Override
+    //@Override
     public Trigger outtake() {
         return new JoystickButton(guitar, 2);
     }
 
-    @Override
+    //@Override
     public double elevator() {
         switch (guitar.getPOV()) {
             case 0:
@@ -33,12 +33,12 @@ public class GuitarHeroPlayerTwo implements PlayerTwo {
         }
     }
 
-    @Override
+    //@Override
     public Trigger batwingLeft() {
         return new JoystickButton(guitar, 7);
     }
 
-    @Override
+    //@Override
     public Trigger batwingRight() {
         return new JoystickButton(guitar, 8);
     }
