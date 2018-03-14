@@ -9,3 +9,5 @@ dist
 *.iml
 *.ipr
 *.iws
+
+.idea/
