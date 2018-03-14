@@ -14,21 +14,23 @@ public class ElevatorSubsystem extends Subsystem {
     public static final double DOWN_POWER = -0.2;
 
     private final SpeedController motor;
-    private final DigitalInput limitSwitch;
+    private final DigitalInput highSwitch, lowSwitch;
 
     public ElevatorSubsystem() {
         WPI_TalonSRX talon = new WPI_TalonSRX(Robot.map.elevatorTalon.port);
         talon.setInverted(Robot.map.elevatorTalon.inverted);
         motor = new SpeedControllerGroup(talon, Robot.map.elevatorOtherMotor.makeVictor());
-        limitSwitch = new DigitalInput(Robot.map.elevatorLimitSwitch);
-        addChild("Motor", (Sendable) motor); // why do i have to use a cast. just why.
-        addChild("Limit Switch", limitSwitch);
+        highSwitch = new DigitalInput(Robot.map.elevatorHighSwitch);
+        lowSwitch = new DigitalInput(Robot.map.elevatorLowSwitch);
+        addChild("Winch", (Sendable) motor); // why do i have to use a cast. just why.
+        addChild("High Limit Switch", highSwitch); addChild("Low Limit Switch", lowSwitch);
     }
 
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(new ElevatorControl());
-        new InlineTrigger(limitSwitch::get).whenInactive(new LimitSwitchSafetyStop(3));
+        //new InlineTrigger(highSwitch::get).whenInactive(new LimitSwitchSafetyStop(1));
+        //new InlineTrigger(lowSwitch::get).whenInactive(new LimitSwitchSafetyStop(1));
     }
 
     public void setMotorPower(double power) {

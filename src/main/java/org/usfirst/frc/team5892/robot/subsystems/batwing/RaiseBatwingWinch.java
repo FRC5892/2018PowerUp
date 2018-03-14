@@ -20,7 +20,7 @@ public class RaiseBatwingWinch extends Command {
 
     @Override
     protected boolean isFinished() {
-        return ds.isFMSAttached() && ds.getMatchTime() > 30;
+        return batwing.isSensorTriggered() || ds.isFMSAttached() && ds.getMatchTime() > 30;
     }
 
     @Override

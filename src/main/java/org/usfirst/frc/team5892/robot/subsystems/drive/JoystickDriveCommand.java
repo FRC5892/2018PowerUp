@@ -6,7 +6,7 @@ import org.usfirst.frc.team5892.robot.Robot;
 
 class JoystickDriveCommand extends Command {
     private static final double SLOW_MULTIPLIER = 0.5;
-    private static final double MAX_ACCELERATION = 12;
+    private static final double MAX_ACCELERATION = 12; // lol this is apparently in Gs. no wonder it never triggered.
     private final Trigger slowMode;
 
     JoystickDriveCommand() {

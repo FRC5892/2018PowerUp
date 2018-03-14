@@ -7,6 +7,10 @@ import java.util.function.BooleanSupplier;
 public class WaitCommand extends Command {
     private final BooleanSupplier _predicate;
 
+    public WaitCommand() {
+        _predicate = () -> false;
+    }
+
     public WaitCommand(double timeout){
         setTimeout(timeout);
         _predicate = this::isTimedOut;

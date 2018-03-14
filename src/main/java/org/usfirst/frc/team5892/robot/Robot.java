@@ -9,6 +9,7 @@ package org.usfirst.frc.team5892.robot;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -57,8 +58,8 @@ public class Robot extends TimedRobot {
         drive = new DriveSubsystem();
         intake = new IntakeSubsystem();
         elevator = new ElevatorSubsystem();
-        leftBatwing = new BatwingSubsystem("Left", map.leftBatwingRetainer.makeVictor(), map.leftBatwingWinch.makeVictor());
-        rightBatwing = new BatwingSubsystem("Right", map.rightBatwingRetainer.makeVictor(), map.rightBatwingWinch.makeVictor());
+        leftBatwing = new BatwingSubsystem("Left", map.leftBatwingRetainer.makeVictor(), map.leftBatwingWinch.makeVictor(), new DigitalInput(map.leftBatwingSensor));
+        rightBatwing = new BatwingSubsystem("Right", map.rightBatwingRetainer.makeVictor(), map.rightBatwingWinch.makeVictor(), new DigitalInput(map.rightBatwingSensor));
 
         // OI
         m_oi = new OI(new JoystickPlayerOne(0), new JoystickPlayerTwo(1));
