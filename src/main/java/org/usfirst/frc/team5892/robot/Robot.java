@@ -54,6 +54,8 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         // Order is important!!!
 
+        DriverStation.reportWarning("Test", false);
+
         // Subsystems
         drive = new DriveSubsystem();
         intake = new IntakeSubsystem();
