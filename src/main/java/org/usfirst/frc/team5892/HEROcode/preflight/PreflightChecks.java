@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5892.HEROcode.preflight;
 
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,7 +26,7 @@ public class PreflightChecks extends Command {
         return instance;
     }
 
-    static void addCheck(String check) {
+    public static void addCheck(String check) {
         getInstance().checks.add(check);
         SmartDashboard.putBoolean(check, false);
     }
@@ -34,7 +35,9 @@ public class PreflightChecks extends Command {
     protected void execute() {
         if (!DriverStation.getInstance().isDisabled()) return;
         for (String c : checks) {
-            System.out.println(c);
+            if (!SmartDashboard.getBoolean(c, true)) {
+                DriverStation.reportWarning("Not all of the preflight checks are complete", false);
+            }
         }
     }
 

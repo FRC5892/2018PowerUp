@@ -44,17 +44,18 @@ public class ScoreToScaleAuto extends DynamicAuton {
                 addSequential(new AutoStraightDrive(0.7749, 0, encoderInches(180)));
                 addSequential(new WaitCommand(0.5));
                 addSequential(new AutoGyroRotate(90 * turnDir));
-                addSequential(new AutoStraightDrive(0.7749, 90 * turnDir, encoderInches(175)));
+                addSequential(new AutoStraightDrive(0.7749, 90 * turnDir, encoderInches(177)));
                 addSequential(new WaitCommand(0.5));
-                addSequential(new AutoGyroRotate(0));
-                addSequential(new AutoStraightDrive(0.6, 0, encoderInches(6)));
+                addSequential(new AutoGyroRotate(-15 * turnDir));
+                addSequential(new AutoStraightDrive(0.6, -15 * turnDir, encoderInches(6)));
                 //addSequential(new RunElevator(0.8), 2);
                 addSequential(new OuttakeCommand(), 1);
                 //addSequential(new PrintMatchTime());
                 //addSequential(new RunElevator(-0.8, 1);
-                addSequential(new AutoGyroRotate(180 * turnDir, 0.75));
+                addSequential(new AutoGyroRotate(195 * turnDir, 0.5));
                 addSequential(new WaitCommand(0.5));
-                addSequential(new AutoStraightDrive(0.6, 180 * turnDir, encoderInches(12)));
+                addSequential(new StartIntaking());
+                addParallel(new AutoStraightDrive(0.6, 195 * turnDir, encoderInches(36)));
 
             }
         }
