@@ -7,15 +7,17 @@
 
 package org.usfirst.frc.team5892.robot;
 
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team5892.robot.auton.*;
+import org.usfirst.frc.team5892.robot.auton.DynamicAuton;
+import org.usfirst.frc.team5892.robot.auton.ScoreToScaleAuto;
+import org.usfirst.frc.team5892.robot.auton.ScoreToSwitchAuto;
+import org.usfirst.frc.team5892.robot.auton.TestEverythingAuto;
+import org.usfirst.frc.team5892.robot.auton.TwoCubeAuto;
+import org.usfirst.frc.team5892.robot.auton.TwoCubeScaleAuto;
 import org.usfirst.frc.team5892.robot.oi.JoystickPlayerOne;
 import org.usfirst.frc.team5892.robot.oi.JoystickPlayerTwo;
 import org.usfirst.frc.team5892.robot.oi.OI;
@@ -33,17 +35,14 @@ import org.usfirst.frc.team5892.robot.subsystems.intake.IntakeSubsystem;
  */
 public class Robot extends TimedRobot {
     public static OI m_oi;
-
-    private Command m_autonomousCommand;
-    private SendableChooser<DynamicAuton> m_chooser = new SendableChooser<>();
-
     public static DriveSubsystem drive;
     public static IntakeSubsystem intake;
     public static ElevatorSubsystem elevator;
     public static BatwingSubsystem leftBatwing;
     public static BatwingSubsystem rightBatwing;
-
     public static RobotMap map = new TempBotMap();
+    private Command m_autonomousCommand;
+    private SendableChooser<DynamicAuton> m_chooser = new SendableChooser<>();
 
     /**
      * This function is run when the robot is first started up and should be
@@ -69,6 +68,8 @@ public class Robot extends TimedRobot {
         m_chooser.addObject("Score to Switch", new ScoreToSwitchAuto());
         m_chooser.addObject("Score to Scale", new ScoreToScaleAuto());
         m_chooser.addObject("Score Two Cubes", new TwoCubeAuto());
+        m_chooser.addObject("Score Two Scale", new TwoCubeScaleAuto());
+
         SmartDashboard.putData("Auto mode", m_chooser);
 
         // CameraServer
@@ -104,7 +105,7 @@ public class Robot extends TimedRobot {
      * chooser code works with the Java SmartDashboard. If you prefer the
      * LabVIEW Dashboard, remove all of the chooser code and uncomment the
      * getString code to get the auto name from the text box below the Gyro
-     *
+     * <p>
      * <p>You can add additional auto modes by adding additional commands to the
      * chooser code above (like the commented example) or additional comparisons
      * to the switch structure below with additional strings & commands.
