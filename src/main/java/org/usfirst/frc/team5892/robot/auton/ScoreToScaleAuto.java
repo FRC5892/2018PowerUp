@@ -2,6 +2,7 @@ package org.usfirst.frc.team5892.robot.auton;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.usfirst.frc.team5892.HEROcode.auton.PrintMatchTime;
 import org.usfirst.frc.team5892.robot.Robot;
 import org.usfirst.frc.team5892.robot.subsystems.elevator.RunElevator;
 import org.usfirst.frc.team5892.robot.subsystems.intake.OuttakeCommand;
@@ -40,15 +41,20 @@ public class ScoreToScaleAuto extends DynamicAuton {
 
             } else {
 
-                addSequential(new AutoStraightDrive(0.8, 0, encoderInches(180)));
+                addSequential(new AutoStraightDrive(0.7749, 0, encoderInches(180)));
                 addSequential(new WaitCommand(0.5));
                 addSequential(new AutoGyroRotate(90 * turnDir));
-                addSequential(new AutoStraightDrive(0.8, 90 * turnDir, encoderInches(175)));
+                addSequential(new AutoStraightDrive(0.7749, 90 * turnDir, encoderInches(175)));
                 addSequential(new WaitCommand(0.5));
                 addSequential(new AutoGyroRotate(0));
-                addSequential(new AutoStraightDrive(0.6, 0, encoderInches(10)));
-                //addSequential(new RunElevator(0.5), 4);
+                addSequential(new AutoStraightDrive(0.6, 0, encoderInches(6)));
+                //addSequential(new RunElevator(0.8), 2);
                 addSequential(new OuttakeCommand(), 1);
+                //addSequential(new PrintMatchTime());
+                //addSequential(new RunElevator(-0.8, 1);
+                addSequential(new AutoGyroRotate(180 * turnDir, 0.75));
+                addSequential(new WaitCommand(0.5));
+                addSequential(new AutoStraightDrive(0.6, 180 * turnDir, encoderInches(12)));
 
             }
         }

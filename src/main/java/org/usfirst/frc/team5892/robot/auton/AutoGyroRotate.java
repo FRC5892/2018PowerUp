@@ -12,19 +12,19 @@ public class AutoGyroRotate extends Command {
 
     private final AutoGyroRotateController controller;
     private final double _targetAngle;
-    private final double _tolerance;
+    private final double _powerMult;
     private boolean hasBeenUntrue = false;
 
     public AutoGyroRotate(double targetAngle) {
-        this(targetAngle, TOLERANCE);
+        this(targetAngle, 1);
     }
 
-    public AutoGyroRotate(double targetAngle, double tolerance) {
+    public AutoGyroRotate(double targetAngle, double powerMult) {
         requires(Robot.drive);
         controller = new AutoGyroRotateController();
         controller.setSetpoint(targetAngle);
         _targetAngle = targetAngle;
-        _tolerance = tolerance;
+        _powerMult = powerMult;
     }
 
     @Override
@@ -36,8 +36,8 @@ public class AutoGyroRotate extends Command {
 
     @Override
     protected boolean isFinished() {
-        boolean ret = Robot.drive.gyroAngle() > _targetAngle - _tolerance &&
-                Robot.drive.gyroAngle() < _targetAngle + _tolerance;
+        boolean ret = Robot.drive.gyroAngle() > _targetAngle - TOLERANCE &&
+                Robot.drive.gyroAngle() < _targetAngle + TOLERANCE;
         if (!ret) hasBeenUntrue = true;
         return hasBeenUntrue && ret; // sometimes the gyro reset hasn't gone through by now. (might as well leave this in.)
     }
@@ -64,7 +64,7 @@ public class AutoGyroRotate extends Command {
 
         @Override
         public void usePIDOutput(double output) {
-            Robot.drive.arcadeDrive(0, output);
+            Robot.drive.arcadeDrive(0, output * _powerMult);
         }
     }
 }
