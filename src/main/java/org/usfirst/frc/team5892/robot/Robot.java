@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team5892.robot;
 
+import com.sun.prism.shader.FillPgram_RadialGradient_PAD_AlphaTest_Loader;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -59,7 +60,7 @@ public class Robot extends TimedRobot {
         drive = new DriveSubsystem();
         intake = new IntakeSubsystem();
         elevator = new ElevatorSubsystem();
-        leftBatwing = new BatwingSubsystem("Left", map.leftBatwingRetainer.makeVictor(), map.leftBatwingWinch.makeVictor(), new DigitalInput(map.leftBatwingSensor));
+        //leftBatwing = new BatwingSubsystem("Left", map.leftBatwingRetainer.makeVictor(), map.leftBatwingWinch.makeVictor(), new DigitalInput(map.leftBatwingSensor));
         //rightBatwing = new BatwingSubsystem("Right", map.rightBatwingRetainer.makeVictor(), map.rightBatwingWinch.makeVictor(), new DigitalInput(map.rightBatwingSensor));
 
         // OI
@@ -67,6 +68,7 @@ public class Robot extends TimedRobot {
 
         // Autonomous modes
         m_chooser.addObject("Do Nothing", null);
+        m_chooser.addObject("Cross the Line", new EmergencyLineAuto());
         //m_chooser.addObject("Test Movement", new TestEverythingAuto());
         m_chooser.addDefault("Score to Switch", new ScoreToSwitchAuto());
         m_chooser.addObject("Score to Scale", new ScoreToScaleAuto());
@@ -84,7 +86,7 @@ public class Robot extends TimedRobot {
         CameraServer.getInstance().putVideo("RoboFeed", 160, 120);
 
         // Preflight checks
-        PreflightChecks.addCheck("Stable Gyro Output");
+        //PreflightChecks.addCheck("Stable Gyro Output");
     }
 
     /**
@@ -120,7 +122,23 @@ public class Robot extends TimedRobot {
         DynamicAuton builder = m_chooser.getSelected();
 
         if (builder != null) {
-            m_autonomousCommand = builder.build();
+            try {
+                m_autonomousCommand = builder.build();
+            } catch (Throwable e) {
+                final String F_PAY_RESPECTS = "Press F to pay respects.";
+                DriverStation.reportError("Error building autonomous: " + e.toString(), e.getStackTrace());
+                if (builder instanceof EmergencyLineAuto) {
+                    DriverStation.reportWarning(F_PAY_RESPECTS, false);
+                    return;
+                }
+                try {
+                    m_autonomousCommand = new EmergencyLineAuto().build();
+                } catch (Throwable f) {
+                    DriverStation.reportError("Error building emergency autonomous: " + f.toString(), f.getStackTrace());
+                    DriverStation.reportWarning(F_PAY_RESPECTS, false);
+                    return;
+                }
+            }
             m_autonomousCommand.start();
         }
     }

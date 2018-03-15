@@ -18,6 +18,11 @@ public class AutoStraightDrive extends Command {
         controller = new AutoStraightDriveController();
     }
 
+    public AutoStraightDrive(double nominalPower, double targetAngle, int encoderTarget, double timeout) {
+        this(nominalPower, targetAngle, encoderTarget);
+        setTimeout(timeout);
+    }
+
     @Override
     protected void initialize() {
         Robot.drive.resetEncoders();
@@ -27,7 +32,7 @@ public class AutoStraightDrive extends Command {
     @Override
     protected boolean isFinished() {
         return Math.abs(Robot.drive.getLeft()) > _encoderTarget ||
-                Math.abs(Robot.drive.getRight()) > _encoderTarget;
+                Math.abs(Robot.drive.getRight()) > _encoderTarget || isTimedOut();
     }
 
     @Override

@@ -11,7 +11,7 @@ public class OfficialBotMap extends RobotMap {
         intakeButton = 4;
 
         elevatorTalon = new MotorInfo(0);
-        elevatorOtherMotor = new MotorInfo(4);
+        elevatorOtherMotor = new MotorInfo(4, true);
         elevatorHighSwitch = 5;
         elevatorLowSwitch = 6;
 

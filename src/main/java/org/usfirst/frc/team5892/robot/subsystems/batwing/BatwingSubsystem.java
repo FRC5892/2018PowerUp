@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class BatwingSubsystem extends Subsystem {
-    private static final double RETAINER_POWER = -0.5;
+    private static final double RETAINER_POWER = -0.1;
     private static final double WINCH_POWER = 1;
 
     private final Victor retainer, winch;
@@ -31,9 +31,8 @@ public class BatwingSubsystem extends Subsystem {
     }
 
     void raiseWinch(boolean on) {
-        double pwr = on ? WINCH_POWER : 0;
-        retainer.set(pwr);
-        winch.set(pwr);
+        retainer.set(on ? -RETAINER_POWER : 0);
+        winch.set(on ? WINCH_POWER : 0);
     }
 
     boolean isSensorTriggered() {
