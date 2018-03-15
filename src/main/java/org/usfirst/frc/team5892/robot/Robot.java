@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team5892.HEROcode.preflight.PreflightChecks;
 import org.usfirst.frc.team5892.robot.auton.*;
 import org.usfirst.frc.team5892.robot.oi.JoystickPlayerOne;
 import org.usfirst.frc.team5892.robot.oi.JoystickPlayerTwo;
@@ -44,7 +45,7 @@ public class Robot extends TimedRobot {
     public static BatwingSubsystem leftBatwing;
     public static BatwingSubsystem rightBatwing;
 
-    public static RobotMap map = new TempBotMap();
+    public static RobotMap map = new OfficialBotMap();
 
     /**
      * This function is run when the robot is first started up and should be
@@ -59,28 +60,31 @@ public class Robot extends TimedRobot {
         intake = new IntakeSubsystem();
         elevator = new ElevatorSubsystem();
         leftBatwing = new BatwingSubsystem("Left", map.leftBatwingRetainer.makeVictor(), map.leftBatwingWinch.makeVictor(), new DigitalInput(map.leftBatwingSensor));
-        rightBatwing = new BatwingSubsystem("Right", map.rightBatwingRetainer.makeVictor(), map.rightBatwingWinch.makeVictor(), new DigitalInput(map.rightBatwingSensor));
+        //rightBatwing = new BatwingSubsystem("Right", map.rightBatwingRetainer.makeVictor(), map.rightBatwingWinch.makeVictor(), new DigitalInput(map.rightBatwingSensor));
 
         // OI
         m_oi = new OI(new JoystickPlayerOne(0), new JoystickPlayerTwo(1));
 
         // Autonomous modes
-        m_chooser.addDefault("Do Nothing", null);
-        m_chooser.addObject("Test Movement", new TestEverythingAuto());
-        m_chooser.addObject("Score to Switch", new ScoreToSwitchAuto());
+        m_chooser.addObject("Do Nothing", null);
+        //m_chooser.addObject("Test Movement", new TestEverythingAuto());
+        m_chooser.addDefault("Score to Switch", new ScoreToSwitchAuto());
         m_chooser.addObject("Score to Scale", new ScoreToScaleAuto());
-        m_chooser.addObject("Score Two Cubes", new TwoCubeAuto());
+        //m_chooser.addObject("Score Two Cubes", new TwoCubeAuto());
         SmartDashboard.putData("Auto mode", m_chooser);
 
         // CameraServer
-        /*UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(0);
+        UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(0);
         cam1.setResolution(160, 120);
 
         UsbCamera cam2 = CameraServer.getInstance().startAutomaticCapture(1);
         cam2.setResolution(160, 120);
 
         CameraServer.getInstance().getVideo();
-        CameraServer.getInstance().putVideo("RoboFeed", 160, 120);*/
+        CameraServer.getInstance().putVideo("RoboFeed", 160, 120);
+
+        // Preflight checks
+        PreflightChecks.addCheck("Stable Gyro Output");
     }
 
     /**

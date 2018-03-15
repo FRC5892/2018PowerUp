@@ -2,19 +2,25 @@ package org.usfirst.frc.team5892.robot;
 
 public class OfficialBotMap extends RobotMap {
     public OfficialBotMap() {
-        /*leftDrive = new MotorInfo[]{new MotorInfo(0, false), new MotorInfo(1, false)};
-        rightDrive = new MotorInfo[]{new MotorInfo(2, false), new MotorInfo(3, false)};
-        leftEncoder1 = 10; leftEncoder2 = 11;
-        rightEncoder1 = 12; rightEncoder2 = 13;
+        leftDrive = new MotorInfo[]{new MotorInfo(0, false)};
+        rightDrive = new MotorInfo[]{new MotorInfo(1, false)};
+        leftEncoder1 = 0; leftEncoder2 = 1;
+        rightEncoder1 = 2; rightEncoder2 = 3;
 
-        intakeMotor = new MotorInfo(7, false);
+        intakeMotors = new MotorInfo[]{new MotorInfo(5, true), new MotorInfo(6)};
+        intakeButton = 4;
 
-        elevatorTalon = new MotorInfo(0, false);
-        elevatorOtherMotor = new MotorInfo(4, true);
+        elevatorTalon = new MotorInfo(0);
+        elevatorOtherMotor = new MotorInfo(4);
+        elevatorHighSwitch = 5;
+        elevatorLowSwitch = 6;
 
-        leftBatwingRetainer = new MotorInfo(5, true); leftBatwingRetainerSensor = 2;
-        leftBatwingWinch = new MotorInfo(8, false); leftBatwingWinchSensor = 3;
-        rightBatwingRetainer = new MotorInfo(6, false); rightBatwingRetainerSensor = 4;
-        rightBatwingWinch = new MotorInfo(9, true); rightBatwingWinchSensor = 5;*/
+        leftBatwingRetainer = new MotorInfo(7);
+        leftBatwingWinch = new MotorInfo(2);
+        leftBatwingSensor = 7;
+
+        rightBatwingRetainer = new MotorInfo(8);
+        rightBatwingWinch = new MotorInfo(3);
+        rightBatwingSensor = 8;
     }
 }

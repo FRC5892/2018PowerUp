@@ -1,9 +1,10 @@
 package org.usfirst.frc.team5892.HEROcode.preflight;
 
 import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.List;
 public class PreflightChecks extends Command {
 
     private static PreflightChecks instance;
+    private double m_nextMessageTime = 0;
+    private NetworkTable table = NetworkTableInstance.getDefault().getTable("Preflight Checks");
     private List<String> checks = new ArrayList<>();
 
     private PreflightChecks() {
@@ -28,15 +31,19 @@ public class PreflightChecks extends Command {
 
     public static void addCheck(String check) {
         getInstance().checks.add(check);
-        SmartDashboard.putBoolean(check, false);
+        getInstance().table.getEntry(check).setBoolean(false);
     }
 
     @Override
     protected void execute() {
         if (!DriverStation.getInstance().isDisabled()) return;
+        double currentTime = Timer.getFPGATimestamp();
+        if (currentTime < m_nextMessageTime) return;
         for (String c : checks) {
-            if (!SmartDashboard.getBoolean(c, true)) {
-                DriverStation.reportWarning("Not all of the preflight checks are complete", false);
+            if (!getInstance().table.getEntry(c).getBoolean(true)) {
+                DriverStation.reportWarning("Not all of the preflight checks are complete!", false);
+                m_nextMessageTime = currentTime + 1;
+                return;
             }
         }
     }

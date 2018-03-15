@@ -22,7 +22,7 @@ public class ElevatorSubsystem extends Subsystem {
         motor = new SpeedControllerGroup(talon, Robot.map.elevatorOtherMotor.makeVictor());
         highSwitch = new DigitalInput(Robot.map.elevatorHighSwitch);
         lowSwitch = new DigitalInput(Robot.map.elevatorLowSwitch);
-        addChild("Winch", (Sendable) motor); // why do i have to use a cast. just why.
+        addChild("Winch", (Sendable) motor);
         addChild("High Limit Switch", highSwitch); addChild("Low Limit Switch", lowSwitch);
     }
 
