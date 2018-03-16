@@ -14,37 +14,37 @@ public class JoystickPlayerTwo implements PlayerTwo {
 
     @Override
     public Trigger intake() {
-        return new AnalogAxisTrigger(stick, 1, -0.7);
-    }
-
-    @Override
-    public Trigger outtake() {
         return new AnalogAxisTrigger(stick, 1);
     }
 
     @Override
+    public Trigger outtake() {
+        return new AnalogAxisTrigger(stick, 1, -0.7);
+    }
+
+    @Override
     public double elevator() {
-        return -stick.getRawAxis(5) * 0.6;
+        return stick.getRawAxis(5) * 0.6;
     }
 
     @Override
     public Trigger leftBatwingDown() {
-        return new JoystickButton(stick, 3);
+        return new AnalogAxisTrigger(stick, 3);
     }
 
     @Override
     public Trigger leftBatwingLift() {
-        return new JoystickButton(stick, 4);
+        return new JoystickButton(stick, 8);
     }
 
     @Override
     public Trigger rightBatwingDown() {
-        return new JoystickButton(stick, 1);
+        return new AnalogAxisTrigger(stick, 2);
     }
 
     @Override
     public Trigger rightBatwingLift() {
-        return new JoystickButton(stick, 2);
+        return new JoystickButton(stick, 7);
     }
 
 

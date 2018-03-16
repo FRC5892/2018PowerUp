@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 import org.usfirst.frc.team5892.HEROcode.inline.InlineTrigger;
 import org.usfirst.frc.team5892.robot.subsystems.elevator.ElevatorSubsystem;
 
-public class GuitarHeroPlayerTwo implements PlayerTwo {
+public class GuitarHeroPlayerTwo {/*
     private final Joystick guitar;
     public GuitarHeroPlayerTwo(int port) {
         guitar = new Joystick(port);
@@ -53,4 +53,4 @@ public class GuitarHeroPlayerTwo implements PlayerTwo {
     public Trigger rightBatwingLift() {
         return new InlineTrigger(true, new JoystickButton(guitar, 4), new JoystickButton(guitar, 6));
     }
-}
+*/}

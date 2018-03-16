@@ -8,7 +8,7 @@ import org.usfirst.frc.team5892.robot.RobotMap;
 
 public class IntakeSubsystem extends Subsystem {
     public static final double INTAKE_POWER = 1;
-    public static final double OUTTAKE_POWER = 0.7;
+    public static final double OUTTAKE_POWER = 1;
 
     private final SpeedController wheels;
     private final DigitalInput button;
@@ -30,7 +30,7 @@ public class IntakeSubsystem extends Subsystem {
     }
 
     public void setMotorPower(double power) {
-        wheels.set(MathUtils.scalePlusMinus(-power, INTAKE_POWER, OUTTAKE_POWER));
+        wheels.set(MathUtils.scalePlusMinus(power, INTAKE_POWER, OUTTAKE_POWER));
     }
 
     public boolean isButtonPressed() {
@@ -40,7 +40,7 @@ public class IntakeSubsystem extends Subsystem {
     @Override
     public void periodic() {
         if (intaking)
-            setMotorPower(isButtonPressed() ? -0.3 : -1);
+            setMotorPower(isButtonPressed() ? 0 : -1);
         else
             setMotorPower(0);
     }

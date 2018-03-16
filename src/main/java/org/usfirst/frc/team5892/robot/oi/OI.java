@@ -16,9 +16,9 @@ public class OI {
         player2.intake().whenActive(new StartIntaking());
         player2.outtake().whileActive(new OuttakeCommand());
 
-        //player2.leftBatwingDown().whileActive(new LowerBatwingArm(Robot.leftBatwing));
-        //player2.leftBatwingLift().whileActive(new RaiseBatwingWinch(Robot.leftBatwing));
-        //player2.rightBatwingDown().whileActive(new LowerBatwingArm(Robot.rightBatwing));
-        //player2.rightBatwingLift().whileActive(new RaiseBatwingWinch(Robot.rightBatwing));
+        player2.leftBatwingDown().whileActive(new LowerBatwingArm(Robot.leftBatwing));
+        player2.leftBatwingLift().whileActive(new RaiseBatwingWinch(Robot.leftBatwing));
+        player2.rightBatwingDown().whileActive(new LowerBatwingArm(Robot.rightBatwing));
+        player2.rightBatwingLift().whileActive(new RaiseBatwingWinch(Robot.rightBatwing));
     }
 }

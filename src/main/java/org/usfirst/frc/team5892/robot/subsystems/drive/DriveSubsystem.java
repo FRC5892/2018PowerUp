@@ -18,7 +18,7 @@ public class DriveSubsystem extends Subsystem {
     private final AHRS gyro;
     private final Accelerometer accele;
 
-    public static final double FLAT_REDUCE = 0.85;
+    public static final double FLAT_REDUCE = 0.8;
 
     public DriveSubsystem() {
         leftDrive = RobotMap.makeVictorGroup(Robot.map.leftDrive);
