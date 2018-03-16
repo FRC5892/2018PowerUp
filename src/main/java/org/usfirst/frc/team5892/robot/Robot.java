@@ -79,9 +79,6 @@ public class Robot extends TimedRobot {
         UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(0);
         cam1.setResolution(160, 120);
 
-        UsbCamera cam2 = CameraServer.getInstance().startAutomaticCapture(1);
-        cam2.setResolution(160, 120);
-
         CameraServer.getInstance().getVideo();
         CameraServer.getInstance().putVideo("RoboFeed", 160, 120);
 
@@ -133,6 +130,7 @@ public class Robot extends TimedRobot {
                 }
                 try {
                     m_autonomousCommand = new EmergencyLineAuto().build();
+                    DriverStation.reportWarning("Scheduling emergency line-cross autonomous.", false);
                 } catch (Throwable f) {
                     DriverStation.reportError("Error building emergency autonomous: " + f.toString(), f.getStackTrace());
                     DriverStation.reportWarning(F_PAY_RESPECTS, false);
