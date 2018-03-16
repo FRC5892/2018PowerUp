@@ -13,8 +13,6 @@ public class IntakeSubsystem extends Subsystem {
     private final SpeedController wheels;
     private final DigitalInput button;
 
-    public boolean intaking;
-
     public IntakeSubsystem() {
         wheels = RobotMap.makeVictorGroup(Robot.map.intakeMotors);
         button = new DigitalInput(Robot.map.intakeButton);
@@ -26,7 +24,7 @@ public class IntakeSubsystem extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-
+        setDefaultCommand(new IntakeControl());
     }
 
     public void setMotorPower(double power) {
@@ -35,13 +33,5 @@ public class IntakeSubsystem extends Subsystem {
 
     public boolean isButtonPressed() {
         return !button.get();
-    }
-
-    @Override
-    public void periodic() {
-        if (intaking)
-            setMotorPower(isButtonPressed() ? 0 : -1);
-        else
-            setMotorPower(0);
     }
 }

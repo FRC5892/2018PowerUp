@@ -13,13 +13,8 @@ public class JoystickPlayerTwo implements PlayerTwo {
     }
 
     @Override
-    public Trigger intake() {
-        return new AnalogAxisTrigger(stick, 1);
-    }
-
-    @Override
-    public Trigger outtake() {
-        return new AnalogAxisTrigger(stick, 1, -0.7);
+    public double intake() {
+        return -stick.getRawAxis(1);
     }
 
     @Override

@@ -31,7 +31,7 @@ public class BatwingSubsystem extends Subsystem {
     }
 
     void raiseWinch(boolean on) {
-        retainer.set(on ? -RETAINER_POWER : 0);
+        retainer.set(on ? -0.25 * RETAINER_POWER : 0);
         winch.set(on ? WINCH_POWER : 0);
     }
 

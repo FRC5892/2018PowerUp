@@ -1,8 +1,7 @@
 package org.usfirst.frc.team5892.robot.auton;
 
-import org.usfirst.frc.team5892.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team5892.robot.Robot;
 
 
 
@@ -19,6 +18,11 @@ public class AutoTankDrive extends Command {
         encoderTarget = _encoderTarget;
     }
 
+    public AutoTankDrive(double _left, double _right, int _encoderTarget, double timeout) {
+        this(_left, _right, _encoderTarget);
+        setTimeout(timeout);
+    }
+
     @Override
     protected void initialize() {
         Robot.drive.resetEncoders();
@@ -28,7 +32,7 @@ public class AutoTankDrive extends Command {
     @Override
     protected boolean isFinished() {
         return Math.abs(Robot.drive.getLeft()) > encoderTarget ||
-                Math.abs(Robot.drive.getRight()) > encoderTarget;
+                Math.abs(Robot.drive.getRight()) > encoderTarget || isTimedOut();
     }
 
     @Override
