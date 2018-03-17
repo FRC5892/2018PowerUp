@@ -23,36 +23,23 @@ public class ScoreToScaleAuto extends DynamicAuton {
 
                 addSequential(new AutoStraightDrive(1, 0, encoderInches(120)));
                 addSequential(new AutoStraightDrive(0.8, 0, encoderInches(100)));
-                addSequential(new AutoGyroRotate(45 * turnDir));
-                addSequential(new RunElevator(0.8), 2);
+                addSequential(new IntakeAndRotate(45 * turnDir));
+                addSequential(new RunElevator(1), 5);
                 addSequential(new RunIntake(0.8), 0.5);
-                addParallel(new RunElevator(-0.8), 1);
-                addSequential(new AutoGyroRotate(145 * turnDir));
-                addParallel(new RunIntake(-1, true), 3);
-                addParallel(new AutoStraightDrive(0.6, 145 * turnDir, encoderInches(40)));
-                addSequential(new WaitCommand(Robot.intake::isButtonPressed), 2);
-                addSequential(new AutoStraightDrive(-0.7, 145 * turnDir, encoderInches(6)));
-                addSequential(new AutoGyroRotate(15 * turnDir));
-                addSequential(new AutoStraightDrive(0.8, 15 * turnDir, encoderInches(4)));
-                addSequential(new RunElevator(0.8), 2);
-                addSequential(new RunIntake(0.8), 0.5);
+                addParallel(new RunElevator(-1), 4);
 
             } else {
 
                 addSequential(new AutoStraightDrive(0.7749, 0, encoderInches(180)));
                 addSequential(new WaitCommand(0.5));
-                addSequential(new AutoGyroRotate(90 * turnDir));
+                addSequential(new IntakeAndRotate(90 * turnDir));
                 addSequential(new AutoStraightDrive(0.7749, 90 * turnDir, encoderInches(177)));
                 addSequential(new WaitCommand(0.5));
-                addSequential(new AutoGyroRotate(-15 * turnDir));
+                addSequential(new IntakeAndRotate(-15 * turnDir));
                 addSequential(new AutoStraightDrive(0.6, -15 * turnDir, encoderInches(6)));
-                addSequential(new RunElevator(0.8), 2);
-                addSequential(new RunIntake(0.8), 1);
-                addSequential(new RunElevator(-0.8), 1);
-                addSequential(new AutoGyroRotate(195 * turnDir, 0.5));
-                addSequential(new WaitCommand(0.5));
-                addParallel(new RunIntake(-1, true));
-                addParallel(new AutoStraightDrive(0.6, 195 * turnDir, encoderInches(36)));
+                addSequential(new RunElevator(1), 5);
+                addSequential(new RunIntake(0.8), 0.5);
+                addSequential(new RunElevator(-1), 4);
 
             }
         }

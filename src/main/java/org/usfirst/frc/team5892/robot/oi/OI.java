@@ -13,9 +13,11 @@ public class OI {
         player1 = player_1;
         player2 = player_2;
 
-        /*player2.leftBatwingDown().whileActive(new LowerBatwingArm(Robot.leftBatwing));
-        player2.leftBatwingLift().whileActive(new RaiseBatwingWinch(Robot.leftBatwing));
-        player2.rightBatwingDown().whileActive(new LowerBatwingArm(Robot.rightBatwing));
-        player2.rightBatwingLift().whileActive(new RaiseBatwingWinch(Robot.rightBatwing));*/
+        if (Robot.batwings) {
+            player2.leftBatwingDown().whileActive(new LowerBatwingArm(Robot.leftBatwing));
+            player2.leftBatwingLift().whileActive(new RaiseBatwingWinch(Robot.leftBatwing));
+            player2.rightBatwingDown().whileActive(new LowerBatwingArm(Robot.rightBatwing));
+            player2.rightBatwingLift().whileActive(new RaiseBatwingWinch(Robot.rightBatwing));
+        }
     }
 }
