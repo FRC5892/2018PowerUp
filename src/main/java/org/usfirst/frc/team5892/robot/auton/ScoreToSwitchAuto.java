@@ -20,7 +20,7 @@ public class ScoreToSwitchAuto extends DynamicAuton {
             //addSequential(new IntakeShakedown());
             if (pos == gameData.charAt(0)) {
 
-                addSequential(new AutoStraightDrive(0.7, 0, encoderInches(140)));
+                addSequential(new AutoStraightDrive(0.7, 0, encoderInches(138)));
                 addSequential(new IntakeAndRotate(90 * turnDir));
                 addSequential(new RunElevator(1), 1.25);
                 addSequential(new AutoStraightDrive(0.6, 90 * turnDir, encoderInches(20)), 0.75);

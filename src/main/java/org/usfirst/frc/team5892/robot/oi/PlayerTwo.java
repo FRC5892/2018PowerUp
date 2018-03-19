@@ -6,6 +6,7 @@ public interface PlayerTwo {
     double intake();
 
     double elevator();
+    Trigger elevatorLimitBreak();
 
     Trigger leftBatwingDown();
     Trigger leftBatwingLift();

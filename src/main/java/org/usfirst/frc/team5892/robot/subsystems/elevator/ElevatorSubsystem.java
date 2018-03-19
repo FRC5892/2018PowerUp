@@ -2,6 +2,7 @@ package org.usfirst.frc.team5892.robot.subsystems.elevator;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;

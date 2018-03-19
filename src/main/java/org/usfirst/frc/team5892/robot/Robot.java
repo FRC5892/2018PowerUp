@@ -74,8 +74,9 @@ public class Robot extends TimedRobot {
         m_chooser.addObject("Do Nothing", null);
         m_chooser.addObject("Cross the Line", new EmergencyLineAuto());
         //m_chooser.addObject("Test Movement", new TestEverythingAuto());
-        m_chooser.addDefault("Score to Switch", new ScoreToSwitchAuto());
+        m_chooser.addObject("Score to Switch", new ScoreToSwitchAuto());
         m_chooser.addObject("Score to Scale", new ScoreToScaleAuto());
+        m_chooser.addDefault("LSC Playoffs", new LoneStarCentralAuto());
         //m_chooser.addObject("Score Two Cubes", new TwoCubeAuto());
         SmartDashboard.putData("Auto mode", m_chooser);
 

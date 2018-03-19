@@ -23,6 +23,11 @@ public class JoystickPlayerTwo implements PlayerTwo {
     }
 
     @Override
+    public Trigger elevatorLimitBreak() {
+        return new POVTrigger(stick, 0);
+    }
+
+    @Override
     public Trigger leftBatwingDown() {
         return new AnalogAxisTrigger(stick, 3);
     }
