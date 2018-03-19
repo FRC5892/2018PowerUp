@@ -7,15 +7,24 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public abstract class DynamicAuton {
     private static SendableChooser<Character> posChooser;
+    private static AutonCompatibilityCheck checkCommand;
 
     protected DynamicAuton() {
         if (posChooser == null) {
             posChooser = new SendableChooser<>();
             posChooser.addObject("Left", 'L');
+            posChooser.addObject("Center", 'C');
             posChooser.addDefault("Right", 'R');
             SmartDashboard.putData("Starting Position", posChooser);
+            checkCommand = new AutonCompatibilityCheck(posChooser);
         }
     }
+
+    public static void startCheckCommand() {
+        if (!checkCommand.isRunning()) checkCommand.start();
+    }
+
+    public abstract boolean isCompatible(char pos);
 
     public final Command build() {
         return buildCommand(posChooser.getSelected(), DriverStation.getInstance().getGameSpecificMessage());

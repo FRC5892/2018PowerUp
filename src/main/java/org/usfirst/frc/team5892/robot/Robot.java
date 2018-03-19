@@ -7,7 +7,6 @@
 
 package org.usfirst.frc.team5892.robot;
 
-import com.sun.prism.shader.FillPgram_RadialGradient_PAD_AlphaTest_Loader;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -17,7 +16,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team5892.HEROcode.preflight.PreflightChecks;
 import org.usfirst.frc.team5892.robot.auton.*;
 import org.usfirst.frc.team5892.robot.oi.JoystickPlayerOne;
 import org.usfirst.frc.team5892.robot.oi.JoystickPlayerTwo;
@@ -40,7 +38,7 @@ public class Robot extends TimedRobot {
     public static final boolean batwings = false;
 
     private Command m_autonomousCommand;
-    private SendableChooser<DynamicAuton> m_chooser = new SendableChooser<>();
+    public static SendableChooser<DynamicAuton> autonChooser = new SendableChooser<>();
 
     public static DriveSubsystem drive;
     public static IntakeSubsystem intake;
@@ -71,14 +69,14 @@ public class Robot extends TimedRobot {
         m_oi = new OI(new JoystickPlayerOne(0), new JoystickPlayerTwo(1));
 
         // Autonomous modes
-        m_chooser.addObject("Do Nothing", null);
-        m_chooser.addObject("Cross the Line", new EmergencyLineAuto());
-        //m_chooser.addObject("Test Movement", new TestEverythingAuto());
-        m_chooser.addObject("Score to Switch", new ScoreToSwitchAuto());
-        m_chooser.addObject("Score to Scale", new ScoreToScaleAuto());
-        m_chooser.addDefault("LSC Playoffs", new LoneStarCentralAuto());
-        //m_chooser.addObject("Score Two Cubes", new TwoCubeAuto());
-        SmartDashboard.putData("Auto mode", m_chooser);
+        autonChooser.addObject("Do Nothing", null);
+        autonChooser.addObject("Cross the Line", new EmergencyLineAuto());
+        //autonChooser.addObject("Test Movement", new TestEverythingAuto());
+        autonChooser.addObject("Switch from Side", new ScoreToSwitchAuto());
+        autonChooser.addObject("Score to Scale", new ScoreToScaleAuto());
+        autonChooser.addDefault("Forward to Switch", new ForwardToSwitchAuto());
+        //autonChooser.addObject("Score Two Cubes", new TwoCubeAuto());
+        SmartDashboard.putData("Auto mode", autonChooser);
 
         // CameraServer
         UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(0);
@@ -100,6 +98,7 @@ public class Robot extends TimedRobot {
     public void disabledInit() {
         drive.resetGyro();
         if (elevator != null) elevator.setMotorPower(0);
+        DynamicAuton.startCheckCommand();
     }
 
     @Override
@@ -121,7 +120,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         drive.resetGyro();
-        DynamicAuton builder = m_chooser.getSelected();
+        DynamicAuton builder = autonChooser.getSelected();
 
         if (builder != null) {
             try {

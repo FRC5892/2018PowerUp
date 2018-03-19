@@ -10,6 +10,11 @@ import static org.usfirst.frc.team5892.robot.MathUtils.encoderInches;
 public class ScoreToSwitchAuto extends DynamicAuton {
 
     @Override
+    public boolean isCompatible(char pos) {
+        return pos != 'C';
+    }
+
+    @Override
     protected Command buildCommand(char pos, String gameData) {
         return new ScoreToSwitchAutoCG(pos, gameData);
     }
