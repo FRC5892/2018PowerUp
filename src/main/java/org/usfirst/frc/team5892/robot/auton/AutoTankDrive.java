@@ -26,6 +26,10 @@ public class AutoTankDrive extends Command {
     @Override
     protected void initialize() {
         Robot.drive.resetEncoders();
+    }
+
+    @Override
+    protected void execute() {
         Robot.drive.tankDrive(left, right);
     }
 

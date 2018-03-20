@@ -13,6 +13,6 @@ public class EmergencyLineAuto extends DynamicAuton {
 
     @Override
     protected Command buildCommand(char pos, String gameData) {
-        return new AutoTankDrive(0.8, 0.8, Integer.MAX_VALUE, 2);
+        return new AutoTankDrive(0.6, 0.6, encoderInches(100), 3);
     }
 }

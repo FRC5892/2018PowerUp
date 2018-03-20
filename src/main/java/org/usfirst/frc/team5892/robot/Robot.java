@@ -46,7 +46,7 @@ public class Robot extends TimedRobot {
     public static BatwingSubsystem leftBatwing;
     public static BatwingSubsystem rightBatwing;
 
-    public static RobotMap map = new OfficialBotMap();
+    public static RobotMap map = new TempBotMap();
 
     /**
      * This function is run when the robot is first started up and should be
@@ -58,8 +58,8 @@ public class Robot extends TimedRobot {
 
         // Subsystems
         drive = new DriveSubsystem();
-        intake = new IntakeSubsystem();
-        elevator = new ElevatorSubsystem();
+        //intake = new IntakeSubsystem();
+        //elevator = new ElevatorSubsystem();
         if (batwings) {
             leftBatwing = new BatwingSubsystem("Left", map.leftBatwingRetainer.makeVictor(), map.leftBatwingWinch.makeVictor(), new DigitalInput(map.leftBatwingSensor));
             rightBatwing = new BatwingSubsystem("Right", map.rightBatwingRetainer.makeVictor(), map.rightBatwingWinch.makeVictor(), new DigitalInput(map.rightBatwingSensor));
@@ -128,6 +128,7 @@ public class Robot extends TimedRobot {
             } catch (Throwable e) {
                 final String F_PAY_RESPECTS = "Press F to pay respects.";
                 DriverStation.reportError("Error building autonomous: " + e.toString(), e.getStackTrace());
+                if (!m_ds.isFMSAttached()) return;
                 if (builder instanceof EmergencyLineAuto) {
                     DriverStation.reportWarning(F_PAY_RESPECTS, false);
                     return;

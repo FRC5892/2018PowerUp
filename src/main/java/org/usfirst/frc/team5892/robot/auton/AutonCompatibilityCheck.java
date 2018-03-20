@@ -11,7 +11,7 @@ class AutonCompatibilityCheck extends Command {
     private double m_nextMessageTime = 0;
     private final SendableChooser<Character> posChooser;
 
-    public AutonCompatibilityCheck(SendableChooser<Character> posChooser) {
+    AutonCompatibilityCheck(SendableChooser<Character> posChooser) {
         setRunWhenDisabled(true);
         this.posChooser = posChooser;
     }
@@ -23,8 +23,8 @@ class AutonCompatibilityCheck extends Command {
         DynamicAuton selected = Robot.autonChooser.getSelected();
         char pos = posChooser.getSelected();
         if (!selected.isCompatible(pos)) {
-            DriverStation.reportWarning("Selected auton " + selected + " is incompatible with chosen position '" + pos + "'!", false);
-            m_nextMessageTime += 5;
+            DriverStation.reportWarning("Selected auton " + selected.getClass().getSimpleName() + " is incompatible with chosen position '" + pos + "'!", false);
+            m_nextMessageTime += 2;
         }
     }
 
