@@ -3,22 +3,18 @@ package org.usfirst.frc.team5892.robot.subsystems.intake;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5892.robot.Robot;
 
-public class OuttakeCommand extends Command {
+public class RunIntake extends Command {
 
-    private final double power;
+    private final double _power;
 
-    public OuttakeCommand() {
-        this(1);
-    }
-
-    public OuttakeCommand(double power) {
+    public RunIntake(double power) {
         requires(Robot.intake);
-        this.power = Math.abs(power);
+        _power = power;
     }
 
     @Override
     protected void execute() {
-        Robot.intake.setMotorPower(power);
+        Robot.intake.setMotorPower(_power);
     }
 
     @Override

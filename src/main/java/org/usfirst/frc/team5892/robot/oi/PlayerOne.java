@@ -6,6 +6,5 @@ public interface PlayerOne {
     double moveAxis();
     double turnAxis();
 
-    Trigger intake();
-    Trigger outtake();
+    double intake();
 }

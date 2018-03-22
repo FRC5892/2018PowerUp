@@ -21,12 +21,7 @@ public class JoystickPlayerOne implements PlayerOne {
     }
 
     @Override
-    public Trigger intake() {
-        return new AnalogAxisTrigger(stick, 2);
-    }
-
-    @Override
-    public Trigger outtake() {
-        return new AnalogAxisTrigger(stick, 3);
+    public double intake() {
+        return stick.getRawAxis(3) - stick.getRawAxis(2);
     }
 }

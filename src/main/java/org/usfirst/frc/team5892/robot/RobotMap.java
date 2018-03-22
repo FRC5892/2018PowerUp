@@ -24,7 +24,6 @@ public class RobotMap {
 
 	// Intake subsystem
 	public MotorInfo[] intakeMotors;
-	public int intakeButton;
 
 	// Elevator subsystem
 	public MotorInfo elevatorTalon;

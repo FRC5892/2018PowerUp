@@ -8,7 +8,6 @@ public class TempBotMap extends RobotMap{
         rightEncoder1 = 2; rightEncoder2 = 3;
 
         intakeMotors = new MotorInfo[]{new MotorInfo(5, true), new MotorInfo(6)};
-        intakeButton = 4;
 
         elevatorTalon = new MotorInfo(0);
         elevatorOtherMotor = new MotorInfo(4);

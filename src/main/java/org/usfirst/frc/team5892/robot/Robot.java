@@ -58,14 +58,11 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         // Order is important!!!
-        WPI_TalonSRX talon = new WPI_TalonSRX(Robot.map.elevatorTalon.port);
-        talon.setInverted(Robot.map.elevatorTalon.inverted); talon.setName("Elevator Talon");
-        map.elevatorOtherMotor.makeVictor().setName("Elevator Not-the-Talon");
 
         // Subsystems
         drive = new DriveSubsystem();
         intake = new IntakeSubsystem();
-        //elevator = new ElevatorSubsystem();
+        elevator = new ElevatorSubsystem();
         if (batwings) {
             leftBatwing = new BatwingSubsystem("Left", map.leftBatwingRetainer.makeVictor(), map.leftBatwingWinch.makeVictor(), new DigitalInput(map.leftBatwingSensor));
             rightBatwing = new BatwingSubsystem("Right", map.rightBatwingRetainer.makeVictor(), map.rightBatwingWinch.makeVictor(), new DigitalInput(map.rightBatwingSensor));

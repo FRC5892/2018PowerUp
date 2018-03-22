@@ -3,8 +3,7 @@ package org.usfirst.frc.team5892.robot.auton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team5892.robot.subsystems.elevator.RunElevator;
-import org.usfirst.frc.team5892.robot.subsystems.intake.IntakeCommand;
-import org.usfirst.frc.team5892.robot.subsystems.intake.OuttakeCommand;
+import org.usfirst.frc.team5892.robot.subsystems.intake.RunIntake;
 
 import static org.usfirst.frc.team5892.robot.MathUtils.encoderInches;
 
@@ -39,13 +38,13 @@ public class TwoCubeAuto extends DynamicAuton {
                     addSequential(new AutoStraightDrive(0.7, 0, encoderInches(304)));
                     addSequential(new AutoGyroRotate(90 * turnDir));
                     addSequential(new RunElevator(0.5), 4);
-                    addSequential(new OuttakeCommand(), 0.5);
+                    addSequential(new RunIntake(0.8), 0.5);
                     addSequential(new RunElevator(-0.1), 1);
                     addSequential(new AutoGyroRotate(159 * turnDir));
-                    addParallel(new IntakeCommand());
+                    addParallel(new RunIntake(-0.6), 3);
                     addSequential(new AutoStraightDrive(0.7, 159 * turnDir, encoderInches(101)));
                     addSequential(new RunElevator(0.5), 2);
-                    addSequential(new OuttakeCommand(), 0.5);
+                    addSequential(new RunIntake(0.8), 0.5);
                     break;
 
             }

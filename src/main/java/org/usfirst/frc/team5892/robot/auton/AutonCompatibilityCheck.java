@@ -18,6 +18,7 @@ class AutonCompatibilityCheck extends Command {
 
     @Override
     protected void execute() {
+        if (Robot.autonChooser.getSelected() == null) return;
         double currentTime = Timer.getFPGATimestamp();
         if (currentTime < m_nextMessageTime) return;
         DynamicAuton selected = Robot.autonChooser.getSelected();
