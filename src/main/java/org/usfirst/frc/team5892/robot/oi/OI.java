@@ -1,9 +1,10 @@
 package org.usfirst.frc.team5892.robot.oi;
 
 import org.usfirst.frc.team5892.robot.Robot;
-import org.usfirst.frc.team5892.robot.subsystems.intake.*;
-import org.usfirst.frc.team5892.robot.subsystems.elevator.*;
-import org.usfirst.frc.team5892.robot.subsystems.batwing.*;
+import org.usfirst.frc.team5892.robot.subsystems.batwing.LowerBatwingArm;
+import org.usfirst.frc.team5892.robot.subsystems.batwing.RaiseBatwingWinch;
+import org.usfirst.frc.team5892.robot.subsystems.intake.IntakeCommand;
+import org.usfirst.frc.team5892.robot.subsystems.intake.OuttakeCommand;
 
 public class OI {
     public final PlayerOne player1;
@@ -12,6 +13,9 @@ public class OI {
     public OI(PlayerOne player_1, PlayerTwo player_2) {
         player1 = player_1;
         player2 = player_2;
+
+        player1.intake().whenActive(new IntakeCommand());
+        player1.outtake().whileActive(new OuttakeCommand());
 
         if (Robot.batwings) {
             player2.leftBatwingDown().whileActive(new LowerBatwingArm(Robot.leftBatwing));

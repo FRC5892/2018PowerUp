@@ -6,5 +6,6 @@ public interface PlayerOne {
     double moveAxis();
     double turnAxis();
 
-    Trigger slowMode();
+    Trigger intake();
+    Trigger outtake();
 }

@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5892.robot.subsystems.intake;
 
-import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Sendable;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team5892.robot.MathUtils;
 import org.usfirst.frc.team5892.robot.Robot;
@@ -24,7 +26,7 @@ public class IntakeSubsystem extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new IntakeControl());
+
     }
 
     public void setMotorPower(double power) {

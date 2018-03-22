@@ -2,11 +2,7 @@ package org.usfirst.frc.team5892.robot.subsystems.elevator;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team5892.HEROcode.inline.InlineTrigger;
 import org.usfirst.frc.team5892.robot.MathUtils;
 import org.usfirst.frc.team5892.robot.Robot;
 
@@ -16,6 +12,7 @@ public class ElevatorSubsystem extends Subsystem {
 
     private final SpeedController motor;
     private final DigitalInput highSwitch, lowSwitch;
+    private final Solenoid brake;
 
     public ElevatorSubsystem() {
         WPI_TalonSRX talon = new WPI_TalonSRX(Robot.map.elevatorTalon.port);
@@ -23,8 +20,10 @@ public class ElevatorSubsystem extends Subsystem {
         motor = new SpeedControllerGroup(talon, Robot.map.elevatorOtherMotor.makeVictor());
         highSwitch = new DigitalInput(Robot.map.elevatorHighSwitch);
         lowSwitch = new DigitalInput(Robot.map.elevatorLowSwitch);
+        brake = new Solenoid(Robot.map.elevatorBrake);
         addChild("Winch", (Sendable) motor);
         addChild("High Limit Switch", highSwitch); addChild("Low Limit Switch", lowSwitch);
+        addChild("Brake", brake);
     }
 
     @Override
@@ -35,6 +34,12 @@ public class ElevatorSubsystem extends Subsystem {
     }
 
     public void setMotorPower(double power) {
-        motor.set(-MathUtils.scalePlusMinus(power, DOWN_POWER, UP_POWER));
+        if (Math.abs(power) > 0.05) {
+            motor.set(-MathUtils.scalePlusMinus(power, DOWN_POWER, UP_POWER));
+            brake.set(false);
+        } else {
+            motor.set(0);
+            brake.set(true);
+        }
     }
 }

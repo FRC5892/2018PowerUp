@@ -2,8 +2,7 @@ package org.usfirst.frc.team5892.robot.auton;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.usfirst.frc.team5892.robot.subsystems.elevator.RunElevator;
-import org.usfirst.frc.team5892.robot.subsystems.intake.RunIntake;
+import org.usfirst.frc.team5892.robot.subsystems.intake.OuttakeCommand;
 
 import static org.usfirst.frc.team5892.robot.MathUtils.encoderInches;
 
@@ -30,7 +29,7 @@ public class ForwardToSwitchAuto extends DynamicAuton {
                     addSequential(new AutoGyroRotate(0));
                     //addSequential(new RunElevator(1), 1.25);
                     addSequential(new AutoStraightDrive(0.6, 0, encoderInches(30)), 2);
-                    //addSequential(new RunIntake(0.6), 1);
+                    //addSequential(new OuttakeCommand(), 1);
                 } else {
                     addSequential(new AutoStraightDrive(0.6, 0, encoderInches(15)));
                     addSequential(new AutoGyroRotate(20));
@@ -38,11 +37,11 @@ public class ForwardToSwitchAuto extends DynamicAuton {
                     addSequential(new AutoGyroRotate(0));
                     //addSequential(new RunElevator(1), 1.25);
                     addSequential(new AutoStraightDrive(0.6, 0, encoderInches(30)), 2);
-                    //addSequential(new RunIntake(0.6), 1);
+                    //addSequential(new OuttakeCommand(), 1);
                 }
             } else if (pos == switchPos) {
                 addSequential(new AutoStraightDrive(0.6, 0, encoderInches(100)), 5);
-                addSequential(new RunIntake(1), 1);
+                addSequential(new OuttakeCommand(), 1);
             } else {
                 addSequential(new AutoStraightDrive(0.6, 0, encoderInches(100)), 5);
             }

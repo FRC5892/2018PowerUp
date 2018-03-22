@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import org.usfirst.frc.team5892.robot.Robot;
 import org.usfirst.frc.team5892.robot.RobotMap;
 

@@ -13,13 +13,8 @@ public class JoystickPlayerTwo implements PlayerTwo {
     }
 
     @Override
-    public double intake() {
-        return -stick.getRawAxis(1);
-    }
-
-    @Override
     public double elevator() {
-        return stick.getRawAxis(5) * 0.6;
+        return -stick.getRawAxis(1) * 0.6;
     }
 
     @Override

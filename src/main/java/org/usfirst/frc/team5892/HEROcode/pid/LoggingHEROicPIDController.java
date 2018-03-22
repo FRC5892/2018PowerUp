@@ -1,9 +1,9 @@
 package org.usfirst.frc.team5892.HEROcode.pid;
 
+import org.usfirst.frc.team5892.HEROcode.logging.RIOLogger;
+
 import java.io.IOException;
 import java.util.logging.Level;
-
-import org.usfirst.frc.team5892.HEROcode.logging.RIOLogger;
 
 /**
  * Like {@link HEROicPIDController}... but it logs input/output. What a stunningly unexpected realization.

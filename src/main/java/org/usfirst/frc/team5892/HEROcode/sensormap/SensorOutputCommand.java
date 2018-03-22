@@ -1,9 +1,9 @@
 package org.usfirst.frc.team5892.HEROcode.sensormap;
 
-import java.util.Vector;
-
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import java.util.Vector;
 
 /**
  * The command used to automatically put sensors on the SmartDashboard.

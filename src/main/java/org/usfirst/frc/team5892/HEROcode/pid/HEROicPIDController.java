@@ -1,9 +1,9 @@
 package org.usfirst.frc.team5892.HEROcode.pid;
 
+import edu.wpi.first.wpilibj.PIDInterface;
+
 import java.util.Timer;
 import java.util.TimerTask;
-
-import edu.wpi.first.wpilibj.PIDInterface;
 
 /**
  * A simple class for implementing PID without the apparently crap WPILib-provided methods.

@@ -1,8 +1,8 @@
 package org.usfirst.frc.team5892.HEROcode.auton;
 
-import java.util.function.Predicate;
-
 import edu.wpi.first.wpilibj.command.Command;
+
+import java.util.function.Predicate;
 
 /**
  * A {@link Command} that schedules another Command based on a {@link Predicate}. Useful for autonomous, to schedule another {@link edu.wpi.first.wpilibj.command.CommandGroup CommandGroup} at the end of yours.

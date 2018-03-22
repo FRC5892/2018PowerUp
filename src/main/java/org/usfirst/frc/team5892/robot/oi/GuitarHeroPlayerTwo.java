@@ -1,11 +1,5 @@
 package org.usfirst.frc.team5892.robot.oi;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.buttons.Trigger;
-import org.usfirst.frc.team5892.HEROcode.inline.InlineTrigger;
-import org.usfirst.frc.team5892.robot.subsystems.elevator.ElevatorSubsystem;
-
 public class GuitarHeroPlayerTwo {/*
     private final Joystick guitar;
     public GuitarHeroPlayerTwo(int port) {
