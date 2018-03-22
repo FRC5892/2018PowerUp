@@ -31,12 +31,19 @@ public class RobotMap {
 	public MotorInfo elevatorOtherMotor;
 	public int elevatorHighSwitch;
 	public int elevatorLowSwitch;
-	public int elevatorBrake;
+	public int elevatorBrake1, elevatorBrake2;
 
 	// Batwing subsystem
 	public MotorInfo leftBatwingRetainer, leftBatwingWinch;
 	public MotorInfo rightBatwingRetainer, rightBatwingWinch;
 	public int leftBatwingSensor, rightBatwingSensor;
+
+	// Self-climb subsystem
+	public MotorInfo selfClimbArm;
+	public MotorInfo[] selfClimbWinch;
+
+	// Other info
+	public boolean cameras;
 
 	// ---
 

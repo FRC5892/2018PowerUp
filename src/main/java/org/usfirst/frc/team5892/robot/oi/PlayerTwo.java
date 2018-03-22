@@ -4,10 +4,14 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 
 public interface PlayerTwo {
     double elevator();
-    Trigger elevatorLimitBreak();
+    Trigger elevatorBrake();
 
     Trigger leftBatwingDown();
     Trigger leftBatwingLift();
     Trigger rightBatwingDown();
     Trigger rightBatwingLift();
+
+    Trigger climbArm();
+    Trigger climbArmReverse();
+    Trigger climbWinch();
 }

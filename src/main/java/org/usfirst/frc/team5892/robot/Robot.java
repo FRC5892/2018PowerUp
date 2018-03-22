@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team5892.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -24,6 +25,7 @@ import org.usfirst.frc.team5892.robot.subsystems.batwing.BatwingSubsystem;
 import org.usfirst.frc.team5892.robot.subsystems.drive.DriveSubsystem;
 import org.usfirst.frc.team5892.robot.subsystems.elevator.ElevatorSubsystem;
 import org.usfirst.frc.team5892.robot.subsystems.intake.IntakeSubsystem;
+import org.usfirst.frc.team5892.robot.subsystems.selfclimb.SelfClimbSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -45,8 +47,9 @@ public class Robot extends TimedRobot {
     public static ElevatorSubsystem elevator;
     public static BatwingSubsystem leftBatwing;
     public static BatwingSubsystem rightBatwing;
+    public static SelfClimbSubsystem selfClimb;
 
-    public static RobotMap map = new TempBotMap();
+    public static RobotMap map = new OfficialBotMap();
 
     /**
      * This function is run when the robot is first started up and should be
@@ -55,14 +58,19 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         // Order is important!!!
+        WPI_TalonSRX talon = new WPI_TalonSRX(Robot.map.elevatorTalon.port);
+        talon.setInverted(Robot.map.elevatorTalon.inverted); talon.setName("Elevator Talon");
+        map.elevatorOtherMotor.makeVictor().setName("Elevator Not-the-Talon");
 
         // Subsystems
         drive = new DriveSubsystem();
-        //intake = new IntakeSubsystem();
+        intake = new IntakeSubsystem();
         //elevator = new ElevatorSubsystem();
         if (batwings) {
             leftBatwing = new BatwingSubsystem("Left", map.leftBatwingRetainer.makeVictor(), map.leftBatwingWinch.makeVictor(), new DigitalInput(map.leftBatwingSensor));
             rightBatwing = new BatwingSubsystem("Right", map.rightBatwingRetainer.makeVictor(), map.rightBatwingWinch.makeVictor(), new DigitalInput(map.rightBatwingSensor));
+        } else {
+            selfClimb = new SelfClimbSubsystem();
         }
 
         // OI
@@ -72,18 +80,20 @@ public class Robot extends TimedRobot {
         autonChooser.addObject("Do Nothing", null);
         autonChooser.addObject("Cross the Line", new EmergencyLineAuto());
         //autonChooser.addObject("Test Movement", new TestEverythingAuto());
+        autonChooser.addDefault("Switch from Middle", new ForwardToSwitchAuto());
         autonChooser.addObject("Switch from Side", new ScoreToSwitchAuto());
         autonChooser.addObject("Score to Scale", new ScoreToScaleAuto());
-        autonChooser.addDefault("Forward to Switch", new ForwardToSwitchAuto());
         //autonChooser.addObject("Score Two Cubes", new TwoCubeAuto());
         SmartDashboard.putData("Auto mode", autonChooser);
 
         // CameraServer
-        UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(0);
-        cam1.setResolution(160, 120);
+        if (map.cameras) {
+            UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(0);
+            cam1.setResolution(160, 120);
 
-        CameraServer.getInstance().getVideo();
-        CameraServer.getInstance().putVideo("RoboFeed", 160, 120);
+            CameraServer.getInstance().getVideo();
+            CameraServer.getInstance().putVideo("RoboFeed", 160, 120);
+        }
 
         // Preflight checks
         //PreflightChecks.addCheck("Stable Gyro Output");

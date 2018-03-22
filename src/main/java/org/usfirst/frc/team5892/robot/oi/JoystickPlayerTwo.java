@@ -18,8 +18,8 @@ public class JoystickPlayerTwo implements PlayerTwo {
     }
 
     @Override
-    public Trigger elevatorLimitBreak() {
-        return new POVTrigger(stick, 0);
+    public Trigger elevatorBrake() {
+        return new JoystickButton(stick, 2);
     }
 
     @Override
@@ -40,6 +40,21 @@ public class JoystickPlayerTwo implements PlayerTwo {
     @Override
     public Trigger rightBatwingLift() {
         return new JoystickButton(stick, 7);
+    }
+
+    @Override
+    public Trigger climbArm() {
+        return new AnalogAxisTrigger(stick, 2);
+    }
+
+    @Override
+    public Trigger climbArmReverse() {
+        return new AnalogAxisTrigger(stick, 3);
+    }
+
+    @Override
+    public Trigger climbWinch() {
+        return new JoystickButton(stick, 1);
     }
 
 

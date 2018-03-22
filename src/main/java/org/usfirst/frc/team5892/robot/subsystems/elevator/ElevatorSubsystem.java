@@ -12,7 +12,7 @@ public class ElevatorSubsystem extends Subsystem {
 
     private final SpeedController motor;
     private final DigitalInput highSwitch, lowSwitch;
-    private final Solenoid brake;
+    private final DoubleSolenoid brake;
 
     public ElevatorSubsystem() {
         WPI_TalonSRX talon = new WPI_TalonSRX(Robot.map.elevatorTalon.port);
@@ -20,7 +20,7 @@ public class ElevatorSubsystem extends Subsystem {
         motor = new SpeedControllerGroup(talon, Robot.map.elevatorOtherMotor.makeVictor());
         highSwitch = new DigitalInput(Robot.map.elevatorHighSwitch);
         lowSwitch = new DigitalInput(Robot.map.elevatorLowSwitch);
-        brake = new Solenoid(Robot.map.elevatorBrake);
+        brake = new DoubleSolenoid(Robot.map.elevatorBrake1, Robot.map.elevatorBrake2);
         addChild("Winch", (Sendable) motor);
         addChild("High Limit Switch", highSwitch); addChild("Low Limit Switch", lowSwitch);
         addChild("Brake", brake);
@@ -34,12 +34,10 @@ public class ElevatorSubsystem extends Subsystem {
     }
 
     public void setMotorPower(double power) {
-        if (Math.abs(power) > 0.05) {
-            motor.set(-MathUtils.scalePlusMinus(power, DOWN_POWER, UP_POWER));
-            brake.set(false);
-        } else {
-            motor.set(0);
-            brake.set(true);
-        }
+        motor.set(-MathUtils.scalePlusMinus(power, DOWN_POWER, UP_POWER));
+    }
+
+    public void setBrake(boolean on) {
+        brake.set(on ? DoubleSolenoid.Value.kReverse : DoubleSolenoid.Value.kForward);
     }
 }

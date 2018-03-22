@@ -14,6 +14,8 @@ public class OfficialBotMap extends RobotMap {
         elevatorOtherMotor = new MotorInfo(4, true);
         elevatorHighSwitch = 5;
         elevatorLowSwitch = 6;
+        elevatorBrake1 = 2;
+        elevatorBrake2 = 3;
 
         leftBatwingRetainer = new MotorInfo(7);
         leftBatwingWinch = new MotorInfo(2);
@@ -22,5 +24,10 @@ public class OfficialBotMap extends RobotMap {
         rightBatwingRetainer = new MotorInfo(8);
         rightBatwingWinch = new MotorInfo(3);
         rightBatwingSensor = 8;
+
+        selfClimbArm = new MotorInfo(8);
+        selfClimbWinch = new MotorInfo[]{new MotorInfo(2), new MotorInfo(9, true)};
+
+        cameras = true;
     }
 }

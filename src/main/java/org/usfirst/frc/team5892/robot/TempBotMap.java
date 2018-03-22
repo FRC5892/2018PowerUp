@@ -22,5 +22,7 @@ public class TempBotMap extends RobotMap{
         rightBatwingRetainer = new MotorInfo(8);
         rightBatwingWinch = new MotorInfo(3);
         rightBatwingSensor = 8;
+
+        cameras = false;
     }
 }

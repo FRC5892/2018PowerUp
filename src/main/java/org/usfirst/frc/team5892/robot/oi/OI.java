@@ -3,8 +3,11 @@ package org.usfirst.frc.team5892.robot.oi;
 import org.usfirst.frc.team5892.robot.Robot;
 import org.usfirst.frc.team5892.robot.subsystems.batwing.LowerBatwingArm;
 import org.usfirst.frc.team5892.robot.subsystems.batwing.RaiseBatwingWinch;
+import org.usfirst.frc.team5892.robot.subsystems.elevator.ElevatorBrake;
 import org.usfirst.frc.team5892.robot.subsystems.intake.IntakeCommand;
 import org.usfirst.frc.team5892.robot.subsystems.intake.OuttakeCommand;
+import org.usfirst.frc.team5892.robot.subsystems.selfclimb.RunClimbArm;
+import org.usfirst.frc.team5892.robot.subsystems.selfclimb.RunClimbWinch;
 
 public class OI {
     public final PlayerOne player1;
@@ -17,11 +20,17 @@ public class OI {
         player1.intake().whenActive(new IntakeCommand());
         player1.outtake().whileActive(new OuttakeCommand());
 
+        player2.elevatorBrake().whileActive(new ElevatorBrake());
+
         if (Robot.batwings) {
             player2.leftBatwingDown().whileActive(new LowerBatwingArm(Robot.leftBatwing));
             player2.leftBatwingLift().whileActive(new RaiseBatwingWinch(Robot.leftBatwing));
             player2.rightBatwingDown().whileActive(new LowerBatwingArm(Robot.rightBatwing));
             player2.rightBatwingLift().whileActive(new RaiseBatwingWinch(Robot.rightBatwing));
+        } else {
+            player2.climbArm().whileActive(new RunClimbArm(1));
+            player2.climbArmReverse().whileActive(new RunClimbArm(-1));
+            player2.climbWinch().whileActive(new RunClimbWinch(-1));
         }
     }
 }
