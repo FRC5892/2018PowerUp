@@ -9,6 +9,7 @@ public class RunClimbWinch extends Command {
     private final double power;
 
     public RunClimbWinch(double power) {
+        requires(Robot.selfClimb);
         this.power = power;
     }
 

@@ -4,17 +4,17 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5892.robot.Robot;
 
-public class RunClimbArm extends Command {
+public class ClimbArmControl extends Command {
     private static final DriverStation ds = DriverStation.getInstance();
-    private final double power;
 
-    public RunClimbArm(double power) {
-        this.power = power;
+    public ClimbArmControl() {
+        requires(Robot.selfClimb);
     }
 
     @Override
     protected void execute() {
-        Robot.selfClimb.setArm(power);
+        if (isFinished()) return;
+        Robot.selfClimb.setArm(Robot.m_oi.player2.climbArm() * 0.6);
     }
 
     @Override

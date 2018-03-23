@@ -34,7 +34,7 @@ public class ElevatorSubsystem extends Subsystem {
     }
 
     public void setMotorPower(double power) {
-        motor.set(-MathUtils.scalePlusMinus(power, DOWN_POWER, UP_POWER));
+        motor.set(-MathUtils.scalePlusMinus(power, UP_POWER, DOWN_POWER));
     }
 
     public void setBrake(boolean on) {

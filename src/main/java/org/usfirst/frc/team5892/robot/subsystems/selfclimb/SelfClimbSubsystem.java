@@ -20,7 +20,7 @@ public class SelfClimbSubsystem extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-
+        setDefaultCommand(new ClimbArmControl());
     }
 
     public void setArm(double power) {

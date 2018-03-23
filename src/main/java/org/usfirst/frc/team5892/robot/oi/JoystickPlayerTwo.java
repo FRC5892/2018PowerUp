@@ -43,13 +43,8 @@ public class JoystickPlayerTwo implements PlayerTwo {
     }
 
     @Override
-    public Trigger climbArm() {
-        return new AnalogAxisTrigger(stick, 2);
-    }
-
-    @Override
-    public Trigger climbArmReverse() {
-        return new AnalogAxisTrigger(stick, 3);
+    public double climbArm() {
+        return stick.getRawAxis(2) - stick.getRawAxis(3);
     }
 
     @Override
@@ -57,5 +52,8 @@ public class JoystickPlayerTwo implements PlayerTwo {
         return new JoystickButton(stick, 1);
     }
 
-
+    @Override
+    public Trigger reverseWinch() {
+        return new JoystickButton(stick, 3);
+    }
 }

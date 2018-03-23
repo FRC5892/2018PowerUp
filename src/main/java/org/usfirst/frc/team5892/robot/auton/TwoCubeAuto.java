@@ -36,11 +36,11 @@ public class TwoCubeAuto extends DynamicAuton {
 
                 case 3: // both near
                     addSequential(new AutoStraightDrive(0.7, 0, encoderInches(304)));
-                    addSequential(new AutoGyroRotate(90 * turnDir));
+                    addSequential(new IntakeAndRotate(90 * turnDir));
                     addSequential(new RunElevator(0.5), 4);
                     addSequential(new RunIntake(0.8), 0.5);
                     addSequential(new RunElevator(-0.1), 1);
-                    addSequential(new AutoGyroRotate(159 * turnDir));
+                    addSequential(new IntakeAndRotate(159 * turnDir));
                     addParallel(new RunIntake(-0.6), 3);
                     addSequential(new AutoStraightDrive(0.7, 159 * turnDir, encoderInches(101)));
                     addSequential(new RunElevator(0.5), 2);
