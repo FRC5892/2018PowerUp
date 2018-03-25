@@ -26,6 +26,6 @@ public class IntakeSubsystem extends Subsystem {
     }
 
     public void setMotorPower(double power) {
-        wheels.set(MathUtils.scalePlusMinus(power, INTAKE_POWER, OUTTAKE_POWER));
+        wheels.set(-MathUtils.scalePlusMinus(power, INTAKE_POWER, OUTTAKE_POWER));
     }
 }

@@ -12,6 +12,7 @@ public interface PlayerTwo {
     Trigger rightBatwingLift();
 
     double climbArm();
+    Trigger armYank();
     Trigger climbWinch();
     Trigger reverseWinch();
 }

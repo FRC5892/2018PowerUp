@@ -5,6 +5,7 @@ import org.usfirst.frc.team5892.robot.subsystems.batwing.LowerBatwingArm;
 import org.usfirst.frc.team5892.robot.subsystems.batwing.RaiseBatwingWinch;
 import org.usfirst.frc.team5892.robot.subsystems.elevator.ElevatorBrake;
 import org.usfirst.frc.team5892.robot.subsystems.selfclimb.ClimbArmControl;
+import org.usfirst.frc.team5892.robot.subsystems.selfclimb.RunClimbArm;
 import org.usfirst.frc.team5892.robot.subsystems.selfclimb.RunClimbWinch;
 
 public class OI {
@@ -23,6 +24,7 @@ public class OI {
             player2.rightBatwingDown().whileActive(new LowerBatwingArm(Robot.rightBatwing));
             player2.rightBatwingLift().whileActive(new RaiseBatwingWinch(Robot.rightBatwing));
         } else {
+            player2.armYank().whileActive(new RunClimbArm(1));
             player2.climbWinch().whileActive(new RunClimbWinch(-1));
             player2.reverseWinch().whileActive(new RunClimbWinch(1));
         }

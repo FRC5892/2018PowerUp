@@ -17,6 +17,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team5892.DashboardFlashCommand;
+import org.usfirst.frc.team5892.HEROcode.inline.InlineTrigger;
+import org.usfirst.frc.team5892.HEROcode.inputs.MatchTimeTrigger;
 import org.usfirst.frc.team5892.robot.auton.*;
 import org.usfirst.frc.team5892.robot.oi.JoystickPlayerOne;
 import org.usfirst.frc.team5892.robot.oi.JoystickPlayerTwo;
@@ -77,9 +80,10 @@ public class Robot extends TimedRobot {
         autonChooser.addObject("Do Nothing", null);
         autonChooser.addObject("Cross the Line", new EmergencyLineAuto());
         //autonChooser.addObject("Test Movement", new TestEverythingAuto());
-        autonChooser.addDefault("Switch from Middle", new ForwardToSwitchAuto());
+        autonChooser.addObject("Switch from Middle", new ForwardToSwitchAuto());
         autonChooser.addObject("Switch from Side", new ScoreToSwitchAuto());
         autonChooser.addObject("Score to Scale", new ScoreToScaleAuto());
+        autonChooser.addDefault("Bayou Playoffs", new BayouAuto());
         //autonChooser.addObject("Score Two Cubes", new TwoCubeAuto());
         SmartDashboard.putData("Auto mode", autonChooser);
 
@@ -94,6 +98,12 @@ public class Robot extends TimedRobot {
 
         // Preflight checks
         //PreflightChecks.addCheck("Stable Gyro Output");
+
+        // Endgame flashy
+        Command dfc = new DashboardFlashCommand();
+        dfc.setName("Endgame Flashy");
+        new MatchTimeTrigger(30).whileActive(dfc);
+        SmartDashboard.putBoolean("Endgame Flashy", false);
     }
 
     /**

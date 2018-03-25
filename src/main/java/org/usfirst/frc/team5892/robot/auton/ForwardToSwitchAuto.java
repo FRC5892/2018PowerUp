@@ -28,16 +28,16 @@ public class ForwardToSwitchAuto extends DynamicAuton {
                     addSequential(new IntakeAndRotate(-45));
                     addSequential(new AutoStraightDrive(0.6, -45, encoderInches(75)));
                     addSequential(new IntakeAndRotate(0));
-                    addSequential(new RunElevator(1), 1.25);
-                    addSequential(new AutoStraightDrive(0.6, 0, encoderInches(30)), 2);
+                    addSequential(new RunElevator(1), 0.75);
+                    addSequential(new AutoStraightDrive(0.6, 0, encoderInches(30)), 1);
                     addSequential(new RunIntake(0.8), 1);
                 } else {
                     addSequential(new AutoStraightDrive(0.6, 0, encoderInches(15)));
-                    addSequential(new IntakeAndRotate(20));
-                    addSequential(new AutoStraightDrive(0.6, 20, encoderInches(75)));
-                    addSequential(new IntakeAndRotate(0), 0.25);
+                    addSequential(new IntakeAndRotate(25));
+                    addSequential(new AutoStraightDrive(0.6, 25, encoderInches(75)));
+                    addSequential(new IntakeAndRotate(10), 0.25);
                     addSequential(new RunElevator(1), 0.75);
-                    addSequential(new AutoStraightDrive(0.6, 0, encoderInches(30)), 1);
+                    addSequential(new AutoStraightDrive(0.6, 10, encoderInches(30)), 1);
                     addSequential(new RunIntake(0.8), 1);
                 }
             } else if (pos == switchPos) {

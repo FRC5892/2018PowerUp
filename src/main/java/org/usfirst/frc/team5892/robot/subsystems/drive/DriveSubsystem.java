@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import org.usfirst.frc.team5892.robot.Robot;
 import org.usfirst.frc.team5892.robot.RobotMap;
 
@@ -14,8 +15,11 @@ public class DriveSubsystem extends Subsystem {
     private final DifferentialDrive drive;
     private final Encoder leftEncoder;
     private final Encoder rightEncoder;
-    private final AHRS gyro;
+    private final AHRS navX;
+    private final Gyro backupGyro;
     private final Accelerometer accele;
+
+    private static final Preferences prefs = Preferences.getInstance();
 
     public static final double FLAT_REDUCE = Robot.batwings ? 0.8 : 0.95;
 
@@ -25,10 +29,12 @@ public class DriveSubsystem extends Subsystem {
         drive = new DifferentialDrive(leftDrive, rightDrive);
         leftEncoder = new Encoder(Robot.map.leftEncoder1, Robot.map.leftEncoder2);
         rightEncoder = new Encoder(Robot.map.rightEncoder1, Robot.map.rightEncoder2);
-        gyro = new AHRS(SPI.Port.kMXP);
+        navX = new AHRS(SPI.Port.kMXP);
+        backupGyro = new ADXRS450_Gyro();
         accele = new BuiltInAccelerometer();
 
-        addChild("Drive Train", drive); addChild("Gyro", (Sendable) gyro);
+        addChild("Drive Train", drive);
+        addChild("navX", navX); addChild("Backup Gyro", (Sendable) backupGyro);
         addChild("Left Encoder", leftEncoder); addChild("Right Encoder", rightEncoder);
         addChild("Accelerometer", (Sendable) accele);
     }
@@ -65,11 +71,12 @@ public class DriveSubsystem extends Subsystem {
     }
 
     public void resetGyro() {
-        gyro.reset();
+        navX.reset();
+        backupGyro.reset();
     }
 
     public double gyroAngle() {
-        return gyro.getAngle();
+        return prefs.getBoolean("Use Backup Gyro", false) ? backupGyro.getAngle() : navX.getAngle();
     }
 
     public double accelerometer() {

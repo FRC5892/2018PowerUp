@@ -48,6 +48,11 @@ public class JoystickPlayerTwo implements PlayerTwo {
     }
 
     @Override
+    public Trigger armYank() {
+        return new JoystickButton(stick, 4);
+    }
+
+    @Override
     public Trigger climbWinch() {
         return new JoystickButton(stick, 1);
     }
