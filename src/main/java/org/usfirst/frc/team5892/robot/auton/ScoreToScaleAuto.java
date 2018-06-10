@@ -16,36 +16,32 @@ public class ScoreToScaleAuto extends DynamicAuton {
 
     @Override
     protected Command buildCommand(char pos, String gameData) {
-        return new ScoreToScaleAutoCG(pos, gameData);
-    }
+        CommandGroup ret = new CommandGroup();
+        int turnDir = pos == 'L' ? 1 : -1;
+        ret.addParallel(new RunIntake(-0.6), 3);
+        if (pos == gameData.charAt(0)) {
 
-    private class ScoreToScaleAutoCG extends CommandGroup {
-        ScoreToScaleAutoCG(char pos, String gameData) {
-            int turnDir = pos == 'L' ? 1 : -1;
-            addParallel(new RunIntake(-0.6), 3);
-            if (pos == gameData.charAt(0)) {
+            ret.addSequential(new AutoStraightDrive(1, 0, encoderInches(120)));
+            ret.addSequential(new AutoStraightDrive(0.8, 0, encoderInches(100)));
+            ret.addSequential(new IntakeAndRotate(45 * turnDir));
+            ret.addSequential(new RunElevator(1), 5);
+            ret.addSequential(new RunIntake(0.8), 0.5);
+            ret.addParallel(new RunElevator(-1), 4);
 
-                addSequential(new AutoStraightDrive(1, 0, encoderInches(120)));
-                addSequential(new AutoStraightDrive(0.8, 0, encoderInches(100)));
-                addSequential(new IntakeAndRotate(45 * turnDir));
-                addSequential(new RunElevator(1), 5);
-                addSequential(new RunIntake(0.8), 0.5);
-                addParallel(new RunElevator(-1), 4);
+        } else {
 
-            } else {
+            ret.addSequential(new AutoStraightDrive(0.7749, 0, encoderInches(180)));
+            ret.addSequential(new WaitCommand(0.5));
+            ret.addSequential(new IntakeAndRotate(90 * turnDir));
+            ret.addSequential(new AutoStraightDrive(0.7749, 90 * turnDir, encoderInches(177)));
+            ret.addSequential(new WaitCommand(0.5));
+            ret.addSequential(new IntakeAndRotate(-15 * turnDir));
+            ret.addSequential(new AutoStraightDrive(0.6, -15 * turnDir, encoderInches(6)));
+            ret.addSequential(new RunElevator(1), 5);
+            ret.addSequential(new RunIntake(0.8), 0.5);
+            ret.addSequential(new RunElevator(-1), 4);
 
-                addSequential(new AutoStraightDrive(0.7749, 0, encoderInches(180)));
-                addSequential(new WaitCommand(0.5));
-                addSequential(new IntakeAndRotate(90 * turnDir));
-                addSequential(new AutoStraightDrive(0.7749, 90 * turnDir, encoderInches(177)));
-                addSequential(new WaitCommand(0.5));
-                addSequential(new IntakeAndRotate(-15 * turnDir));
-                addSequential(new AutoStraightDrive(0.6, -15 * turnDir, encoderInches(6)));
-                addSequential(new RunElevator(1), 5);
-                addSequential(new RunIntake(0.8), 0.5);
-                addSequential(new RunElevator(-1), 4);
-
-            }
         }
+        return ret;
     }
 }

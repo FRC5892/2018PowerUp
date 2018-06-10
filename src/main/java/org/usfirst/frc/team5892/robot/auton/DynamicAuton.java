@@ -27,7 +27,9 @@ public abstract class DynamicAuton {
     public abstract boolean isCompatible(char pos);
 
     public final Command build() {
-        return buildCommand(posChooser.getSelected(), DriverStation.getInstance().getGameSpecificMessage());
+        Command ret = buildCommand(posChooser.getSelected(), DriverStation.getInstance().getGameSpecificMessage());
+        ret.setName(this.getClass().getName());
+        return ret;
     }
 
     protected abstract Command buildCommand(char pos, String gameData);

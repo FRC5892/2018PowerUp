@@ -16,32 +16,28 @@ public class ScoreToSwitchAuto extends DynamicAuton {
 
     @Override
     protected Command buildCommand(char pos, String gameData) {
-        return new ScoreToSwitchAutoCG(pos, gameData);
-    }
+        CommandGroup ret = new CommandGroup();
+        int turnDir = pos == 'L' ? 1 : -1;
+        ret.addParallel(new RunIntake(-0.6), 3);
+        if (pos == gameData.charAt(0)) {
 
-    private class ScoreToSwitchAutoCG extends CommandGroup {
-        ScoreToSwitchAutoCG(char pos, String gameData) {
-            int turnDir = pos == 'L' ? 1 : -1;
-            addParallel(new RunIntake(-0.6), 3);
-            if (pos == gameData.charAt(0)) {
+            ret.addSequential(new AutoStraightDrive(0.7, 0, encoderInches(138)));
+            ret.addSequential(new IntakeAndRotate(90 * turnDir));
+            ret.addSequential(new RunElevator(1), 0.75);
+            ret.addSequential(new AutoStraightDrive(0.6, 90 * turnDir, encoderInches(20)), 0.75);
+            ret.addSequential(new RunIntake(0.8), 1);
 
-                addSequential(new AutoStraightDrive(0.7, 0, encoderInches(138)));
-                addSequential(new IntakeAndRotate(90 * turnDir));
-                addSequential(new RunElevator(1), 0.75);
-                addSequential(new AutoStraightDrive(0.6, 90 * turnDir, encoderInches(20)), 0.75);
-                addSequential(new RunIntake(0.8), 1);
+        } else {
 
-            } else {
+            ret.addSequential(new AutoStraightDrive(0.7, 0, encoderInches(192)));
+            ret.addSequential(new IntakeAndRotate(90 * turnDir));
+            ret.addSequential(new AutoStraightDrive(0.7, 90 * turnDir, encoderInches(150)));
+            ret.addSequential(new RunElevator(1), 1);
+            ret.addSequential(new AutoGyroRotate(180 * turnDir, 0.6));
+            ret.addSequential(new RunIntake(1), 1);
+            ret.addSequential(new RunElevator(0));
 
-                addSequential(new AutoStraightDrive(0.7, 0, encoderInches(192)));
-                addSequential(new IntakeAndRotate(90 * turnDir));
-                addSequential(new AutoStraightDrive(0.7, 90 * turnDir, encoderInches(150)));
-                addSequential(new RunElevator(1), 1);
-                addSequential(new AutoGyroRotate(180 * turnDir, 0.6));
-                addSequential(new RunIntake(1), 1);
-                addSequential(new RunElevator(0));
-
-            }
         }
+        return ret;
     }
 }

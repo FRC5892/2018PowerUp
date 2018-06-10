@@ -16,36 +16,32 @@ public class ForwardToSwitchAuto extends DynamicAuton {
 
     @Override
     protected Command buildCommand(char pos, String gameData) {
-        return new ForwardToSwitchAutoCG(pos, gameData);
-    }
-
-    private class ForwardToSwitchAutoCG extends CommandGroup {
-        ForwardToSwitchAutoCG(char pos, String gameData) {
-            char switchPos = gameData.charAt(0);
-            if (pos == 'C') {
-                if (switchPos == 'L') {
-                    addSequential(new AutoStraightDrive(0.6, 0, encoderInches(15)));
-                    addSequential(new IntakeAndRotate(-45));
-                    addSequential(new AutoStraightDrive(0.6, -45, encoderInches(75)));
-                    addSequential(new IntakeAndRotate(0));
-                    addSequential(new RunElevator(1), 0.75);
-                    addSequential(new AutoStraightDrive(0.6, 0, encoderInches(30)), 1);
-                    addSequential(new RunIntake(0.8), 1);
-                } else {
-                    addSequential(new AutoStraightDrive(0.6, 0, encoderInches(15)));
-                    addSequential(new IntakeAndRotate(25));
-                    addSequential(new AutoStraightDrive(0.6, 25, encoderInches(75)));
-                    addSequential(new IntakeAndRotate(10), 0.25);
-                    addSequential(new RunElevator(1), 0.75);
-                    addSequential(new AutoStraightDrive(0.6, 10, encoderInches(30)), 1);
-                    addSequential(new RunIntake(0.8), 1);
-                }
-            } else if (pos == switchPos) {
-                addSequential(new AutoStraightDrive(0.6, 0, encoderInches(100)), 5);
-                addSequential(new RunIntake(0.8), 1);
+        CommandGroup ret = new CommandGroup();
+        char switchPos = gameData.charAt(0);
+        if (pos == 'C') {
+            if (switchPos == 'L') {
+                ret.addSequential(new AutoStraightDrive(0.6, 0, encoderInches(15)));
+                ret.addSequential(new IntakeAndRotate(-45));
+                ret.addSequential(new AutoStraightDrive(0.6, -45, encoderInches(75)));
+                ret.addSequential(new IntakeAndRotate(0));
+                ret.addSequential(new RunElevator(1), 0.75);
+                ret.addSequential(new AutoStraightDrive(0.6, 0, encoderInches(30)), 1);
+                ret.addSequential(new RunIntake(0.8), 1);
             } else {
-                addSequential(new AutoStraightDrive(0.6, 0, encoderInches(100)), 5);
+                ret.addSequential(new AutoStraightDrive(0.6, 0, encoderInches(15)));
+                ret.addSequential(new IntakeAndRotate(25));
+                ret.addSequential(new AutoStraightDrive(0.6, 25, encoderInches(75)));
+                ret.addSequential(new IntakeAndRotate(10), 0.25);
+                ret.addSequential(new RunElevator(1), 0.75);
+                ret.addSequential(new AutoStraightDrive(0.6, 10, encoderInches(30)), 1);
+                ret.addSequential(new RunIntake(0.8), 1);
             }
+        } else if (pos == switchPos) {
+            ret.addSequential(new AutoStraightDrive(0.6, 0, encoderInches(100)), 5);
+            ret.addSequential(new RunIntake(0.8), 1);
+        } else {
+            ret.addSequential(new AutoStraightDrive(0.6, 0, encoderInches(100)), 5);
         }
+        return ret;
     }
 }

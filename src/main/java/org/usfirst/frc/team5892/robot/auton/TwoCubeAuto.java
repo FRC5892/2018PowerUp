@@ -16,38 +16,34 @@ public class TwoCubeAuto extends DynamicAuton {
 
     @Override
     protected Command buildCommand(char pos, String gameData) {
-        return new TwoCubeAutoCG(pos, gameData);
-    }
+        CommandGroup ret = new CommandGroup();
+        int turnDir = pos == 'L' ? 1 : -1;
+        int mode = (gameData.charAt(0) == pos ? 1 : 0) + (gameData.charAt(1) == pos ? 2 : 0);
+        switch (mode) {
 
-    private class TwoCubeAutoCG extends CommandGroup {
-        TwoCubeAutoCG(char pos, String gameData) {
-            int turnDir = pos == 'L' ? 1 : -1;
-            int mode = (gameData.charAt(0) == pos ? 1 : 0) + (gameData.charAt(1) == pos ? 2 : 0);
-            switch (mode) {
+            case 0: // both far
+                break;
 
-                case 0: // both far
-                    break;
+            case 1: // switch near
+                break;
 
-                case 1: // switch near
-                    break;
+            case 2: // scale near
+                break;
 
-                case 2: // scale near
-                    break;
+            case 3: // both near
+                ret.addSequential(new AutoStraightDrive(0.7, 0, encoderInches(304)));
+                ret.addSequential(new IntakeAndRotate(90 * turnDir));
+                ret.addSequential(new RunElevator(0.5), 4);
+                ret.addSequential(new RunIntake(0.8), 0.5);
+                ret.addSequential(new RunElevator(-0.1), 1);
+                ret.addSequential(new IntakeAndRotate(159 * turnDir));
+                ret.addParallel(new RunIntake(-0.6), 3);
+                ret.addSequential(new AutoStraightDrive(0.7, 159 * turnDir, encoderInches(101)));
+                ret.addSequential(new RunElevator(0.5), 2);
+                ret.addSequential(new RunIntake(0.8), 0.5);
+                break;
 
-                case 3: // both near
-                    addSequential(new AutoStraightDrive(0.7, 0, encoderInches(304)));
-                    addSequential(new IntakeAndRotate(90 * turnDir));
-                    addSequential(new RunElevator(0.5), 4);
-                    addSequential(new RunIntake(0.8), 0.5);
-                    addSequential(new RunElevator(-0.1), 1);
-                    addSequential(new IntakeAndRotate(159 * turnDir));
-                    addParallel(new RunIntake(-0.6), 3);
-                    addSequential(new AutoStraightDrive(0.7, 159 * turnDir, encoderInches(101)));
-                    addSequential(new RunElevator(0.5), 2);
-                    addSequential(new RunIntake(0.8), 0.5);
-                    break;
-
-            }
         }
+        return ret;
     }
 }

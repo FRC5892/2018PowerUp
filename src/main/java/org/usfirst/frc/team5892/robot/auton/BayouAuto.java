@@ -15,13 +15,9 @@ public class BayouAuto extends DynamicAuton {
 
     @Override
     protected Command buildCommand(char pos, String gameData) {
-        return new BayouAutoCG(pos, gameData);
-    }
-
-    private class BayouAutoCG extends CommandGroup {
-        BayouAutoCG(char pos, String gameData) {
-            addSequential(new AutoTankDrive(0.6, 0.6, encoderInches(100), 3));
-            if (pos == gameData.charAt(0)) addSequential(new RunIntake(1), 2);
-        }
+        CommandGroup ret = new CommandGroup();
+        ret.addSequential(new AutoTankDrive(0.6, 0.6, encoderInches(100), 3));
+        if (pos == gameData.charAt(0)) ret.addSequential(new RunIntake(1), 2);
+        return ret;
     }
 }
