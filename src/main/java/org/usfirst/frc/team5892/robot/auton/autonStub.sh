@@ -17,7 +17,7 @@ echo "" >> $1.java
 echo "import edu.wpi.first.wpilibj.command.Command;" >> $1.java
 echo "import edu.wpi.first.wpilibj.command.CommandGroup;" >> $1.java
 echo "" >> $1.java
-echo "public class $1 implements AutonBuilder {" >> $1.java
+echo "public class $1 extends DynamicAuton {" >> $1.java
 echo "" >> $1.java
 echo "    @Override" >> $1.java
 echo "    public boolean isCompatible(char pos) {" >> $1.java
