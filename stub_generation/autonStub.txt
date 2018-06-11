@@ -3,7 +3,7 @@ package org.usfirst.frc.team5892.robot.auton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class &name implements AutonBuilder {
+public class &name extends DynamicAuton {
 
     @Override
     public boolean isCompatible(char pos) {
