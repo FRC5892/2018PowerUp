@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team5892.robot.auton.commands.AutonCompatibilityCheck;
 
 public abstract class DynamicAuton {
     private static SendableChooser<Character> posChooser;

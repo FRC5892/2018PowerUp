@@ -1,17 +1,18 @@
-package org.usfirst.frc.team5892.robot.auton;
+package org.usfirst.frc.team5892.robot.auton.commands;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import org.usfirst.frc.team5892.robot.Robot;
+import org.usfirst.frc.team5892.robot.auton.DynamicAuton;
 
-class AutonCompatibilityCheck extends Command {
+public class AutonCompatibilityCheck extends Command {
 
     private double m_nextMessageTime = 0;
     private final SendableChooser<Character> posChooser;
 
-    AutonCompatibilityCheck(SendableChooser<Character> posChooser) {
+    public AutonCompatibilityCheck(SendableChooser<Character> posChooser) {
         setRunWhenDisabled(true);
         this.posChooser = posChooser;
     }

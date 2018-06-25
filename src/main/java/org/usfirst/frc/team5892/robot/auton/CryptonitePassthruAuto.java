@@ -1,8 +1,8 @@
 package org.usfirst.frc.team5892.robot.auton;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team5892.HEROcode.inline.ICGEntry;
-import org.usfirst.frc.team5892.HEROcode.inline.InlineCommandGroup;
+import org.usfirst.frc.team5892.HEROcode.inline.CommandGroupBuilder;
+import org.usfirst.frc.team5892.robot.auton.commands.WaitCommand;
 
 // special one-off request from 624
 public class CryptonitePassthruAuto extends DynamicAuton {
@@ -11,9 +11,9 @@ public class CryptonitePassthruAuto extends DynamicAuton {
 
     @Override
     protected Command buildCommand(char pos, String gameData) {
-        return new InlineCommandGroup(
-                new ICGEntry(new WaitCommand(11), false),
-                new ICGEntry(stsa.buildCommand(pos, gameData), false)
-        );
+        return new CommandGroupBuilder()
+                .addSequential(new WaitCommand(11))
+                .addSequential(stsa.buildCommand(pos, gameData))
+                .getOutput();
     }
 }

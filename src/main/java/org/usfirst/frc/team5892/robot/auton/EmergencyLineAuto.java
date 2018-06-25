@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5892.robot.auton;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team5892.robot.auton.commands.AutoTankDrive;
 
 import static org.usfirst.frc.team5892.robot.MathUtils.encoderInches;
 

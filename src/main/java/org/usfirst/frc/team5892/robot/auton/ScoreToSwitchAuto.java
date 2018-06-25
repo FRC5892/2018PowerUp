@@ -2,6 +2,9 @@ package org.usfirst.frc.team5892.robot.auton;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.usfirst.frc.team5892.robot.auton.commands.AutoGyroRotate;
+import org.usfirst.frc.team5892.robot.auton.commands.AutoStraightDrive;
+import org.usfirst.frc.team5892.robot.auton.commands.IntakeAndRotate;
 import org.usfirst.frc.team5892.robot.subsystems.elevator.RunElevator;
 import org.usfirst.frc.team5892.robot.subsystems.intake.RunIntake;
 

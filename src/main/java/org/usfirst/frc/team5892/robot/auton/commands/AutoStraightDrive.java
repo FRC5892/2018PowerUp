@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5892.robot.auton;
+package org.usfirst.frc.team5892.robot.auton.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5892.HEROcode.pid.HEROicPIDController;
