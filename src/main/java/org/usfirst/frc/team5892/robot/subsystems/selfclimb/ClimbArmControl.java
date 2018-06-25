@@ -13,7 +13,7 @@ public class ClimbArmControl extends Command {
 
     @Override
     protected void execute() {
-        if (isFinished()) return;
+        if (isFinished()) return; // maybe not necessary, but I'm not sure how default commands handle ending
         Robot.selfClimb.setArm(Robot.m_oi.player2.climbArm() * 0.6);
     }
 

@@ -80,10 +80,10 @@ public class Robot extends TimedRobot {
         autonChooser.addObject("Do Nothing", null);
         autonChooser.addObject("Cross the Line", new EmergencyLineAuto());
         //autonChooser.addObject("Test Movement", new TestEverythingAuto());
-        autonChooser.addObject("Switch from Middle", new ForwardToSwitchAuto());
+        autonChooser.addDefault("Switch from Middle", new ForwardToSwitchAuto());
         autonChooser.addObject("Switch from Side", new ScoreToSwitchAuto());
         autonChooser.addObject("Score to Scale", new ScoreToScaleAuto());
-        autonChooser.addDefault("Bayou Playoffs", new BayouAuto());
+        //autonChooser.addDefault("Trust in 624", new CryptonitePassthruAuto());
         //autonChooser.addObject("Score Two Cubes", new TwoCubeAuto());
         SmartDashboard.putData("Auto mode", autonChooser);
 
@@ -91,6 +91,7 @@ public class Robot extends TimedRobot {
         if (map.cameras) {
             UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(0);
             cam1.setResolution(160, 120);
+            cam1.setFPS(15);
 
             CameraServer.getInstance().getVideo();
             CameraServer.getInstance().putVideo("RoboFeed", 160, 120);

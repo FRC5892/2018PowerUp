@@ -3,8 +3,7 @@ package org.usfirst.frc.team5892.robot.oi;
 import org.usfirst.frc.team5892.robot.Robot;
 import org.usfirst.frc.team5892.robot.subsystems.batwing.LowerBatwingArm;
 import org.usfirst.frc.team5892.robot.subsystems.batwing.RaiseBatwingWinch;
-import org.usfirst.frc.team5892.robot.subsystems.elevator.ElevatorBrake;
-import org.usfirst.frc.team5892.robot.subsystems.selfclimb.ClimbArmControl;
+import org.usfirst.frc.team5892.robot.subsystems.intake.RunIntake;
 import org.usfirst.frc.team5892.robot.subsystems.selfclimb.RunClimbArm;
 import org.usfirst.frc.team5892.robot.subsystems.selfclimb.RunClimbWinch;
 
@@ -16,7 +15,9 @@ public class OI {
         player1 = player_1;
         player2 = player_2;
 
-        player2.elevatorBrake().whileActive(new ElevatorBrake());
+        player1.slowOuttake().whileActive(new RunIntake(0.3));
+
+        //player2.elevatorBrake().whileActive(new ElevatorBrake());
 
         if (Robot.batwings) {
             player2.leftBatwingDown().whileActive(new LowerBatwingArm(Robot.leftBatwing));

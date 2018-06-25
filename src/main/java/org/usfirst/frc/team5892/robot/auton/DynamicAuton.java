@@ -24,11 +24,13 @@ public abstract class DynamicAuton {
         if (!checkCommand.isRunning()) checkCommand.start();
     }
 
-    public abstract boolean isCompatible(char pos);
+    public boolean isCompatible(char pos) {
+        return true;
+    }
 
     public final Command build() {
         Command ret = buildCommand(posChooser.getSelected(), DriverStation.getInstance().getGameSpecificMessage());
-        ret.setName(this.getClass().getName());
+        ret.setName(getClass().getName());
         return ret;
     }
 
