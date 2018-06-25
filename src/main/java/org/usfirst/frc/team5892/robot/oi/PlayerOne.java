@@ -7,6 +7,4 @@ public interface PlayerOne {
     double turnAxis();
 
     Trigger slowOuttake();
-
-    Trigger stopEverything();
 }

@@ -19,7 +19,6 @@ public class OI {
         player2 = player_2;
 
         player1.slowOuttake().whileActive(new RunIntake(0.3));
-        player1.stopEverything().whenActive(new InlineInstantCommand(Scheduler.getInstance()::removeAll));
 
         //player2.elevatorBrake().whileActive(new ElevatorBrake());
 

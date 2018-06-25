@@ -25,9 +25,4 @@ public class JoystickPlayerOne implements PlayerOne {
     public Trigger slowOuttake() {
         return new JoystickButton(stick, 6);
     }
-
-    @Override
-    public Trigger stopEverything() {
-        return new JoystickButton(stick, 2);
-    }
 }
