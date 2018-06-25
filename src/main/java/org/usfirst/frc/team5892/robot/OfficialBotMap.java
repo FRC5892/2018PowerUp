@@ -27,6 +27,6 @@ public class OfficialBotMap extends RobotMap {
         selfClimbArm = new MotorInfo(8);
         selfClimbWinch = new MotorInfo[]{new MotorInfo(2), new MotorInfo(9, true)};
 
-        cameras = true;
+        cameras = false;
     }
 }

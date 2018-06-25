@@ -37,7 +37,7 @@ public class ScoreToSwitchAuto extends DynamicAuton {
                 addSequential(new IntakeAndRotate(90 * turnDir));
                 addSequential(new AutoStraightDrive(0.7, 90 * turnDir, encoderInches(150)));
                 addSequential(new RunElevator(1), 1);
-                addSequential(new AutoGyroRotate(180 * turnDir, 0.6));
+                addSequential(new AutoGyroRotate(180 * turnDir, 0.5));
                 addSequential(new RunIntake(1), 1);
                 addSequential(new RunElevator(0));
 

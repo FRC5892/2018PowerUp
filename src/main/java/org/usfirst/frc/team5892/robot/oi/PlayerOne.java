@@ -7,4 +7,5 @@ public interface PlayerOne {
     double turnAxis();
 
     double intake();
+    Trigger slowOuttake();
 }
