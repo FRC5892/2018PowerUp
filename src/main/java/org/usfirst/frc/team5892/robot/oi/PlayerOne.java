@@ -8,6 +8,4 @@ public interface PlayerOne {
 
     double intake();
     Trigger slowOuttake();
-
-    Trigger stopEverything();
 }

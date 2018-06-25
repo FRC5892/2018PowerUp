@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5892.DashboardFlashCommand;
+import org.usfirst.frc.team5892.HEROcode.inline.InlineInstantCommand;
 import org.usfirst.frc.team5892.HEROcode.inline.InlineTrigger;
 import org.usfirst.frc.team5892.HEROcode.inputs.MatchTimeTrigger;
 import org.usfirst.frc.team5892.robot.auton.*;
@@ -105,6 +106,9 @@ public class Robot extends TimedRobot {
         dfc.setName("Endgame Flashy");
         new MatchTimeTrigger(30).whileActive(dfc);
         SmartDashboard.putBoolean("Endgame Flashy", false);
+
+        // Stop everything
+        SmartDashboard.putData("Stop Everything", new InlineInstantCommand(Scheduler.getInstance()::removeAll));
     }
 
     /**
