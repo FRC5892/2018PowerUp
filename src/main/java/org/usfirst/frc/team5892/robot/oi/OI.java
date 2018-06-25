@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5892.robot.oi;
 
+import edu.wpi.first.wpilibj.command.Scheduler;
+import org.usfirst.frc.team5892.HEROcode.inline.InlineInstantCommand;
 import org.usfirst.frc.team5892.robot.Robot;
 import org.usfirst.frc.team5892.robot.subsystems.batwing.LowerBatwingArm;
 import org.usfirst.frc.team5892.robot.subsystems.batwing.RaiseBatwingWinch;
@@ -16,6 +18,7 @@ public class OI {
         player2 = player_2;
 
         player1.slowOuttake().whileActive(new RunIntake(0.3));
+        player1.stopEverything().whenActive(new InlineInstantCommand(Scheduler.getInstance()::removeAll));
 
         //player2.elevatorBrake().whileActive(new ElevatorBrake());
 
