@@ -1,3 +1,3 @@
 # 2018PowerUp
 
-Someone should eventually update this. (some time before 1/12/2018]
+Our code for our main robot for the 2018 PowerUp game
